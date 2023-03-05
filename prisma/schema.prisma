@@ -1,0 +1,30 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model user_table {
+  id     Int      @id @default(autoincrement())
+  pro_img String @default("000")
+  name String @default("")
+  email String @unique
+  password  String
+  credit  Int   @default(0)
+  rep Int @default(0)
+}
+
+model poke_table{
+  id Int @id
+  en_name String
+  ko_name String
+  en_type String
+  ko_type String
+  card_url String
+  motion_url String
+  stats String
+  credit Int
+}

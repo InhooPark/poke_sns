@@ -1,0 +1,208 @@
+$header-height: 150px;
+
+.header {
+  margin: 0 auto;
+  height: $header-height;
+  display: flex;
+  align-items: center;
+  div {
+    border-left: 1px solid rgba(224, 102, 102, 0.4);
+    border-right: 1px solid rgba(224, 102, 102, 0.4);
+    height: 100%;
+  }
+  .logo_btn {
+    width: 300px;
+  }
+  .status {
+    width: 700px;
+    border: none;
+    border-bottom: 1px solid rgba(224, 102, 102, 0.4);
+  }
+  .search {
+    width: 400px;
+    p {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .follow_search_bar {
+        width: 320px;
+        height: 50px;
+        border: 1px solid rgba(224, 102, 102, 0.4);
+        border-radius: 25px;
+        padding: 25px;
+        margin: 50px 30px 0 0;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.layout_main {
+  width: 1400px;
+  height: calc(100vh - $header-height);
+  position: relative;
+  transform: rotate(0);
+  &::before {
+    content: "";
+    width: 600px;
+    height: 600px;
+    background-color: rgba(224, 102, 102, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    filter: blur(50px);
+    top: -100px;
+    left: -300px;
+  }
+  .nav_container {
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-left: 1px solid rgba(224, 102, 102, 0.4);
+    border-right: 1px solid rgba(224, 102, 102, 0.4);
+    .nav_btn_wrap {
+      width: 80%;
+      height: 400px;
+      margin: 50px auto 0;
+      > div {
+        height: 10%;
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        svg {
+          margin: 10px 20px 10px 10px;
+        }
+        span {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  .main_content_inner {
+    width: 700px;
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    left: 300px;
+    height: 100%;
+  }
+  .profile_container {
+    width: 400px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    border-left: 1px solid rgba(224, 102, 102, 0.4);
+    border-right: 1px solid rgba(224, 102, 102, 0.4);
+    flex-direction: column;
+    justify-content: space-between;
+    .profile_wrapper {
+      .profile_wrap {
+        width: 100%;
+        background-color: rgba(224, 102, 102, 0.1);
+        display: flex;
+        .profile_img_wrap {
+          width: 50px;
+          height: 50px;
+          margin: 10px;
+          overflow: hidden;
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        .profile_info_wrap {
+          width: 100%;
+          flex-grow: 1;
+          margin: 10px;
+          .profile_name {
+            width: 100%;
+            font-size: 1.2em;
+          }
+          .profile_email {
+            width: 100%;
+            color: #888888;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            > div {
+              &:nth-child(1) {
+                display: flex;
+                align-items: center;
+              }
+              &:nth-child(2) {
+                font-size: 0.8em;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                .coin_img_wrap {
+                  width: 25px;
+                  height: 25px;
+                  overflow: hidden;
+                  img {
+                    width: 100%;
+                    object-fit: cover;
+                  }
+                }
+              }
+            }
+          }
+          .profile_badge {
+            width: 100%;
+            height: 60px;
+            margin-top: 10px;
+            border: 1px solid #e36e6e;
+            border-radius: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            p {
+              width: 40px;
+              height: 40px;
+              background-color: rgba(224, 102, 102, 0.3);
+              border-radius: 10px;
+            }
+          }
+        }
+      }
+      .profile_menu_wrap {
+        width: 80%;
+        margin: 20px auto 0;
+        p {
+          width: 100%;
+          padding: 10px;
+          margin: 5px 0;
+          font-size: 20px;
+          font-family: NanumSquareRoundBold;
+          cursor: pointer;
+        }
+      }
+    }
+    .rep_wrap {
+      width: 400px;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      &::before {
+        content: "";
+        width: 80%;
+        height: 80%;
+        background-color: #e36e6e;
+        border-radius: 50%;
+        filter: blur(30px);
+      }
+      img {
+        position: absolute;
+        width: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+}
