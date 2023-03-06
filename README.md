@@ -2,13 +2,11 @@
 
 <details>
 <summary> ver0.1.0 </summary>
-  &nbsp;&nbsp;&nbsp;&nbsp; * 변경사항 <br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 최초 테스트 업로드
+  &nbsp;&nbsp;&nbsp;&nbsp; * 최초 테스트 업로드
 </details>
 <details>
 <summary> ver0.1.1 </summary>
-  &nbsp;&nbsp;&nbsp;&nbsp; * 변경사항 <br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * encyclopedia update
+  &nbsp;&nbsp;&nbsp;&nbsp; * encyclopedia update
 </details>
 
 <br /><br />
