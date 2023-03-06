@@ -8,6 +8,7 @@
 <summary> ver0.1.1 </summary>
   &nbsp;&nbsp;&nbsp;&nbsp; * encyclopedia update
   &nbsp;&nbsp;&nbsp;&nbsp; * follow api add
+  &nbsp;&nbsp;&nbsp;&nbsp; * maincon.module / myprofile css update
 </details>
 
 <br /><br />
