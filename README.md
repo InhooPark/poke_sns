@@ -7,6 +7,7 @@
 <details>
 <summary> ver0.1.1 </summary>
   &nbsp;&nbsp;&nbsp;&nbsp; * encyclopedia update
+  &nbsp;&nbsp;&nbsp;&nbsp; * follow api add
 </details>
 
 <br /><br />
