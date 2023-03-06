@@ -4,6 +4,7 @@
 * 변경사항
   * 최초 테스트 업로드
   * 설치 후 npm install next
+  * db table 추가/ 변경 이후 npx prisma generate 
 
 
 
