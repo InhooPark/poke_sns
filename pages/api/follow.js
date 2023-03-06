@@ -1,41 +1,61 @@
 import { PrismaClient } from "@prisma/client";
-import { useSession } from "next-auth/react";
 const prisma = new PrismaClient();
 
 async function handler(req, res) {
   const { method, body, query } = req;
 
   const getData = async () => {
-    console.log(query);
     const favorite = await prisma.follow_table.findUnique({
       where: {
         id: Number(query.id),
       },
     });
-    res.json(favorite);
+
+    if (favorite == null) {
+      const newFavorite = await prisma.follow_table.create({
+        data: {
+          id: Number(query.id),
+          follow_list: "",
+        },
+      });
+      res.json(newFavorite);
+    } else {
+      res.json(favorite);
+    }
   };
 
   const postData = async () => {
-    const check = await prisma.follow_table.findUnique({
-      where: {
-        id: body.id,
-      },
-    });
-    let a = check.follow_list;
-    let aa = a.split(",");
+    let result = body.follow_list + "," + body.user_id;
+    if (body.type == "follow") {
+      const insert = await prisma.follow_table.update({
+        where: {
+          id: Number(body.id),
+        },
+        data: {
+          follow_list: result,
+        },
+      });
+    } else if (body.type == "unfollow") {
+      let result1 = body.follow_list.split(",");
+      let result2 = result1.filter((list) => list != body.user_id);
+      let result = "";
+      result2.map((list, key) => {
+        if (key === 0) {
+          return;
+        } else {
+          result += "," + list;
+        }
+      });
 
-    if (aa.includes(body.user_id.toString())) {
-      return { message: "중복" };
+      const update = await prisma.follow_table.update({
+        where: {
+          id: Number(body.id),
+        },
+        data: {
+          follow_list: result,
+        },
+      });
     }
-    let result = check.follow_list + "," + body.user_id;
-    const update = await prisma.follow_table.update({
-      where: {
-        id: body.id,
-      },
-      data: {
-        follow_list: result,
-      },
-    });
   };
 
   switch (method) {
