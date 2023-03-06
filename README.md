@@ -2,13 +2,13 @@
 
 <details>
 <summary> ver0.1.0 </summary>
-  &nbsp;&nbsp;&nbsp;&nbsp; * 최초 테스트 업로드
+    * 최초 테스트 업로드 <br />
 </details>
 <details>
 <summary> ver0.1.1 </summary>
-  &nbsp;&nbsp;&nbsp;&nbsp; * encyclopedia update
-  &nbsp;&nbsp;&nbsp;&nbsp; * follow api add
-  &nbsp;&nbsp;&nbsp;&nbsp; * maincon.module / myprofile css update
+    * encyclopedia update  <br />
+    * follow api add <br />
+    * maincon.module / myprofile css update <br />
 </details>
 
 <br /><br />
