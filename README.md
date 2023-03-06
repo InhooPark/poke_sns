@@ -10,7 +10,11 @@
   + db table 추가/ 변경 이후 npx prisma generate 
   + db 내용 보기 npx prisma studio
 
-
+- git 사용법
+ - git commit -m "커밋 메시지"
+ - git branch -M "브랜치 이름"
+ - git remote add origin https://github.com/InhooPark/team-a.git
+ - git push -u origin "브랜치 이름"
 
 
 
