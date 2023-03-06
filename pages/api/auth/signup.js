@@ -1,10 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import CryptoJS from "crypto-js";
+import { signOut } from "next-auth/react";
 
 const prisma = new PrismaClient();
 
 async function handler(req, res) {
   const { method, body } = req;
+
+  console.log("method: ", method, "body: ", body);
 
   const postData = async () => {
     const user = await prisma.user_table.findUnique({
@@ -49,12 +52,28 @@ async function handler(req, res) {
     }
   };
 
+  const deleteData = async () => {
+    try {
+      const userDelete = await prisma.user_table.delete({
+        where: {
+          id: Number(body),
+        },
+      });
+    } catch (err) {
+      res.send(err);
+    }
+  };
+
   switch (method) {
     case "POST":
       postData();
       break;
     case "PUT":
       putData();
+      break;
+    case "DELETE":
+      deleteData();
+      break;
     default:
       return;
   }
