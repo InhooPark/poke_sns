@@ -18,7 +18,6 @@ export default function handler(req, res) {
         rep: true,
       },
     });
-    // console.log(owner);
     res.json(owner);
   };
 
