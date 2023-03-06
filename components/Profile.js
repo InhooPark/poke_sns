@@ -3,12 +3,14 @@ import Style from "@/styles/layout.module.scss";
 import { useSession, signOut } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
+import { InfoUser } from "@/context/infoContext";
 
 const Profile = () => {
   const { data: session, status } = useSession();
   const { pageStatus, setPageStatus } = useContext(Statusgroup);
+  const {who, setWho} = useContext(InfoUser);
   const whoseId = session.user.id;
-  const [who, setWho] = useState();
+  // const [who, setWho] = useState();
 
   const getWho = async () => {
     axios
