@@ -8,6 +8,7 @@
 + 참고사항
   + 설치 후 npm install next
   + db table 추가/ 변경 이후 npx prisma generate 
+  + db 내용 보기 npx prisma studio
 
 
 
