@@ -2,8 +2,8 @@
 
 <details>
 <summary> ver0.1.0 </summary>
-* 변경사항
-  * 최초 테스트 업로드
+  &nbsp;&nbsp;&nbsp;&nbsp; * 변경사항 <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp; * 최초 테스트 업로드
 </details>
 
 <br /><br />
