@@ -7,7 +7,7 @@
 <details>
 <summary> ver0.1.1 </summary>
     * encyclopedia update  <br />
-    * follow api add <br />
+    * follow/ followlist add <br />
     * maincon.module / myprofile css update <br />
 </details>
 
