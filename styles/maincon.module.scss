@@ -1,3 +1,5 @@
+$height: 150px;
+
 .myprofile {
   width: 100%;
   .profile_img_wrap {
@@ -213,6 +215,8 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+  transform: rotate(0);
   .poke_card {
     width: 25%;
     padding: 2%;
@@ -259,6 +263,39 @@
           &:hover {
             background-color: #e36e6e;
           }
+        }
+      }
+    }
+  }
+
+  .sticky_tray {
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    display: none;
+    &.on{
+      display: block;
+    }
+    .encyclopedia_modal {
+      position: sticky;
+      width: 100%;
+      height: calc(100vh - $height);
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      >div{
+        width: 300px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #e36e6e;
+        border-radius: 50px;
+        background-color: #fffbef;
+        >p{
+          text-align: center;
         }
       }
     }
