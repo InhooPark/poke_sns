@@ -69,16 +69,18 @@ const Encyclopedia = () => {
         }
       })
       axios.post(`/api/encyclopedia`, {id: session.user.id, data: aa})
+      //여기서부터 who.credit과 currentKey.current.credit를 빼서 데이터 업데이트 해야함
+      
       location.reload();
     }
   }
-  //////////////////////
+  //모달창 닫기
   const modalClick = (e) => {
     if (e.target.id === "aa") {
-      // 모달 종료
       setModalState(!modalstate);
     }
   };
+
   const pokeDetail = key => {
     // 디테일 부분은 속성 출력 / 추가로 chart.js - Radar Chart  이용해서 그래프 그려보기
     // 참고 : https://www.chartjs.org/docs/latest/charts/radar.html
