@@ -2,6 +2,10 @@ $height: 150px;
 
 .myprofile {
   width: 100%;
+  height: 100%;
+  // border가 없으면 왜 밀릴까?
+  border: 1px solid transparent;
+  transform: rotate(0);
   .profile_img_wrap {
     width: 100%;
     height: 100px;
@@ -180,6 +184,70 @@ $height: 150px;
       }
     }
   }
+  .profile_last_btn_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+    > button {
+      width: 100px;
+      height: 40px;
+      border: 1px solid #e36e6e;
+      border-radius: 20px;
+      outline: none;
+      padding: 0 20px;
+      margin: 5px;
+      background-color: transparent;
+      color: #e36e6e;
+      cursor: pointer;
+
+      &:nth-child(2) {
+        margin-right: 10px;
+      }
+    }
+    .delete_modal {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      &.on {
+        display: flex;
+      }
+      .delete_modal_contents {
+        width: 400px;
+        height: 250px;
+        border: 1px solid #e36e6e;
+        border-radius: 50px;
+        background-color: rgba(255, 251, 239, 0.85);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        > p {
+          color: #e36e6e;
+          margin: 40px;
+        }
+        .delete_modal_btn_wrap {
+          button {
+            width: 100px;
+            height: 40px;
+            border: 1px solid #e36e6e;
+            border-radius: 20px;
+            outline: none;
+            padding: 0 20px;
+            margin: 10px;
+            color: #e36e6e;
+            background-color: transparent;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
 }
 
 .user_list {
@@ -207,6 +275,100 @@ $height: 150px;
       font-size: 0.8em;
       line-height: 1.5;
       color: gray;
+    }
+  }
+  .user_list_follow {
+    position: absolute;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    img {
+      width: 70%;
+      object-fit: cover;
+    }
+  }
+}
+.follow_modal {
+  width: 400px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #e36e6e;
+  border-radius: 50px;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &.on {
+    display: flex;
+  }
+  > p {
+    color: #e36e6e;
+    margin: 40px;
+  }
+  .follow_modal_btn_wrap {
+    button {
+      width: 100px;
+      height: 40px;
+      border: 1px solid #e36e6e;
+      border-radius: 20px;
+      padding: 0 20px;
+      margin: 5px;
+      background-color: transparent;
+      outline: none;
+      color: #e36e6e;
+      cursor: pointer;
+    }
+  }
+}
+
+.follow_list {
+  border-bottom: 1px solid rgba(224, 102, 102, 0.5);
+  display: flex;
+  align-items: center;
+  .follow_list_pro_img {
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .follow_list_info {
+    display: flex;
+    flex-direction: column;
+    .follow_list_name {
+      font-size: 1.2em;
+      line-height: 1.5;
+    }
+    .follow_list_email {
+      font-size: 0.8em;
+      line-height: 1.5;
+      color: gray;
+    }
+  }
+  .follow_list_heart {
+    position: absolute;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    img {
+      width: 70%;
+      object-fit: cover;
     }
   }
 }
@@ -279,9 +441,9 @@ $height: 150px;
   .sticky_tray {
     width: 100%;
     height: 100%;
-    position:absolute;
+    position: absolute;
     display: none;
-    &.on{
+    &.on {
       display: block;
     }
     .encyclopedia_modal {
@@ -293,7 +455,7 @@ $height: 150px;
       display: flex;
       justify-content: center;
       align-items: center;
-      >div{
+      > div {
         width: 300px;
         height: 200px;
         display: flex;
@@ -302,7 +464,7 @@ $height: 150px;
         border: 1px solid #e36e6e;
         border-radius: 50px;
         background-color: #fffbef;
-        >p{
+        > p {
           text-align: center;
         }
       }

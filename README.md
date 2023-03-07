@@ -1,16 +1,29 @@
 # TEAM-A
 
-## ver0.1.0
-* 변경사항
-  * 최초 테스트 업로드
+<details>
+<summary> ver0.1.0 </summary>
+    * 최초 테스트 업로드 <br />
+</details>
+<details>
+<summary> ver0.1.1 </summary>
+    * encyclopedia update  <br />
+    * follow/ followlist add <br />
+    * maincon.module / myprofile css update <br />
+</details>
 
-
+<br /><br />
 + 참고사항
   + 설치 후 npm install next
   + db table 추가/ 변경 이후 npx prisma generate 
   + db 내용 보기 npx prisma studio
 
-
+* git 사용법
+  * git init
+  * git add .
+  * git commit -m "커밋 메시지"
+  * git checkout {본인의 브랜치 이름}
+  * git remote add origin https://github.com/InhooPark/team-a.git
+  * git push -u origin "브랜치 이름"
 
 
 

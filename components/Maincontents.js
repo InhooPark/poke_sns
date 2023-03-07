@@ -5,6 +5,7 @@ import { Statusgroup } from "@/context/StatusContext";
 import Myprofile from "./Myprofile";
 import SearchList from "./SearchList";
 import Encyclopedia from "./Encyclopedia";
+import Followlist from "./Followlist";
 
 const Maincontents = () => {
   const { pageStatus, setPageStatus } = useContext(Statusgroup);
@@ -17,7 +18,11 @@ const Maincontents = () => {
         </>
       );
     case "FOLLOW":
-      return <>FOLLOW</>;
+      return (
+        <>
+          <Followlist></Followlist>
+        </>
+      );
     case "MYMSG":
       return <>MYMSG</>;
     case "TREND":

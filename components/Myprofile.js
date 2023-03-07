@@ -1,9 +1,8 @@
 import { Statusgroup } from "@/context/StatusContext";
 import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import axios from "axios";
-import { MyContext } from "@/context/context";
 
 const Myprofile = () => {
   const { data: session } = useSession();
@@ -12,6 +11,7 @@ const Myprofile = () => {
   const whoseId = session.user.id;
   const [who, setWho] = useState();
   const [save, setSave] = useState();
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const getWho = async () => {
     axios
@@ -66,6 +66,16 @@ const Myprofile = () => {
     axios.put("api/auth/signup", { id: save.id, pro_img: save.pro_img, name: save.name });
     location.reload();
   };
+  const dataDel = () => {
+    setDeleteModal(true);
+  };
+  const modalCancelBtn = () => {
+    setDeleteModal(false);
+  };
+  const trueDelete = async () => {
+    signOut();
+    await axios.delete("api/auth/signup", { data: whoseId });
+  };
 
   useEffect(() => {
     getWho();
@@ -117,7 +127,19 @@ const Myprofile = () => {
               </form>
             </div>
           </div>
-          <button onClick={dataMod}>변경</button>
+          <div className={Style.profile_last_btn_wrap}>
+            <button onClick={dataMod}>변경</button>
+            <button onClick={dataDel}>삭제</button>
+            <div className={deleteModal ? `${Style.delete_modal} ${Style.on}` : `${Style.delete_modal}`}>
+              <div className={Style.delete_modal_contents}>
+                <p> 정말 삭제하시겠습니까? </p>
+                <div className={Style.delete_modal_btn_wrap}>
+                  <button onClick={trueDelete}>삭제</button>
+                  <button onClick={modalCancelBtn}>취소</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </>
     );
