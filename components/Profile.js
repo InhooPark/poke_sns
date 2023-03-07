@@ -10,7 +10,6 @@ const Profile = () => {
   const { pageStatus, setPageStatus } = useContext(Statusgroup);
   const { who, setWho } = useContext(InfoUser);
   const whoseId = session.user.id;
-
   const getWho = async () => {
     axios
       .get("/api/auth/who", {
