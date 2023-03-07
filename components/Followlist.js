@@ -4,28 +4,29 @@ import { useEffect, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 
 const Followlist = () => {
-  const [users, setUsers] = useState();
   const { data: session } = useSession();
-  const [data, setData] = useState();
+  const [users, setUsers] = useState([]);
+  const [data, setData] = useState([]);
 
-  const getUsersData = () => {
+  const getUsersData = async () => {
     let arr = [];
-    users &&
-      users.map((list, k) => {
-        if (k === 0) {
-          return;
-        } else {
-          axios
-            .get("/api/auth/who", {
-              params: {
-                id: list,
-              },
-            })
-            .then((res) => {
-              arr[k - 1] = res.data;
-            });
-        }
-      });
+    const pro1 = users.map(async (list, k) => {
+      if (k === 0) {
+        return;
+      } else {
+        await axios
+          .get("/api/auth/who", {
+            params: {
+              id: list,
+            },
+          })
+          .then((res) => {
+            arr[k - 1] = res.data;
+          });
+      }
+    });
+    await Promise.all(pro1);
+
     setData(arr);
   };
 
@@ -40,11 +41,9 @@ const Followlist = () => {
         let arr = res.data.follow_list.split(",");
         setUsers(arr);
       });
-    getUsersData();
   };
 
   const favoriteUser = (user) => {
-    // console.log(user.id);
     console.log("unfollow?");
   };
 
@@ -55,7 +54,7 @@ const Followlist = () => {
     getUsersData();
   }, [users]);
 
-  if (data !== undefined) {
+  if (data.length) {
     return (
       <>
         {data.map((user) => {
@@ -74,6 +73,14 @@ const Followlist = () => {
             </div>
           );
         })}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className={Style.follow_load}>
+          <img src="/img/load.gif"></img>
+        </div>
       </>
     );
   }
