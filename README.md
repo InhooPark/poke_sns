@@ -11,6 +11,12 @@
     * maincon.module / myprofile css update <br />
 </details>
 
+<details>
+<summary> ver0.2.0 </summary>
+    * list add, remove, modify <br />
+    * starting pokemon select page <br />
+</details>
+
 <br /><br />
 + 참고사항
   + 설치 후 npm install next
@@ -52,3 +58,7 @@
 |Encyclopedia|도감|
 |Myprofile|개인정보 수정/ 삭제|
 |Searchlist|검색 결과 출력|
+|Contenteditor|글 작성|
+|Followlist|팔로우 리스트|
+|Repselect|스타팅 포켓몬 선택|
+|Update|글 수정|
