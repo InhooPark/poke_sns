@@ -111,7 +111,7 @@ const Encyclopedia = () => {
     return (
       <>
         <article className={Style.encyclopedia_container}>
-          {userHave && pokeData.map((pokemon, key) => {
+          {pokeData && pokeData.map((pokemon, key) => {
             if (userHave.includes(pokemon.id.toString())) {
                 return (
                   <figure className={`${Style.poke_card}`} key={pokemon.id}>
