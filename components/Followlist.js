@@ -38,8 +38,10 @@ const Followlist = () => {
         },
       })
       .then((res) => {
-        let arr = res.data.follow_list.split(",");
-        setUsers(arr);
+        if (res.data !== null) {
+          let arr = res.data.follow_list.split(",");
+          setUsers(arr);
+        }
       });
   };
 
@@ -79,7 +81,7 @@ const Followlist = () => {
     return (
       <>
         <div className={Style.follow_load}>
-          <img src="/img/load.gif"></img>
+          <img src="/img/loadimg/pika_heart.webp"></img>
         </div>
       </>
     );

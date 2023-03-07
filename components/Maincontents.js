@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import List from "./List";
 
 import { Statusgroup } from "@/context/StatusContext";
@@ -8,9 +8,18 @@ import Encyclopedia from "./Encyclopedia";
 import Followlist from "./Followlist";
 import Edit from "./Update";
 import Contenteditor from "./Contenteditor";
+import Repselect from "./Repselect";
+import { InfoUser } from "@/context/infoContext";
 
 const Maincontents = () => {
   const { pageStatus, setPageStatus } = useContext(Statusgroup);
+  const { who } = useContext(InfoUser);
+
+  useEffect(() => {
+    if (who && who.rep === 0) {
+      setPageStatus("NEWBIE");
+    }
+  }, [who]);
 
   switch (pageStatus) {
     case "LIST":
@@ -23,6 +32,12 @@ const Maincontents = () => {
       return (
         <>
           <Followlist></Followlist>
+        </>
+      );
+    case "NEWBIE":
+      return (
+        <>
+          <Repselect></Repselect>
         </>
       );
     case "MYMSG":

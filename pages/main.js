@@ -1,14 +1,13 @@
-import { getSession, signOut, useSession } from "next-auth/react";
-import React, { useContext, useEffect } from "react";
+import { signOut, useSession } from "next-auth/react";
+import React from "react";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
-import StatusContext from "@/context/StatusContext";
 import Maincontents from "@/components/Maincontents";
 import Style from "@/styles/layout.module.scss";
 
-
 const Main = () => {
   const { data: session, status } = useSession();
+
   const router = useRouter();
   if (status === "unauthenticated") {
     router.replace("/");

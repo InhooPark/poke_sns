@@ -143,6 +143,10 @@ const Myprofile = () => {
         </div>
       </>
     );
+  } else {
+    <div className={Style.myprofile_load}>
+      <img src="/img/loadimg/pika_heart.webp"></img>
+    </div>;
   }
 };
 

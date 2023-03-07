@@ -31,6 +31,7 @@ const Contenteditor = () => {
       ...inputValue,
       user_id: session.user.id,
       name: user.name,
+      pro_img: user.pro_img,
     });
 
     setPageStatus("LIST");
