@@ -45,4 +45,5 @@ model list_table {
   user_id Int
   content String
   date    DateTime @default(now())
+  like    String
 }

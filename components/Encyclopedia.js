@@ -15,6 +15,8 @@ const Encyclopedia = () => {
   //who(유저 정보: who.id, who.credit, who.rep(대표이미지))
   const { who } = useContext(InfoUser);
   const currentKey = useRef();
+  //포켓몬 id+1값
+  const poke_key = useRef();
   const [status, setStatus] = useState(false);
 
   useEffect(() => {
@@ -81,13 +83,30 @@ const Encyclopedia = () => {
       setModalState(!modalstate);
     }
   };
+  const modalClick2 = (e) => {
+    if (e.target.id === "aa") {
+      setStatus(!status);
+    }
+  };
 
-  const pokeDetail = key => {
+  const pokeDetail = (key) => {
+    let data = key + 1;
+    poke_key.current = key + 1;
+    //user_table에 rep(대표 몬스터)
     // 디테일 부분은 속성 출력 / 추가로 chart.js - Radar Chart  이용해서 그래프 그려보기
     // 참고 : https://www.chartjs.org/docs/latest/charts/radar.html
     // 여기서 대표 캐릭터 설정하는게 좋을듯 대표포켓몬은 /api/auth/signup/ 으로 보내야함
-    setStatus(!status);
+    if (!userHave.includes(data.toString())) {
+      alert('구매 먼저 해주세요')
+    } else {
+      setStatus(!status);
+    }
   };
+  const changeRep = () => {
+    //poke_key (클릭한 포켓몬의 고유 번호)
+    axios.put(`/api/auth/signup/`, {id: session.user.id, key: poke_key.current})
+    location.reload()
+  }
   if (userHave !== undefined) {
     return (
       <>
@@ -115,20 +134,20 @@ const Encyclopedia = () => {
             } else {
                 return (
                   <figure className={`${Style.poke_card} ${Style.have}`} key={pokemon.id}>
-                     <div className={Style.card_img_wrap}>
-                       <img src={pokemon.card_url}></img>
-                     </div>
-                     <figcaption className={Style.card_info_wrap}>
-                       <p>
-                         No.{pokemon.id} &nbsp;
-                         {pokemon.ko_name}
-                       </p>
-                       <div className={Style.info_btn_wrap}>
+                    <div className={Style.card_img_wrap}>
+                      <img src={pokemon.card_url}></img>
+                    </div>
+                    <figcaption className={Style.card_info_wrap}>
+                      <p>
+                        No.{pokemon.id} &nbsp;
+                        {pokemon.ko_name}
+                      </p>
+                      <div className={Style.info_btn_wrap}>
                          {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
-                         <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
-                         <button onClick={() => pokeDetail(key)}>상세정보</button>
-                       </div>
-                     </figcaption>
+                        <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
+                        <button onClick={() => pokeDetail(key)}>상세정보</button>
+                      </div>
+                    </figcaption>
                   </figure>
                 );
             }
@@ -157,7 +176,15 @@ const Encyclopedia = () => {
               </div>
             </div>
           </div>
+          <div className={status ? `${Style.sticky_tray}  ${Style.on}`: `${Style.sticky_tray}`}>
+            <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick2(e)}>
+              <div>
+                <button onClick={() => changeRep()}>대표캐릭터 설정</button>
+              </div>
+            </div>
+          </div>
         </article>
+        
       </>
     );
   }

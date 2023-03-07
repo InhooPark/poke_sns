@@ -11,7 +11,7 @@ const Profile = () => {
   const {who, setWho} = useContext(InfoUser);
   const whoseId = session.user.id;
   // const [who, setWho] = useState();
-
+  
   const getWho = async () => {
     axios
       .get("/api/auth/who", {

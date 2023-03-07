@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 async function handler(req, res) {
   const { method, body } = req;
-
+  
   const postData = async () => {
     const user = await prisma.user_table.findUnique({
       where: {
@@ -39,8 +39,9 @@ async function handler(req, res) {
         where: { id: body.id },
         data: {
           // 대표 포켓몬 변경까지만 여기서 패스워드같은 민감정보는 따로 해야할듯
-          pro_img: body.pro_img,
-          name: body.name,
+          // pro_img: body.pro_img,
+          // name: body.name,
+          rep: body.key
         },
       });
       res.json({ message: "success" });
