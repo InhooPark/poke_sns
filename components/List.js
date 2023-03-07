@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import Link from "next/link";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
@@ -45,8 +44,8 @@ const List = () => {
 
   if (!data.length)
     return (
-      <div>
-        <p>무슨 일이 일어나고 있나요?</p>
+      <div className={styles.load}>
+        <img src="/img/loadimg/pika_heart.webp"></img>
       </div>
     );
   return (
@@ -57,7 +56,9 @@ const List = () => {
             <li className={styles.detail_list} key={obj.id}>
               {/* 프로필로 이동 */}
               <div className={styles.profileInfo}>
-                <button>{obj.img}</button>
+                <div className={styles.profile_img}>
+                  <img src={`/img/poke_profile_img/pokballpixel-${obj.pro_img}.png`}></img>
+                </div>
                 <p className={styles.user}>@{obj.name}</p>
                 <p className={styles.date}>{obj.date}hours</p>
               </div>

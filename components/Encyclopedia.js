@@ -26,16 +26,16 @@ const Encyclopedia = () => {
 
   //보유중인 포켓몬(테이블명 : have_poke)에 id+poke_id  가져오기
   const havePokeGet = () => {
-    axios.put(`/api/encyclopedia`, session).then(res => {
+    axios.put(`/api/encyclopedia`, session).then((res) => {
       //보유중인 poke_id
-      let aa = (res.data.poke_id);
+      let aa = res.data.poke_id;
       //배열로 쪼개기
-      let arr = aa.split(',');
+      let arr = aa.split(",");
       setUserHave(arr);
     });
   };
   const getEncyclopedia = () => {
-    axios.get("/api/encyclopedia").then(res => {
+    axios.get("/api/encyclopedia").then((res) => {
       setPokeData(res.data);
     });
   };
@@ -43,7 +43,7 @@ const Encyclopedia = () => {
   //pokemon.(id,credit, ko_name)
   const pokeBuy = (pokemon) => {
     currentKey.current = pokemon;
-    
+
     if (userHave.includes(pokemon.id.toString())) {
       alert("이미 보유중인 포켓몬 입니다");
     } else {
@@ -54,29 +54,29 @@ const Encyclopedia = () => {
   //팝업창 yes,no
   const no = () => {
     setModalState(!modalstate);
-  }
+  };
   const yes = () => {
-    if(who.credit < currentKey.current.credit) {
-      alert("구매하실 수 없습니다")
+    if (who.credit < currentKey.current.credit) {
+      alert("구매하실 수 없습니다");
     } else {
       //배열에 선택한 poke_id에 push
-      userHave.push(currentKey.current.id.toString())
+      userHave.push(currentKey.current.id.toString());
       //aa를 배열로 만들어서 구매한 포켓몬 추가
       let aa;
-      userHave.map((id,key)=>{
-        if(key == 0 ){
+      userHave.map((id, key) => {
+        if (key == 0) {
           aa = id;
-        }else{
-          aa += ','+id;
+        } else {
+          aa += "," + id;
         }
-      })
-      axios.post(`/api/encyclopedia`, {id: session.user.id, data: aa})
+      });
+      axios.post(`/api/encyclopedia`, { id: session.user.id, data: aa });
       //크레딧 관리
       let data = who.credit - currentKey.current.credit;
-      axios.put(`/api/userencyl`, {id: session.user.id, data: data})
+      axios.put(`/api/userencyl`, { id: session.user.id, data: data });
       location.reload();
     }
-  }
+  };
   //모달창 닫기
   const modalClick = (e) => {
     if (e.target.id === "aa") {
@@ -97,22 +97,23 @@ const Encyclopedia = () => {
     // 참고 : https://www.chartjs.org/docs/latest/charts/radar.html
     // 여기서 대표 캐릭터 설정하는게 좋을듯 대표포켓몬은 /api/auth/signup/ 으로 보내야함
     if (!userHave.includes(data.toString())) {
-      alert('구매 먼저 해주세요')
+      alert("구매 먼저 해주세요");
     } else {
       setStatus(!status);
     }
   };
   const changeRep = () => {
     //poke_key (클릭한 포켓몬의 고유 번호)
-    axios.put(`/api/auth/signup/`, {id: session.user.id, key: poke_key.current})
-    location.reload()
-  }
+    axios.put(`/api/auth/signup/`, { id: session.user.id, key: poke_key.current });
+    location.reload();
+  };
   if (userHave !== undefined) {
     return (
       <>
         <article className={Style.encyclopedia_container}>
-          {pokeData && pokeData.map((pokemon, key) => {
-            if (userHave.includes(pokemon.id.toString())) {
+          {pokeData &&
+            pokeData.map((pokemon, key) => {
+              if (userHave.includes(pokemon.id.toString())) {
                 return (
                   <figure className={`${Style.poke_card}`} key={pokemon.id}>
                     <div className={Style.card_img_wrap}>
@@ -131,7 +132,7 @@ const Encyclopedia = () => {
                     </figcaption>
                   </figure>
                 );
-            } else {
+              } else {
                 return (
                   <figure className={`${Style.poke_card} ${Style.have}`} key={pokemon.id}>
                     <div className={Style.card_img_wrap}>
@@ -143,31 +144,21 @@ const Encyclopedia = () => {
                         {pokemon.ko_name}
                       </p>
                       <div className={Style.info_btn_wrap}>
-                         {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
+                        {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
                         <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
                         <button onClick={() => pokeDetail(key)}>상세정보</button>
                       </div>
                     </figcaption>
                   </figure>
                 );
-            }
-          })}
-          <div
-            className={
-              modalstate
-                ? `${Style.sticky_tray} ${Style.on}`
-                : Style.sticky_tray
-            }
-          >
-            <div
-              id="aa"
-              className={Style.encyclopedia_modal}
-              onClick={(e) => modalClick(e)}
-            >
+              }
+            })}
+          <div className={modalstate ? `${Style.sticky_tray} ${Style.on}` : Style.sticky_tray}>
+            <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick(e)}>
               <div>
-                <p>포켓몬 이름: {currentKey.current&&currentKey.current.ko_name}</p>
+                <p>포켓몬 이름: {currentKey.current && currentKey.current.ko_name}</p>
                 <p>보유중 크레딧: {who.credit}</p>
-                <p>포켓몬 크레딧: {currentKey.current&&currentKey.current.credit}</p>
+                <p>포켓몬 크레딧: {currentKey.current && currentKey.current.credit}</p>
                 <div>
                   <p>구매하시겠습니까?</p>
                   <button onClick={yes}>예</button>
@@ -176,7 +167,7 @@ const Encyclopedia = () => {
               </div>
             </div>
           </div>
-          <div className={status ? `${Style.sticky_tray}  ${Style.on}`: `${Style.sticky_tray}`}>
+          <div className={status ? `${Style.sticky_tray}  ${Style.on}` : `${Style.sticky_tray}`}>
             <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick2(e)}>
               <div>
                 <button onClick={() => changeRep()}>대표캐릭터 설정</button>
@@ -184,8 +175,13 @@ const Encyclopedia = () => {
             </div>
           </div>
         </article>
-        
       </>
+    );
+  } else {
+    return (
+      <div className={Style.encyclopedia_load}>
+        <img src="/img/loadimg/pika_heart.webp"></img>
+      </div>
     );
   }
 };

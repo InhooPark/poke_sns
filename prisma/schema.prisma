@@ -41,6 +41,7 @@ model have_poke {
 
 model list_table {
   id      Int      @id @unique @default(autoincrement())
+  pro_img String
   name    String
   user_id Int
   content String
