@@ -8,13 +8,16 @@ import { initScriptLoader } from "next/script";
 const Encyclopedia = () => {
   const [pokeData, setPokeData] = useState();
   const { data: session } = useSession();
-  //보유중인 포켓몬
+  //보유중인 포켓몬이
   const [userHave, setUserHave] = useState();
   //팝업창
   const [modalstate, setModalState] = useState(false);
   //who(유저 정보: who.id, who.credit, who.rep(대표이미지))
   const { who } = useContext(InfoUser);
   const currentKey = useRef();
+  //포켓몬 id+1값
+  const poke_key = useRef();
+  const [status, setStatus] = useState(false);
 
   useEffect(() => {
     getEncyclopedia();
@@ -40,13 +43,13 @@ const Encyclopedia = () => {
   //pokemon.(id,credit, ko_name)
   const pokeBuy = (pokemon) => {
     currentKey.current = pokemon;
-    if (userHave.includes(pokemon.id)) {
+    
+    if (userHave.includes(pokemon.id.toString())) {
       alert("이미 보유중인 포켓몬 입니다");
     } else {
       //팝업창 생성 후 구매하시겠습니까
       setModalState(!modalstate);
     }
-
   };
   //팝업창 yes,no
   const no = () => {
@@ -56,12 +59,11 @@ const Encyclopedia = () => {
     if(who.credit < currentKey.current.credit) {
       alert("구매하실 수 없습니다")
     } else {
-      //배열에 선택한 poke_id push
+      //배열에 선택한 poke_id에 push
       userHave.push(currentKey.current.id.toString())
-
+      //aa를 배열로 만들어서 구매한 포켓몬 추가
       let aa;
       userHave.map((id,key)=>{
-        console.log(id, key);
         if(key == 0 ){
           aa = id;
         }else{
@@ -69,8 +71,9 @@ const Encyclopedia = () => {
         }
       })
       axios.post(`/api/encyclopedia`, {id: session.user.id, data: aa})
-      //여기서부터 who.credit과 currentKey.current.credit를 빼서 데이터 업데이트 해야함
-      
+      //크레딧 관리
+      let data = who.credit - currentKey.current.credit;
+      axios.put(`/api/userencyl`, {id: session.user.id, data: data})
       location.reload();
     }
   }
@@ -80,42 +83,80 @@ const Encyclopedia = () => {
       setModalState(!modalstate);
     }
   };
+  const modalClick2 = (e) => {
+    if (e.target.id === "aa") {
+      setStatus(!status);
+    }
+  };
 
-  const pokeDetail = key => {
+  const pokeDetail = (key) => {
+    let data = key + 1;
+    poke_key.current = key + 1;
+    //user_table에 rep(대표 몬스터)
     // 디테일 부분은 속성 출력 / 추가로 chart.js - Radar Chart  이용해서 그래프 그려보기
     // 참고 : https://www.chartjs.org/docs/latest/charts/radar.html
     // 여기서 대표 캐릭터 설정하는게 좋을듯 대표포켓몬은 /api/auth/signup/ 으로 보내야함
-    console.log(key);
+    if (!userHave.includes(data.toString())) {
+      alert('구매 먼저 해주세요')
+    } else {
+      setStatus(!status);
+    }
   };
-  if (pokeData !== undefined) {
+  const changeRep = () => {
+    //poke_key (클릭한 포켓몬의 고유 번호)
+    axios.put(`/api/auth/signup/`, {id: session.user.id, key: poke_key.current})
+    location.reload()
+  }
+  if (userHave !== undefined) {
     return (
       <>
         <article className={Style.encyclopedia_container}>
-          {pokeData.map((pokemon, key) => {
-            return (
-              <figure className={Style.poke_card} key={pokemon.id}>
-                <div className={Style.card_img_wrap}>
-                  <img src={pokemon.card_url}></img>
-                </div>
-                <figcaption className={Style.card_info_wrap}>
-                  <p>
-                    No.{pokemon.id} &nbsp;
-                    {pokemon.ko_name}
-                  </p>
-                  <div className={Style.info_btn_wrap}>
-                    {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
-                    <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
-                    <button onClick={() => pokeDetail(key)}>상세정보</button>
-                  </div>
-                </figcaption>
-              </figure>
-            );
+          {userHave && pokeData.map((pokemon, key) => {
+            if (userHave.includes(pokemon.id.toString())) {
+                return (
+                  <figure className={`${Style.poke_card}`} key={pokemon.id}>
+                    <div className={Style.card_img_wrap}>
+                      <img src={pokemon.card_url}></img>
+                    </div>
+                    <figcaption className={Style.card_info_wrap}>
+                      <p>
+                        No.{pokemon.id} &nbsp;
+                        {pokemon.ko_name}
+                      </p>
+                      <div className={Style.info_btn_wrap}>
+                        {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
+                        <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
+                        <button onClick={() => pokeDetail(key)}>상세정보</button>
+                      </div>
+                    </figcaption>
+                  </figure>
+                );
+            } else {
+                return (
+                  <figure className={`${Style.poke_card} ${Style.have}`} key={pokemon.id}>
+                    <div className={Style.card_img_wrap}>
+                      <img src={pokemon.card_url}></img>
+                    </div>
+                    <figcaption className={Style.card_info_wrap}>
+                      <p>
+                        No.{pokemon.id} &nbsp;
+                        {pokemon.ko_name}
+                      </p>
+                      <div className={Style.info_btn_wrap}>
+                         {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
+                        <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
+                        <button onClick={() => pokeDetail(key)}>상세정보</button>
+                      </div>
+                    </figcaption>
+                  </figure>
+                );
+            }
           })}
           <div
             className={
               modalstate
                 ? `${Style.sticky_tray} ${Style.on}`
-                : `${Style.sticky_tray}`
+                : Style.sticky_tray
             }
           >
             <div
@@ -135,7 +176,15 @@ const Encyclopedia = () => {
               </div>
             </div>
           </div>
+          <div className={status ? `${Style.sticky_tray}  ${Style.on}`: `${Style.sticky_tray}`}>
+            <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick2(e)}>
+              <div>
+                <button onClick={() => changeRep()}>대표캐릭터 설정</button>
+              </div>
+            </div>
+          </div>
         </article>
+        
       </>
     );
   }

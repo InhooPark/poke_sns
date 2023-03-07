@@ -436,6 +436,14 @@ $height: 150px;
       }
     }
   }
+  .have {
+    text-align: center;
+    .card_img_wrap {
+      img {
+        filter: grayscale(1);
+      }
+    }
+  }
 
   .sticky_tray {
     width: 100%;

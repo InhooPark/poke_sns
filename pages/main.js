@@ -6,6 +6,7 @@ import StatusContext from "@/context/StatusContext";
 import Maincontents from "@/components/Maincontents";
 import Style from "@/styles/layout.module.scss";
 
+
 const Main = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
