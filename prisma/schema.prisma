@@ -31,7 +31,7 @@ model poke_table {
 
 model follow_table {
   id          Int    @id @unique
-  follow_list String
+  follow_list String @db.VarChar(2000)
 }
 
 model have_poke {
@@ -45,4 +45,5 @@ model list_table {
   user_id Int
   content String
   date    DateTime @default(now())
+  like    Int      @default(0)
 }
