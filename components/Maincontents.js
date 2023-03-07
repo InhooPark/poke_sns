@@ -6,6 +6,8 @@ import Myprofile from "./Myprofile";
 import SearchList from "./SearchList";
 import Encyclopedia from "./Encyclopedia";
 import Followlist from "./Followlist";
+import Edit from "./Update";
+import Contenteditor from "./Contenteditor";
 
 const Maincontents = () => {
   const { pageStatus, setPageStatus } = useContext(Statusgroup);
@@ -27,6 +29,18 @@ const Maincontents = () => {
       return <>MYMSG</>;
     case "TREND":
       return <>TREND</>;
+    case "WRITE":
+      return (
+        <>
+          <Contenteditor></Contenteditor>
+        </>
+      );
+    case "UPDATE":
+      return (
+        <>
+          <Edit></Edit>
+        </>
+      );
     case "PROFILE":
       return (
         <>
