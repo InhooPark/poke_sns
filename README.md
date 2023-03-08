@@ -2,7 +2,7 @@
 
 <details>
 <summary> ver0.1.0 </summary>
-    * 최초 테스트 업로드 <br />
+    * first upload <br />
 </details>
 <details>
 <summary> ver0.1.1 </summary>
