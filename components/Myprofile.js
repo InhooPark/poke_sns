@@ -76,6 +76,9 @@ const Myprofile = () => {
     signOut();
     await axios.delete("api/auth/signup", { data: whoseId });
   };
+  const modmodaloff = () => {
+    setProfileNameToggle(false);
+  };
 
   useEffect(() => {
     getWho();
@@ -123,6 +126,7 @@ const Myprofile = () => {
                 </p>
                 <p>
                   <input type="submit" value="변경"></input>
+                  <input type="button" value="취소" onClick={modmodaloff}></input>
                 </p>
               </form>
             </div>
