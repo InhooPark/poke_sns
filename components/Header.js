@@ -4,7 +4,7 @@ import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 
 const Header = () => {
-  const { pageStatus, setPageStatus, setSearchID } = useContext(Statusgroup);
+  const { pageStatus, setPageStatus, setSearchID, newbie } = useContext(Statusgroup);
 
   const searchSubmit = async (e) => {
     if (e.keyCode === 13) {
