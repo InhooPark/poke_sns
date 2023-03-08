@@ -462,21 +462,77 @@ $height: 150px;
       width: 100%;
       height: calc(100vh - $height);
       top: 0;
-      background-color: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
       display: flex;
       justify-content: center;
       align-items: center;
-      > div {
-        width: 300px;
-        height: 200px;
+      .modal_wrap {
+        width: 400px;
+        padding: 30px 0;
         display: flex;
-        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
         align-items: center;
         border: 1px solid #e36e6e;
         border-radius: 50px;
         background-color: #fffbef;
-        > p {
+        .modal_wrap_first {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
           text-align: center;
+          height: auto;
+          p {
+            &:nth-of-type(1) {
+              font-size: 3rem;
+            }
+          }
+        }
+        .modal_wrap_second {
+          padding: 0;
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          padding: 0 20px;
+          > p{
+            width: 150px;
+            height: auto;
+            img {
+              width: 100%;
+            }
+          }
+          .modal_detail_wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            >div {
+              line-height: 30px;
+              &:nth-of-type(1) {
+                padding-right: 20px;
+                p {
+                  text-align: right;
+                }
+              }
+              &:nth-of-type(2) {
+                p {
+                  text-align: right;
+                }
+              }
+            }
+          }
+        }
+        .modal_wrap_third {
+          > p {
+            margin-bottom: 10px;
+          }
+          .btn {
+            display: flex;
+            justify-content: space-around;
+            button {
+              border: 1px solid #e36e6e;
+              outline: none;
+            }
+          }
         }
       }
     }

@@ -14,9 +14,9 @@ const Encyclopedia = () => {
   const [modalstate, setModalState] = useState(false);
   //who(유저 정보: who.id, who.credit, who.rep(대표이미지))
   const { who } = useContext(InfoUser);
-  const currentKey = useRef();
+  const currentKey = useRef(0);
   //포켓몬 id+1값
-  const poke_key = useRef();
+  const poke_key = useRef(0);
   const [status, setStatus] = useState(false);
 
   useEffect(() => {
@@ -43,6 +43,7 @@ const Encyclopedia = () => {
   //pokemon.(id,credit, ko_name)
   const pokeBuy = (pokemon) => {
     currentKey.current = pokemon;
+    
 
     if (userHave.includes(pokemon.id.toString())) {
       alert("이미 보유중인 포켓몬 입니다");
@@ -155,21 +156,41 @@ const Encyclopedia = () => {
             })}
           <div className={modalstate ? `${Style.sticky_tray} ${Style.on}` : Style.sticky_tray}>
             <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick(e)}>
-              <div>
-                <p>포켓몬 이름: {currentKey.current && currentKey.current.ko_name}</p>
-                <p>보유중 크레딧: {who.credit}</p>
-                <p>포켓몬 크레딧: {currentKey.current && currentKey.current.credit}</p>
-                <div>
+              <div className={Style.modal_wrap}>
+                <div className={Style.modal_wrap_first}>
+                  <p>{currentKey.current && currentKey.current.ko_name}</p>
+                  <p>{currentKey.current && currentKey.current.credit} 크레딧</p>
+                </div>
+                <div className={Style.modal_wrap_second}>
+                  <p>
+                    <img src={`${currentKey.current && pokeData[currentKey.current.id - 1].card_url}`} alt="사진"/>
+                  </p>
+                  <div className={Style.modal_detail_wrap}>
+                    <div>
+                      <p>보유중 크레딧:</p> 
+                      <p>차감 크레딧:</p> 
+                      <p>TOTAL 크레딧:</p> 
+                    </div>
+                    <div>
+                      <p>{who.credit}</p>
+                      <p>{currentKey.current && currentKey.current.credit}</p>
+                      <p>{who.credit - currentKey.current.credit}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className={Style.modal_wrap_third}>
                   <p>구매하시겠습니까?</p>
-                  <button onClick={yes}>예</button>
-                  <button onClick={no}>아니오</button>
+                  <div className={Style.btn}>
+                    <button onClick={yes}>예</button>
+                    <button onClick={no}>아니오</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div className={status ? `${Style.sticky_tray}  ${Style.on}` : `${Style.sticky_tray}`}>
             <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick2(e)}>
-              <div>
+              <div className={Style.pickup}>
                 <button onClick={() => changeRep()}>대표캐릭터 설정</button>
               </div>
             </div>
