@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 const Repselect = () => {
   const { data: session } = useSession();
   const repsel = (key) => {
-    axios.put("/api/auth/signup", { id: session.user.id, key: key });
+    axios.put("/api/auth/signup", { type: "newbie", id: session.user.id, key: key });
     location.replace("/");
   };
   return (
