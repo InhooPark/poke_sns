@@ -12,12 +12,15 @@ import Repselect from "./Repselect";
 import { InfoUser } from "@/context/infoContext";
 
 const Maincontents = () => {
-  const { pageStatus, setPageStatus } = useContext(Statusgroup);
+  const { pageStatus, setPageStatus, setNewbie } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
 
   useEffect(() => {
     if (who && who.rep === 0) {
       setPageStatus("NEWBIE");
+    }
+    if (who && who.rep !== 0 && who.name === "") {
+      setNewbie(true);
     }
   }, [who]);
 

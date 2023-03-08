@@ -7,6 +7,8 @@ const StatusContext = ({ children }) => {
   const [profileNameToggle, setProfileNameToggle] = useState(false);
   const [searchID, setSearchID] = useState();
   const [listUpdate, setListUpdate] = useState();
+  const [newbie, setNewbie] = useState(false);
+  const [tutostate, setTutostate] = useState(1);
 
   const value = {
     pageStatus,
@@ -19,6 +21,10 @@ const StatusContext = ({ children }) => {
     setSearchID,
     listUpdate,
     setListUpdate,
+    newbie,
+    setNewbie,
+    tutostate,
+    setTutostate,
   };
   return <Statusgroup.Provider value={value}>{children}</Statusgroup.Provider>;
 };
