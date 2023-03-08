@@ -135,6 +135,8 @@ $height: 150px;
     .profile_name_mod_toggle {
       width: 100%;
       display: none;
+      position: absolute;
+      top: 50%;
       &.on {
         display: block;
       }
@@ -170,14 +172,18 @@ $height: 150px;
             }
           }
           &:nth-child(2) {
-            width: 20%;
-            margin-left: 70%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
             input {
+              width: 60px;
               height: 30px;
               border: 1px solid #e36e6e;
-              border-radius: 5px;
+              border-radius: 15px;
               background-color: transparent;
               padding: 0 15px;
+              margin-left: 10px;
             }
           }
         }
@@ -210,7 +216,7 @@ $height: 150px;
       height: 100%;
       position: fixed;
       top: 0;
-      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(3px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -494,7 +500,7 @@ $height: 150px;
           width: 100%;
           justify-content: space-between;
           padding: 0 20px;
-          > p{
+          > p {
             width: 150px;
             height: auto;
             img {
@@ -505,7 +511,7 @@ $height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
-            >div {
+            > div {
               line-height: 30px;
               &:nth-of-type(1) {
                 padding-right: 20px;
