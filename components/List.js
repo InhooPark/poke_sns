@@ -10,15 +10,53 @@ const List = () => {
   const [data, setData] = useState([]);
   const { data: session } = useSession();
   const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
+  const [contentlist, setContentlist] = useState(true);
+
+  const [arr, setArr] = useState();
+  const [result, setResult] = useState([]);
 
   //데이터 조회 dataGet();
-  const dataGet = () => {
-    axios.get("/api/").then((res) => {
-      setData(res.data);
-    });
+
+  const getFollowList = async () => {
+    let rearr = [];
+    const wait =
+      arr &&
+      arr.map(async (value, key) => {
+        if (key === 0) {
+          return;
+        } else {
+          await axios.put("/api", { id: value }).then((res) => {
+            if (res.data.length) {
+              res.data.map((vv) => {
+                rearr.push(vv);
+                setResult([...result, rearr]);
+              });
+            }
+          });
+        }
+      });
   };
 
-  //데이터 삭제 dataDelete();
+  const dataGet = () => {
+    let arr = [];
+    if (contentlist) {
+      axios.get("/api/").then((res) => {
+        setData(res.data);
+      });
+    } else {
+      axios
+        .get("/api/followlist", {
+          params: {
+            id: session.user.id,
+          },
+        })
+        .then((res) => {
+          arr = res.data.follow_list.split(",");
+          setArr(arr);
+        });
+    }
+  };
+
   function dataDelete(obj) {
     if (session.user.id == obj.user_id) {
       axios.delete(`/api/${obj.id}`);
@@ -36,10 +74,26 @@ const List = () => {
       console.log("불일치");
     }
   }
+  const setfollowlist = () => {
+    setContentlist(false);
+  };
+  const setlist = () => {
+    setContentlist(true);
+  };
 
   useEffect(() => {
     dataGet();
-  }, []);
+  }, [contentlist]);
+
+  useEffect(() => {
+    getFollowList();
+  }, [arr]);
+
+  useEffect(() => {
+    if (result.length) {
+      setData(result[0]);
+    }
+  }, [result]);
   if (!data.length)
     return (
       <div className={styles.load}>
@@ -49,6 +103,14 @@ const List = () => {
   else {
     return (
       <div className={styles.listBox}>
+        <div className={styles.list_btn_box}>
+          <button className={contentlist ? styles.on : ""} type="button" onClick={setlist}>
+            전체
+          </button>
+          <button className={contentlist ? "" : styles.on} type="button" onClick={setfollowlist}>
+            팔로우
+          </button>
+        </div>
         <ul>
           {data &&
             data.map((obj) => (

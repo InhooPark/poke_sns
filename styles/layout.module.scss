@@ -201,12 +201,22 @@ $header-height: 150px;
         border-radius: 50%;
         filter: blur(30px);
       }
+      .rep_ring {
+      }
       img {
         position: absolute;
         width: 50%;
         object-fit: cover;
       }
     }
+  }
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+  from {
+    transform: rotate(0);
   }
 }
 

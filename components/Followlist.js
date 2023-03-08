@@ -59,17 +59,21 @@ const Followlist = () => {
   if (data.length) {
     return (
       <>
-        {data.map((user) => {
+        {data.map((user, key) => {
           return (
-            <div key={user.id} className={Style.follow_list}>
+            <div key={!user ? key : user.id} className={Style.follow_list}>
               <div className={Style.follow_list_pro_img}>
-                <img src={`/img/poke_profile_img/pokballpixel-${user.pro_img}.png`}></img>
+                {!user ? (
+                  <img src="/img/poke_profile_img/pokballpixel-000.png"></img>
+                ) : (
+                  <img src={`/img/poke_profile_img/pokballpixel-${user.pro_img}.png`}></img>
+                )}
               </div>
               <div className={Style.follow_list_info}>
-                <p className={Style.follow_list_name}>{user.name === "" ? "설정된 이름이 없습니다." : user.name}</p>
-                <p className={Style.follow_list_email}>@{user.email}</p>
+                <p className={Style.follow_list_name}>{!user ? "탈퇴한 회원입니다." : user.name === "" ? "설정된 이름이 없습니다." : user.name}</p>
+                <p className={Style.follow_list_email}>@{user ? user.email : "탈퇴한 회원입니다."}</p>
               </div>
-              <div className={Style.follow_list_heart} onClick={() => favoriteUser(user)}>
+              <div className={Style.follow_list_heart} onClick={() => favoriteUser(user && user)}>
                 <img src="/img/svg/heart-fill.svg" />
               </div>
             </div>

@@ -4,7 +4,7 @@ import { executeQuery } from "./db";
 const prisma = new PrismaClient();
 
 export default function handler(req, res) {
-  const { method, body } = req;
+  const { method, body, query } = req;
 
   const dataGet = async () => {
     const test = await executeQuery("SELECT * FROM list_table ORDER BY id DESC", []);
@@ -18,7 +18,6 @@ export default function handler(req, res) {
     // catch (err) {
     //   res.send(err);
     // }
-    console.log(body);
     await prisma.list_table.create({
       data: {
         pro_img: body.pro_img,
@@ -29,6 +28,26 @@ export default function handler(req, res) {
       },
     });
   };
+
+  const dataPut = async () => {
+    const follow = await prisma.list_table.findMany({
+      where: {
+        user_id: Number(body.id),
+      },
+      select: {
+        id: true,
+        pro_img: true,
+        name: true,
+        user_id: true,
+        content: true,
+        date: true,
+        like_count: true,
+        like_user: true,
+      },
+    });
+    res.json(follow);
+    return follow;
+  };
   switch (method) {
     case "GET":
       dataGet();
@@ -37,5 +56,9 @@ export default function handler(req, res) {
       dataCreate();
       break; //데이터 등록 및 전송
     case "PUT":
+      dataPut();
+      break;
+    default:
+      return;
   }
 }

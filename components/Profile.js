@@ -75,6 +75,7 @@ const Profile = () => {
             </div>
           </div>
           <div className={Style.rep_wrap}>
+            <div className={Style.rep_ring}></div>
             {who.rep == 0 ? <img src="/img/poke_silueta.png"></img> : <img src={`https://www.shinyhunters.com/images/regular/${who.rep}.gif`}></img>}
           </div>
         </aside>
