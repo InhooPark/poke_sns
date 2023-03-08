@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 
 const Contenteditor = () => {
   //데이터 등록 및 전송 dataCreate();
-  const initial = { id: "", img: "", name: "", date: "", content: "" };
+  const initial = { id: "", pro_img: "", name: "", date: "", content: "" };
   const router = useRouter();
   const [inputValue, setValue] = useState(initial);
   const { data: session } = useSession();

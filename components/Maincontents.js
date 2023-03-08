@@ -10,6 +10,7 @@ import Edit from "./Update";
 import Contenteditor from "./Contenteditor";
 import Repselect from "./Repselect";
 import { InfoUser } from "@/context/infoContext";
+import List_F from "./List-F";
 
 const Maincontents = () => {
   const { pageStatus, setPageStatus } = useContext(Statusgroup);
@@ -25,7 +26,8 @@ const Maincontents = () => {
     case "LIST":
       return (
         <>
-          <List></List>
+          {/* <List></List> */}
+          <List_F></List_F>
         </>
       );
     case "FOLLOW":

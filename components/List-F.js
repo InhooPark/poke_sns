@@ -6,41 +6,20 @@ import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 // import Image from "next/image";
 
-const List = () => {
+const List_F = () => {
   const [data, setData] = useState([]);
   const router = useRouter();
   const { data: session } = useSession();
   const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
 
-  
   //데이터 조회 dataGet();
   const dataGet = () => {
-    axios.get("/api/").then((res) => {
-      setData(res.data);
-    });
-  };
-  
-  //데이터 삭제 dataDelete();
-  function dataDelete(obj) {
-    if (session.user.id == obj.user_id) {
-      axios.delete(`/api/${obj.id}`);
-    } else {
-      alert("본인이 아니에요");
-    }
-    dataGet();
-  }
+    axios.get("/api/followlist/").then((res)=>{
+    })
+  } 
 
-  function dataUpdate(obj) {
-    if (session.user.id == obj.user_id) {
-      setListUpdate(obj);
-      setPageStatus("UPDATE");
-    } else {
-      console.log("불일치");
-    }
-  }
-
-  useEffect(() => {
-    dataGet();
+    useEffect(() => {
+      dataGet();
   }, []);
 
   if (!data.length)
@@ -66,25 +45,6 @@ const List = () => {
               <p className={styles.detail}>{obj.content}</p>
               <section className={styles.btn}>
                 <button className={styles.like}></button>
-
-                {session.user.id !== obj.user_id ? (
-                  <></>
-                ) : (
-                  <button className={styles.btn2}>
-                    <ul>
-                      <li>
-                        <p className={styles.update} onClick={() => dataUpdate(obj)}>
-                          수정
-                        </p>
-                      </li>
-                      <li>
-                        <p className={styles.remove} onClick={() => dataDelete(obj)}>
-                          삭제
-                        </p>
-                      </li>
-                    </ul>
-                  </button>
-                )}
               </section>
             </li>
           ))}
@@ -93,4 +53,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default List_F;

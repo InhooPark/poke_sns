@@ -8,7 +8,7 @@ async function handler(req, res) {
     const follow = await prisma.follow_table.findUnique({
       where: {
         id: Number(query.id),
-      },
+      }, 
       select: {
         follow_list: true,
       },
