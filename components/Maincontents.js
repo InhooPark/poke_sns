@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import List from "./List";
 
 import { Statusgroup } from "@/context/StatusContext";
@@ -10,9 +10,10 @@ import Edit from "./Update";
 import Contenteditor from "./Contenteditor";
 import Tutorial from "./Tutorial";
 import { InfoUser } from "@/context/infoContext";
+import Mylist from "./Mylist";
 
 const Maincontents = () => {
-  const { pageStatus, setPageStatus, setNewbie } = useContext(Statusgroup);
+  const { pageStatus, setPageStatus } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
 
   useEffect(() => {
@@ -41,7 +42,11 @@ const Maincontents = () => {
         </>
       );
     case "MYMSG":
-      return <>MYMSG</>;
+      return (
+        <>
+          <Mylist></Mylist>
+        </>
+      );
     case "TREND":
       return <>TREND</>;
     case "WRITE":

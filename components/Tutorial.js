@@ -16,7 +16,7 @@ const Tutorial = () => {
   const nickSubmit = () => {
     let name = nameRef.current.value;
     axios.put("/api/auth/signup", { id: session.user.id, name: name });
-    location.replace("/main");
+    location.replace("/");
   };
 
   if (tutostate == 1) {
