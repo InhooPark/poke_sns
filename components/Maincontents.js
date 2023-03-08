@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import List from "./List";
 
 import { Statusgroup } from "@/context/StatusContext";
@@ -10,11 +10,12 @@ import Edit from "./Update";
 import Contenteditor from "./Contenteditor";
 import Repselect from "./Repselect";
 import { InfoUser } from "@/context/infoContext";
-import List_F from "./List-F";
+import List_F from "./List_F";
 
 const Maincontents = () => {
   const { pageStatus, setPageStatus } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
+  const [ listView, setListview] = useState(true);
 
   useEffect(() => {
     if (who && who.rep === 0) {
@@ -23,13 +24,12 @@ const Maincontents = () => {
   }, [who]);
 
   switch (pageStatus) {
-    case "LIST":
-      return (
+      case "LIST":
+        return (
         <>
-          {/* <List></List> */}
-          <List_F></List_F>
+          { setListview ? <List></List> : <List_F></List_F> }
         </>
-      );
+        );
     case "FOLLOW":
       return (
         <>

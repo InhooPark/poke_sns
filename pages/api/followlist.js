@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 async function handler(req, res) {
   const { method, body, query } = req;
 
-  const getData = async () => {
+  const putData = async () => {
     const follow = await prisma.follow_table.findUnique({
       where: {
         id: Number(query.id),
@@ -16,10 +16,30 @@ async function handler(req, res) {
     res.json(follow);
   };
 
+  const getData = async() => {
+    const b = await prisma.list_table.findMany({
+      where : {
+        user_id : Number(query.id)
+      },
+      select : {
+        id:true,
+        name:true,
+        user_id:true,
+        content:true,
+        date:true,
+        like:true,
+        pro_img:true
+      }
+    })
+    res.json(b)
+  }
+
   switch (method) {
+    case "PUT":
+      putData();
+      break;
     case "GET":
       getData();
-      break;
     default:
       return;
   }

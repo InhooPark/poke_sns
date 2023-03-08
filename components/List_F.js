@@ -7,19 +7,40 @@ import { Statusgroup } from "@/context/StatusContext";
 // import Image from "next/image";
 
 const List_F = () => {
+
+  const [list, setList] = useState([]);
   const [data, setData] = useState([]);
-  const router = useRouter();
   const { data: session } = useSession();
-  const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
+
+  useEffect(()=>{
+    dataGet();
+  },[])
 
   //데이터 조회 dataGet();
   const dataGet = () => {
-    axios.get("/api/followlist/").then((res)=>{
+    axios.put("/api/followlist", {id:session.user.id}).then((res)=>{
+      let fData = res.data.follow_list;
+      let ar = fData.split(",");
+      setList(ar)
     })
-  } 
+  }
+
+  const dataL = async()=> {
+    let wait = list.map((obj)=>{
+      axios.get(`/api/followlist`,{
+        params: {
+          id:obj
+        }
+      })
+      .then(res=>{
+        setData(res.data)
+      })
+    })
+    await Promise.all(wait)
+  }
 
     useEffect(() => {
-      dataGet();
+      dataL();
   }, []);
 
   if (!data.length)

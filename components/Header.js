@@ -30,7 +30,13 @@ const Header = () => {
     <>
       <header className={Style.header}>
         <div className={Style.logo_btn}> LOGO </div>
-        <div className={Style.status}> {pageStatus} </div>
+        <div className={Style.status}> 
+          {pageStatus}
+        <div className={Style.listBtn}>
+          <button className={Style.all}>timeline</button>
+          <button className={Style.follow}>follow</button>
+        </div>
+        </div>
         <div className={Style.search}>
           <p>
             <input onKeyUp={searchSubmit} type="text" name="search" placeholder="User-name / email" className={Style.follow_search_bar}></input>
