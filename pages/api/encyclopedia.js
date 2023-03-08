@@ -13,26 +13,27 @@ export default function handler(req, res) {
   const update = async () => {
     const data = await prisma.have_poke.findUnique({
       where: {
-        id: body.user.id
+        id: body.user.id,
       },
       select: {
         id: true,
-        poke_id : true,
-      }
-    })
-    res.json(data)
-  }
+        poke_id: true,
+      },
+    });
+    res.json(data);
+  };
   //구매한 포켓몬 추가
   const getPost = async () => {
+    console.log(body);
     await prisma.have_poke.update({
       where: {
-        id: body.id
+        id: body.id,
       },
       data: {
-        poke_id: body.data
-      }
-    })
-  }
+        poke_id: body.data,
+      },
+    });
+  };
   switch (method) {
     case "GET":
       getEncyclo();
