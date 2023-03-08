@@ -7,7 +7,7 @@ const Repselect = () => {
   const { data: session } = useSession();
   const repsel = (key) => {
     axios.put("/api/auth/signup", { type: "newbie", id: session.user.id, key: key });
-    location.replace("/");
+    location.replace("/main");
   };
   return (
     <>
