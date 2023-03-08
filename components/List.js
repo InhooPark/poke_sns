@@ -10,7 +10,6 @@ const List = () => {
   const [data, setData] = useState([]);
   const { data: session } = useSession();
   const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
-  const { newbie, setNewbie, tutostate, setTutostate } = useContext(Statusgroup);
 
   //데이터 조회 dataGet();
   const dataGet = () => {

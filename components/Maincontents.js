@@ -8,7 +8,7 @@ import Encyclopedia from "./Encyclopedia";
 import Followlist from "./Followlist";
 import Edit from "./Update";
 import Contenteditor from "./Contenteditor";
-import Repselect from "./Repselect";
+import Tutorial from "./Tutorial";
 import { InfoUser } from "@/context/infoContext";
 
 const Maincontents = () => {
@@ -18,9 +18,6 @@ const Maincontents = () => {
   useEffect(() => {
     if (who && who.rep === 0) {
       setPageStatus("NEWBIE");
-    }
-    if (who && who.rep !== 0 && who.name === "") {
-      setNewbie(true);
     }
   }, [who]);
 
@@ -40,7 +37,7 @@ const Maincontents = () => {
     case "NEWBIE":
       return (
         <>
-          <Repselect></Repselect>
+          <Tutorial></Tutorial>
         </>
       );
     case "MYMSG":

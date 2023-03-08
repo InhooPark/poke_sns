@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import Style from "@/styles/layout.module.scss";
-import { useRouter } from "next/router";
 import { Statusgroup } from "@/context/StatusContext";
 
 const Nav = () => {
-  const { pageStatus, setPageStatus } = useContext(Statusgroup);
+  const { pageStatus, setPageStatus, newbie } = useContext(Statusgroup);
   const mainBtnClick = () => {
     setPageStatus("LIST");
   };

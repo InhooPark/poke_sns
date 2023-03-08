@@ -7,7 +7,7 @@ import { InfoUser } from "@/context/infoContext";
 
 const Profile = () => {
   const { data: session, status } = useSession();
-  const { pageStatus, setPageStatus } = useContext(Statusgroup);
+  const { pageStatus, setPageStatus, newbie } = useContext(Statusgroup);
   const { who, setWho } = useContext(InfoUser);
   const whoseId = session.user.id;
   const getWho = async () => {

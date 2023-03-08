@@ -3,7 +3,6 @@ $mC: #e0666666;
 
 .listBox {
   max-width: 700px;
-
   ul {
     .detail_list {
       width: 100%;
@@ -102,4 +101,8 @@ $mC: #e0666666;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.blur {
+  filter: blur(3px);
 }
