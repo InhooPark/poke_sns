@@ -11,7 +11,6 @@ const Tutorial = () => {
 
   const repsel = (key) => {
     axios.put("/api/auth/signup", { type: "newbie", id: session.user.id, key: key });
-    // location.replace("/main");
     setTutostate(2);
   };
   const nickSubmit = () => {
