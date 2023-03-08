@@ -17,6 +17,11 @@
     * starting pokemon select page <br />
 </details>
 
+<details>
+<summary> ver0.3.0 </summary>
+    * followlist / list_categories <br />
+</details>
+
 <br /><br />
 + 참고사항
   + 설치 후 npm install next
