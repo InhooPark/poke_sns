@@ -8,7 +8,6 @@ const Mylist = () => {
   const [mycomment, setMycomment] = useState([]);
 
   const getMyList = async () => {
-    console.log(session.user.id);
     await axios
       .get("/api/mylist", {
         params: {
