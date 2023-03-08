@@ -46,5 +46,9 @@ model list_table {
   user_id Int
   content String
   date    DateTime @default(now())
+<<<<<<< HEAD
+  like    String
+=======
   like    Int      @default(0)
+>>>>>>> a93395c3a642cfaabf516344e56e32ab6353601a
 }
