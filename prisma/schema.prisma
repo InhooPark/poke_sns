@@ -41,9 +41,14 @@ model have_poke {
 
 model list_table {
   id      Int      @id @unique @default(autoincrement())
+  pro_img String
   name    String
   user_id Int
   content String
   date    DateTime @default(now())
+<<<<<<< HEAD
   like    String
+=======
+  like    Int      @default(0)
+>>>>>>> a93395c3a642cfaabf516344e56e32ab6353601a
 }

@@ -1,24 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export default function handler(req, res) {
+async function handler(req, res) {
   const { method, body, query } = req;
 
   const getData = async () => {
-    const owner = await prisma.user_table.findUnique({
+    const follow = await prisma.follow_table.findUnique({
       where: {
         id: Number(query.id),
       },
       select: {
-        id: true,
-        pro_img: true,
-        email: true,
-        name: true,
-        credit: true,
-        rep: true,
+        follow_list: true,
       },
     });
-    res.json(owner);
+    res.json(follow);
   };
 
   switch (method) {
@@ -29,3 +24,4 @@ export default function handler(req, res) {
       return;
   }
 }
+export default handler;

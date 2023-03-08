@@ -1,9 +1,64 @@
 import { Statusgroup } from "@/context/StatusContext";
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 
 const SearchList = () => {
   const { searchID } = useContext(Statusgroup);
+  const { data: session } = useSession();
+  const [listup, setListup] = useState();
+  const [followModal, setFollowModal] = useState(false);
+  const [followCancel, setFollowCancel] = useState();
+  const followTarget = useRef();
+
+  const favoriteUser = (user) => {
+    followTarget.current = user.id;
+    setFollowModal(true);
+    console.log(listup, user.id);
+    if (listup.find((fav) => fav == user.id)) {
+      setFollowCancel(false);
+    } else {
+      setFollowCancel(true);
+    }
+  };
+
+  const favoriteListup = () => {
+    axios
+      .get("/api/follow", {
+        params: {
+          id: session.user.id,
+        },
+      })
+      .then((res) => {
+        setListup(res.data.follow_list.split(","));
+      });
+  };
+
+  const followBtn = () => {
+    let aa = "";
+    listup.map((list, key) => {
+      if (key === 0) {
+        return;
+      } else {
+        aa += "," + list;
+      }
+    });
+
+    if (followCancel) {
+      axios.post("/api/follow", { type: "follow", id: session.user.id, follow_list: aa, user_id: followTarget.current });
+      setFollowModal(false);
+      location.reload();
+    } else {
+      axios.post("/api/follow", { type: "unfollow", id: session.user.id, follow_list: aa, user_id: followTarget.current });
+      setFollowModal(false);
+      location.reload();
+    }
+  };
+
+  useEffect(() => {
+    favoriteListup();
+  }, []);
 
   if (searchID !== undefined) {
     if (searchID.length) {
@@ -19,9 +74,19 @@ const SearchList = () => {
                   <p className={Style.user_list_name}>{user.name === "" ? "설정된 이름이 없습니다." : user.name}</p>
                   <p className={Style.user_list_email}>@{user.email}</p>
                 </div>
+                <div className={Style.user_list_follow} onClick={() => favoriteUser(user)}>
+                  {listup && listup.find((fav) => fav == user.id) ? <img src="/img/svg/heart-fill.svg" /> : <img src="/img/svg/heart.svg" />}
+                </div>
               </div>
             );
           })}
+          <div className={followModal ? `${Style.follow_modal} ${Style.on}` : `${Style.follow_modal}`}>
+            {followCancel ? <p>팔로우 하시겠습니까?</p> : <p>팔로우를 취소 하시겠습니까?</p>}
+            <div className={Style.follow_modal_btn_wrap}>
+              <button onClick={followBtn}>Yes</button>
+              <button onClick={() => setFollowModal(false)}>No</button>
+            </div>
+          </div>
         </>
       );
     } else {

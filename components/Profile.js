@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Style from "@/styles/layout.module.scss";
 import { useSession, signOut } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
@@ -8,10 +8,8 @@ import { InfoUser } from "@/context/infoContext";
 const Profile = () => {
   const { data: session, status } = useSession();
   const { pageStatus, setPageStatus } = useContext(Statusgroup);
-  const {who, setWho} = useContext(InfoUser);
+  const { who, setWho } = useContext(InfoUser);
   const whoseId = session.user.id;
-  // const [who, setWho] = useState();
-  
   const getWho = async () => {
     axios
       .get("/api/auth/who", {
@@ -77,7 +75,6 @@ const Profile = () => {
             </div>
           </div>
           <div className={Style.rep_wrap}>
-            {/* 처음 계정일때는 비워놔야함 비어있는 이미지도 구하면 좋을듯? ?모양이라던가 */}
             {who.rep == 0 ? <img src="/img/poke_silueta.png"></img> : <img src={`https://www.shinyhunters.com/images/regular/${who.rep}.gif`}></img>}
           </div>
         </aside>

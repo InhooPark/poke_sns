@@ -1,12 +1,12 @@
-import Headmeta from "@/components/Headmeta";
 import Sign from "@/components/Sign";
-import { useSession } from "next-auth/react";
+import React from "react";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
-      <Headmeta title="index"></Headmeta>
       <Sign></Sign>
     </>
   );
-}
+};
+
+export default Home;

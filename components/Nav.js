@@ -18,6 +18,9 @@ const Nav = () => {
   const encyclopediaBtnClick = () => {
     setPageStatus("ENCYCLOPEDIA");
   };
+  const writeBtnClick = () => {
+    setPageStatus("WRITE");
+  };
 
   return (
     <>
@@ -59,6 +62,10 @@ const Nav = () => {
               />
             </svg>
             <span>더보기</span>
+          </div>
+
+          <div className={Style.nav_write_btn} onClick={writeBtnClick}>
+            <span>글쓰기</span>
           </div>
         </div>
       </nav>

@@ -6,8 +6,20 @@ const StatusContext = ({ children }) => {
   const [profileImgToggle, setProfileImgToggle] = useState(false);
   const [profileNameToggle, setProfileNameToggle] = useState(false);
   const [searchID, setSearchID] = useState();
+  const [listUpdate, setListUpdate] = useState();
 
-  const value = { pageStatus, setPageStatus, profileImgToggle, setProfileImgToggle, profileNameToggle, setProfileNameToggle, searchID, setSearchID };
+  const value = {
+    pageStatus,
+    setPageStatus,
+    profileImgToggle,
+    setProfileImgToggle,
+    profileNameToggle,
+    setProfileNameToggle,
+    searchID,
+    setSearchID,
+    listUpdate,
+    setListUpdate,
+  };
   return <Statusgroup.Provider value={value}>{children}</Statusgroup.Provider>;
 };
 

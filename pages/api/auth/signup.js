@@ -1,11 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import CryptoJS from "crypto-js";
+import { signOut } from "next-auth/react";
 
 const prisma = new PrismaClient();
 
 async function handler(req, res) {
   const { method, body } = req;
-  
   const postData = async () => {
     const user = await prisma.user_table.findUnique({
       where: {
@@ -34,17 +34,31 @@ async function handler(req, res) {
   };
 
   const putData = async () => {
+    console.log(body);
     try {
+      console.log(11);
       const userUpdate = await prisma.user_table.update({
         where: { id: body.id },
         data: {
           // 대표 포켓몬 변경까지만 여기서 패스워드같은 민감정보는 따로 해야할듯
-          // pro_img: body.pro_img,
-          // name: body.name,
-          rep: body.key
+          pro_img: body.pro_img,
+          name: body.name,
+          rep: body.key,
         },
       });
       res.json({ message: "success" });
+    } catch (err) {
+      res.send(err);
+    }
+  };
+
+  const deleteData = async () => {
+    try {
+      const userDelete = await prisma.user_table.delete({
+        where: {
+          id: Number(body),
+        },
+      });
     } catch (err) {
       res.send(err);
     }
@@ -56,6 +70,10 @@ async function handler(req, res) {
       break;
     case "PUT":
       putData();
+      break;
+    case "DELETE":
+      deleteData();
+      break;
     default:
       return;
   }
