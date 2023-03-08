@@ -6,8 +6,6 @@ const prisma = new PrismaClient();
 async function handler(req, res) {
   const { method, body } = req;
 
-  console.log(body);
-
   const postData = async () => {
     const user = await prisma.user_table.findUnique({
       where: {
