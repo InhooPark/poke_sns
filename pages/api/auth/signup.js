@@ -1,11 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import CryptoJS from "crypto-js";
-import { signOut } from "next-auth/react";
 
 const prisma = new PrismaClient();
 
 async function handler(req, res) {
   const { method, body } = req;
+  
   const postData = async () => {
     const user = await prisma.user_table.findUnique({
       where: {
@@ -34,21 +34,39 @@ async function handler(req, res) {
   };
 
   const putData = async () => {
-    console.log(body);
-    try {
-      console.log(11);
-      const userUpdate = await prisma.user_table.update({
-        where: { id: body.id },
+    // 신규 유저일 경우 처리
+    if (body.type == "newbie") {
+      const repCreate = await prisma.user_table.update({
+        where: {
+          id: body.id,
+        },
         data: {
-          // 대표 포켓몬 변경까지만 여기서 패스워드같은 민감정보는 따로 해야할듯
-          pro_img: body.pro_img,
-          name: body.name,
           rep: body.key,
         },
       });
-      res.json({ message: "success" });
-    } catch (err) {
-      res.send(err);
+      const haveCreate = await prisma.have_poke.create({
+        data: {
+          id: Number(body.id),
+          poke_id: body.key.toString(),
+        },
+      });
+    }
+    // 신규유저가 아닐때의 처리
+    else {
+      try {
+        const userUpdate = await prisma.user_table.update({
+          where: { id: body.id },
+          data: {
+            // 대표 포켓몬 변경까지만 여기서 패스워드같은 민감정보는 따로 해야할듯
+            pro_img: body.pro_img,
+            name: body.name,
+            rep: body.key,
+          },
+        });
+        res.json({ message: "success" });
+      } catch (err) {
+        res.send(err);
+      }
     }
   };
 

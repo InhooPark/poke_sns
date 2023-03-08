@@ -9,7 +9,7 @@ const pool = createPool({
 });
 
 pool.getConnection(() => {
-  console.log("success");
+  // console.log("success");
 });
 
 const executeQuery = async (query, arraParms) => {
