@@ -596,7 +596,7 @@ $height: 150px;
   .tuto_second_form {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
     margin-bottom: 100px;
     > p {
       input {
