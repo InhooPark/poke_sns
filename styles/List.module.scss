@@ -88,8 +88,9 @@ $mC: #e0666666;
 
           .info_mod_btn_wrap {
             position: absolute;
+            width: 100px;
             top: 100%;
-            left: -50%;
+            transform: translateX(-50%);
             background-color: #e0666633;
             border-radius: 10px;
             display: none;
@@ -97,6 +98,7 @@ $mC: #e0666666;
               display: block;
             }
             > p {
+              text-align: center;
               padding: 5px 20px;
               color: #e36e6e;
             }

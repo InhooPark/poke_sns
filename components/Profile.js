@@ -24,7 +24,7 @@ const Profile = () => {
 
   useEffect(() => {
     getWho();
-  }, [who]);
+  }, []);
 
   const profileBtnClick = () => {
     setPageStatus("PROFILE");

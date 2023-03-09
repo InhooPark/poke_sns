@@ -8,7 +8,7 @@ export default function handler(req, res) {
 
   const dataGet = async () => {
     const test = await executeQuery("SELECT * FROM list_table ORDER BY id DESC", []);
-    res.send(test);
+    res.json(test);
   };
   const dataCreate = async () => {
     await prisma.list_table.create({

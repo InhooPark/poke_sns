@@ -21,9 +21,9 @@ const Edit = () => {
     setValue({ ...inputValue, [t.name]: t.value });
   };
 
-  const create = (e) => {
+  const create = async (e) => {
     e.preventDefault();
-    axios.put(`/api/${inputValue.id}`, inputValue);
+    await axios.put(`/api/${inputValue.id}`, inputValue);
     setPageStatus("LIST");
   };
 
