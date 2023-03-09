@@ -7,8 +7,22 @@ const Followlist = () => {
   const { data: session } = useSession();
   const [users, setUsers] = useState([]);
   const [data, setData] = useState([]);
+  const [followlist, setFollowlist] = useState();
 
   // 탈퇴한 회원일때 예외처리 해야함 꼭!
+
+  const getFollowList = () => {
+    axios
+      .get("/api/follow", {
+        params: {
+          id: session.user.id,
+        },
+      })
+      .then((res) => {
+        let arr = res.data.follow_list.split(",");
+        setFollowlist(arr);
+      });
+  };
 
   const getUsersData = async () => {
     let arr = [];
@@ -47,12 +61,24 @@ const Followlist = () => {
       });
   };
 
-  const favoriteUser = (user) => {
-    console.log("unfollow?");
+  const favoriteUser = (id) => {
+    let aa = "";
+    followlist.map((list, k) => {
+      if (k === 0) {
+        return;
+      } else {
+        aa += "," + list;
+      }
+    });
+
+    //언팔로우
+    axios.post("/api/follow", { type: "unfollow", id: session.user.id, follow_list: aa, user_id: id });
+    location.reload();
   };
 
   useEffect(() => {
     getUsers();
+    getFollowList();
   }, []);
   useEffect(() => {
     getUsersData();
@@ -75,7 +101,7 @@ const Followlist = () => {
                 <p className={Style.follow_list_name}>{!user ? "탈퇴한 회원입니다." : user.name === "" ? "설정된 이름이 없습니다." : user.name}</p>
                 <p className={Style.follow_list_email}>@{user ? user.email : "탈퇴한 회원입니다."}</p>
               </div>
-              <div className={Style.follow_list_heart} onClick={() => favoriteUser(user && user)}>
+              <div className={Style.follow_list_heart} onClick={() => favoriteUser(user.id)}>
                 <img src="/img/svg/heart-fill.svg" />
               </div>
             </div>

@@ -10,6 +10,20 @@ const Item = ({ obj, dataGet }) => {
   const [infoMod, setInfoMod] = useState(false);
   const { setPageStatus, setListUpdate } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
+  const [followlist, setFollowlist] = useState();
+
+  const getFollowList = () => {
+    axios
+      .get("/api/follow", {
+        params: {
+          id: session.user.id,
+        },
+      })
+      .then((res) => {
+        let arr = res.data.follow_list.split(",");
+        setFollowlist(arr);
+      });
+  };
 
   const dataUpdate = (obj) => {
     setInfoMod(!infoMod);
@@ -32,13 +46,35 @@ const Item = ({ obj, dataGet }) => {
     dataGet();
   };
 
-  const userFollow = (id) => {
-    // console.log(id);
-    // axios.post("api/follow", id);
+  const userFollow = (id, bool) => {
+    let aa = "";
+    followlist.map((list, k) => {
+      if (k === 0) {
+        return;
+      } else {
+        aa += "," + list;
+      }
+    });
+
+    if (bool) {
+      //언팔로우
+      setInfoMod(!infoMod);
+      axios.post("/api/follow", { type: "unfollow", id: session.user.id, follow_list: aa, user_id: id });
+      location.reload();
+    } else {
+      //팔로우
+      setInfoMod(!infoMod);
+      axios.post("/api/follow", { type: "follow", id: session.user.id, follow_list: aa, user_id: id });
+      location.reload();
+    }
   };
   const infoModModal = () => {
     setInfoMod(!infoMod);
   };
+
+  useEffect(() => {
+    getFollowList();
+  }, []);
 
   return (
     <>
@@ -61,8 +97,8 @@ const Item = ({ obj, dataGet }) => {
             </svg>
             {session.user.id !== obj.user_id ? (
               <div className={infoMod ? `${styles.info_mod_btn_wrap} ${styles.on}` : styles.info_mod_btn_wrap}>
-                <p className={styles.follow} onClick={() => userFollow(obj.user_id)}>
-                  팔로우
+                <p className={styles.follow} onClick={() => userFollow(obj.user_id, followlist && followlist.includes(obj.user_id.toString()))}>
+                  {followlist && followlist.includes(obj.user_id.toString()) ? "언팔로우" : "팔로우"}
                 </p>
               </div>
             ) : (
