@@ -11,16 +11,13 @@ const Myprofile = () => {
   const { profileImgToggle, setProfileImgToggle, profileNameToggle, setProfileNameToggle } = useContext(Statusgroup);
   const whoseId = session.user.id;
   const {who, setWho, dummy} = useContext(InfoUser);
+  const { who, setWho } = useContext(InfoUser);
   const [save, setSave] = useState();
   const [deleteModal, setDeleteModal] = useState(false);
 
   const getWho = async () => {
     setSave(who);
   };
-
-  // 회원 탈퇴
-  // 대표 포켓몬 변경
-  // 뱃지 리스트?
 
   useLayoutEffect(() => {
     let arr = [];
@@ -38,7 +35,6 @@ const Myprofile = () => {
   };
   const profileImgModSelect = (key) => {
     let t = ("00" + (key + 1)).slice(-3);
-    // setWho({ ...who, pro_img: t });
     setSave({ ...save, pro_img: t });
     setProfileImgToggle(false);
   };
@@ -47,7 +43,6 @@ const Myprofile = () => {
     if (e.target.name.value === "") {
       setProfileNameToggle(false);
     } else {
-      // setWho({ ...who, name: e.target.name.value });
       setSave({ ...save, name: e.target.name.value });
       e.target.name.value = "";
       setProfileNameToggle(false);
@@ -76,7 +71,7 @@ const Myprofile = () => {
     getWho();
   }, []);
 
-  if (who !== undefined) {
+  if (save !== undefined) {
     return (
       <>
         <div className={Style.myprofile}>
@@ -109,7 +104,7 @@ const Myprofile = () => {
                 <img src="/img/svg/pencil.svg"></img>
               </div>
             </div>
-            <div className={Style.profile_info_email}>{who.email}</div>
+            <div className={Style.profile_info_email}>{save.email}</div>
 
             <div className={profileNameToggle ? `${Style.profile_name_mod_toggle} ${Style.on}` : `${Style.profile_name_mod_toggle}`}>
               <form onSubmit={profileNameModSelect}>
