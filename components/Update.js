@@ -23,7 +23,6 @@ const Edit = () => {
 
   const create = (e) => {
     e.preventDefault();
-    console.log(inputValue);
     axios.put(`/api/${inputValue.id}`, inputValue);
     setPageStatus("LIST");
   };

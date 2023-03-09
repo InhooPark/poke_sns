@@ -33,7 +33,14 @@ const Header = () => {
         <div className={Style.status}> {pageStatus} </div>
         <div className={Style.search}>
           <p>
-            <input onKeyUp={searchSubmit} type="text" name="search" placeholder="User-name / email" className={Style.follow_search_bar}></input>
+            <input
+              onKeyUp={searchSubmit}
+              type="text"
+              name="search"
+              placeholder="User-name / email"
+              className={Style.follow_search_bar}
+              autoComplete="off"
+            ></input>
           </p>
         </div>
       </header>

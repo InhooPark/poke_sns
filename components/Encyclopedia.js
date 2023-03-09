@@ -43,7 +43,6 @@ const Encyclopedia = () => {
   //pokemon.(id,credit, ko_name)
   const pokeBuy = (pokemon) => {
     currentKey.current = pokemon;
-    
 
     if (userHave.includes(pokemon.id.toString())) {
       alert("이미 보유중인 포켓몬 입니다");
@@ -163,18 +162,18 @@ const Encyclopedia = () => {
                 </div>
                 <div className={Style.modal_wrap_second}>
                   <p>
-                    <img src={`${currentKey.current && pokeData[currentKey.current.id - 1].card_url}`} alt="사진"/>
+                    <img src={`${currentKey.current && pokeData[currentKey.current.id - 1].card_url}`} alt="사진" />
                   </p>
                   <div className={Style.modal_detail_wrap}>
                     <div>
-                      <p>보유중 크레딧:</p> 
-                      <p>차감 크레딧:</p> 
-                      <p>TOTAL 크레딧:</p> 
+                      <p>{"보유중 크레딧: "}</p>
+                      <p>{"차감 크레딧: "}</p>
+                      <p>{"TOTAL 크레딧: "}</p>
                     </div>
                     <div>
-                      <p>{who.credit}</p>
+                      <p>{who && who.credit}</p>
                       <p>{currentKey.current && currentKey.current.credit}</p>
-                      <p>{who.credit - currentKey.current.credit}</p>
+                      <p>{who && who.credit - currentKey.current && currentKey.current.credit}</p>
                     </div>
                   </div>
                 </div>

@@ -24,9 +24,9 @@ export default function handler(req, res) {
         user_id: body.user_id,
         content: body.content,
         name: body.name,
-        like: body.like,
       },
     });
+    res.send("create");
   };
 
   const dataPut = async () => {
