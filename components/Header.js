@@ -30,7 +30,7 @@ const Header = () => {
   const setTitle = () => {
     switch (pageStatus) {
       case "LIST":
-        return "소식";
+        return "HELLO WORLD";
       case "FOLLOW":
         return "팔로우";
       case "NEWBIE":
