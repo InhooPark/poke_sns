@@ -2,7 +2,7 @@
 
 <details>
 <summary> ver0.1.0 </summary>
-    * 최초 테스트 업로드 <br />
+    * first upload <br />
 </details>
 <details>
 <summary> ver0.1.1 </summary>
@@ -15,6 +15,11 @@
 <summary> ver0.2.0 </summary>
     * list add, remove, modify <br />
     * starting pokemon select page <br />
+</details>
+
+<details>
+<summary> ver0.3.0 </summary>
+    * followlist / list_categories <br />
 </details>
 
 <br /><br />
