@@ -173,7 +173,7 @@ const Encyclopedia = () => {
                     <div>
                       <p>{who && who.credit}</p>
                       <p>{currentKey.current && currentKey.current.credit}</p>
-                      <p>{who && who.credit - currentKey.current && currentKey.current.credit}</p>
+                      {/* <p>{who && who.credit - currentKey.current && currentKey.current.credit}</p> */}
                     </div>
                   </div>
                 </div>
