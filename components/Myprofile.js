@@ -15,20 +15,8 @@ const Myprofile = () => {
   const [deleteModal, setDeleteModal] = useState(false);
 
   const getWho = async () => {
-    axios
-      .get("/api/auth/who", {
-        params: {
-          id: whoseId,
-        },
-      })
-      .then((res) => {
-        setSave(res.data);
-      });
+    setSave(who);
   };
-
-  // 회원 탈퇴
-  // 대표 포켓몬 변경
-  // 뱃지 리스트?
 
   useLayoutEffect(() => {
     let arr = [];
