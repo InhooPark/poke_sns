@@ -7,6 +7,7 @@ import Item from "./Item";
 const List = () => {
   const { data: session } = useSession();
   const { data, setData, contentlist, setContentlist, arr, setArr, result, setResult } = useContext(Statusgroup);
+
   //데이터 조회 dataGet();
   const getFollowList = async () => {
     if (arr !== undefined) {

@@ -108,7 +108,7 @@ const Myprofile = () => {
             <div className={profileNameToggle ? `${Style.profile_name_mod_toggle} ${Style.on}` : `${Style.profile_name_mod_toggle}`}>
               <form onSubmit={profileNameModSelect}>
                 <p>
-                  <input type="text" name="name" placeholder="변경할 이름" autoComplete="off"></input>
+                  <input type="text" name="name" placeholder="변경할 이름" autoComplete="off" maxLength={12}></input>
                 </p>
                 <p>
                   <input type="submit" value="변경"></input>

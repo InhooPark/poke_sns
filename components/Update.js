@@ -25,6 +25,7 @@ const Edit = () => {
     setPageStatus("LIST");
   };
 
+  // 한글 70자 영어,숫자 140자
   return (
     <div>
       <form className="inputBox" onSubmit={create}>
@@ -35,7 +36,15 @@ const Edit = () => {
         <p name={"img"}></p>
         <p name={"name"}></p>
         <p>
-          <textarea onChange={valueChange} value={inputValue.content} type="text" name="content" className="contentBox" placeholder="무슨 일이 있었나요?" />
+          <textarea
+            onChange={valueChange}
+            value={inputValue.content}
+            type="text"
+            name="content"
+            className="contentBox"
+            placeholder="무슨 일이 있었나요?"
+            maxLength={140}
+          />
         </p>
       </form>
     </div>

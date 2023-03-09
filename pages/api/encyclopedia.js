@@ -24,7 +24,6 @@ export default function handler(req, res) {
   };
   //구매한 포켓몬 추가
   const getPost = async () => {
-    console.log(body);
     await prisma.have_poke.update({
       where: {
         id: body.id,
