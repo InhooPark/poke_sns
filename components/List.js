@@ -4,6 +4,7 @@ import axios from "axios";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
+import InfoContext, { InfoUser } from "@/context/infoContext";
 // import Image from "next/image";
 
 const List = () => {
@@ -11,6 +12,7 @@ const List = () => {
   const { data: session } = useSession();
   const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
   const [contentlist, setContentlist] = useState(true);
+  const {who} = useContext(InfoUser)
 
   const [arr, setArr] = useState();
   const [result, setResult] = useState([]);
@@ -58,9 +60,16 @@ const List = () => {
     }
   };
 
-  function dataDelete(obj) {
+  const dataDelete = async(obj) => {
     if (session.user.id == obj.user_id) {
-      axios.delete(`/api/${obj.id}`);
+      await axios.delete(`/api/${obj.id}`, {
+        params: {
+          id : session.user.id,
+          credit: who.credit,
+          user_id: who.id
+        }
+      });
+      await axios.put(`/api/credit` , {id: who.id, credit: who.credit})
     } else {
       alert("본인이 아니에요");
     }

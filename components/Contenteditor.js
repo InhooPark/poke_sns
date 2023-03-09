@@ -18,11 +18,11 @@ const Contenteditor = () => {
       user_id: session.user.id,
       name: user.name,
       pro_img: user.pro_img,
+      credit: user.credit
     });
 
     setPageStatus("LIST");
   };
-
   const getUser = () => {
     axios
       .get("/api/auth/who", {
