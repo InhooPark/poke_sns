@@ -90,8 +90,8 @@ const Encyclopedia = () => {
   };
 
   const pokeDetail = (key) => {
-    let data = key + 1;
-    poke_key.current = key + 1;
+    let data = key;
+    poke_key.current = key;
     //user_table에 rep(대표 몬스터)
     // 디테일 부분은 속성 출력 / 추가로 chart.js - Radar Chart  이용해서 그래프 그려보기
     // 참고 : https://www.chartjs.org/docs/latest/charts/radar.html
@@ -127,7 +127,7 @@ const Encyclopedia = () => {
                       <div className={Style.info_btn_wrap}>
                         {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
                         <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
-                        <button onClick={() => pokeDetail(key)}>상세정보</button>
+                        <button onClick={() => pokeDetail(key + 1)}>상세정보</button>
                       </div>
                     </figcaption>
                   </figure>
@@ -146,7 +146,7 @@ const Encyclopedia = () => {
                       <div className={Style.info_btn_wrap}>
                         {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
                         <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
-                        <button onClick={() => pokeDetail(key)}>상세정보</button>
+                        <button onClick={() => pokeDetail(key + 1)}>상세정보</button>
                       </div>
                     </figcaption>
                   </figure>

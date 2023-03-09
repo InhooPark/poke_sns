@@ -8,16 +8,9 @@ export default function handler(req, res) {
 
   const dataGet = async () => {
     const test = await executeQuery("SELECT * FROM list_table ORDER BY id DESC", []);
-    // console.log(test)
     res.send(test);
   };
   const dataCreate = async () => {
-    // try {
-    //   executeQuery('insert into list_table (user_id, content, name) values (?,?,?)', [body.user_id, body.content, body.name])
-    // }
-    // catch (err) {
-    //   res.send(err);
-    // }
     await prisma.list_table.create({
       data: {
         pro_img: body.pro_img,
