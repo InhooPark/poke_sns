@@ -1,13 +1,10 @@
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 const Edit = () => {
   //데이터 수정 dataUpdate();
   const { setPageStatus, listUpdate } = useContext(Statusgroup);
-  const router = useRouter();
   const initial = {
     id: listUpdate.id,
     content: listUpdate.content,
@@ -23,6 +20,7 @@ const Edit = () => {
 
   const create = async (e) => {
     e.preventDefault();
+    console.log(11);
     await axios.put(`/api/${inputValue.id}`, inputValue);
     setPageStatus("LIST");
   };
@@ -30,7 +28,6 @@ const Edit = () => {
   return (
     <div>
       <form className="inputBox" onSubmit={create}>
-        <Link href={"/"}>home</Link>
         <section className="btn">
           <button onClick={() => setPageStatus("LIST")}>취소</button>
           <button type={"submit"}>완료</button>
@@ -38,7 +35,7 @@ const Edit = () => {
         <p name={"img"}></p>
         <p name={"name"}></p>
         <p>
-          <input onChange={valueChange} value={inputValue.content} type="text" name="content" className="contentBox" placeholder="무슨 일이 있었나요?" />
+          <textarea onChange={valueChange} value={inputValue.content} type="text" name="content" className="contentBox" placeholder="무슨 일이 있었나요?" />
         </p>
       </form>
     </div>

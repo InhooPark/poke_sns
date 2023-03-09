@@ -7,7 +7,6 @@ export default function handler(req, res) {
   const { method, body, query } = req;
 
   const dataDelete = async () => {
-    console.log(query);
     const listDelete = await prisma.list_table.delete({
       where: {
         id: Number(query.id),

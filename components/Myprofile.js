@@ -10,7 +10,6 @@ const Myprofile = () => {
   const [profileImgArr, setProfileImgArr] = useState();
   const { profileImgToggle, setProfileImgToggle, profileNameToggle, setProfileNameToggle } = useContext(Statusgroup);
   const whoseId = session.user.id;
-  const {who, setWho, dummy} = useContext(InfoUser);
   const { who, setWho } = useContext(InfoUser);
   const [save, setSave] = useState();
   const [deleteModal, setDeleteModal] = useState(false);
@@ -99,7 +98,7 @@ const Myprofile = () => {
           </div>
           <div className={Style.profile_info_wrap}>
             <div className={Style.profile_info_name}>
-              {save&& save.name}
+              {save && save.name}
               <div className={Style.profile_name_mod} onClick={profileNameMod}>
                 <img src="/img/svg/pencil.svg"></img>
               </div>

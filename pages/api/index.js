@@ -20,15 +20,15 @@ export default function handler(req, res) {
       },
     });
     res.send("create");
-  const creditAdd = await prisma.user_table.update({
+    const creditAdd = await prisma.user_table.update({
       where: {
-        id : Number(body.user_id),
+        id: Number(body.user_id),
       },
       data: {
-        credit: body.credit+5
-      }
-    })
-    res.send("creditAdd")
+        credit: body.credit + 5,
+      },
+    });
+    res.send("creditAdd");
   };
 
   const dataPut = async () => {
@@ -44,18 +44,9 @@ export default function handler(req, res) {
         content: true,
         date: true,
         like_count: true,
-        like_user: true,
       },
     });
     res.json(follow);
-    // const creditAdd = await prisma.user_table.update({
-    //   where: {
-    //     id : Number(body.id),
-    //   },
-    //   credit: {
-    //     credit: credit+5
-    //   }
-    // })
 
     return follow;
   };

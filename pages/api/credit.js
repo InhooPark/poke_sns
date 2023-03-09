@@ -6,20 +6,17 @@ export default function handler(req, res) {
   const { method, body, query } = req;
 
   const update = async () => {
-    await prisma.user_table.update({
+    const listUpdate = await prisma.user_table.update({
       where: {
-        id: body.id
+        id: body.id,
       },
       data: {
-        credit: body.credit-5
-      }
+        credit: body.credit - 5,
+      },
     });
-    res.send("크레딧삭제")
-  }
+    res.send("크레딧삭제");
+  };
   switch (method) {
-    case "DELETE":
-      dataDelete();
-      break;
     case "PUT":
       update();
       break;

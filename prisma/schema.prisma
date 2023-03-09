@@ -47,5 +47,9 @@ model list_table {
   date       DateTime @default(now())
   pro_img    String
   like_count Int      @default(0)
-  like_user  String   @default("")
+}
+
+model favorite_table {
+  id Int @id @unique
+  favorite_list String @db.VarChar(2000)
 }
