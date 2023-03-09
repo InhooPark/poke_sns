@@ -12,7 +12,6 @@ const List = () => {
   const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
   const [contentlist, setContentlist] = useState(true);
   const {who, data, setData} = useContext(InfoUser)
-  const {dummy,setDummy} = useContext(InfoUser);
 
   const [arr, setArr] = useState();
   const [result, setResult] = useState([]);
@@ -73,8 +72,6 @@ const List = () => {
     } else {
       alert("본인이 아니에요");
     }
-    
-    setDummy(!dummy);
     dataGet();
   }
   

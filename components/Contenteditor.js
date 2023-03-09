@@ -11,7 +11,7 @@ const Contenteditor = () => {
   const { data: session } = useSession();
   const [user, setUser] = useState();
   const { setPageStatus } = useContext(Statusgroup);
-  const {dummy,setDummy, setData} = useContext(InfoUser);
+  const {setData} = useContext(InfoUser);
 
   const create = async (e) => {
     e.preventDefault();
@@ -23,7 +23,6 @@ const Contenteditor = () => {
       credit: user.credit
     });
 
-    setDummy(!dummy);
     setPageStatus("LIST");
     dataGet()
   };
