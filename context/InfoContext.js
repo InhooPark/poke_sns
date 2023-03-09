@@ -1,21 +1,14 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from "react";
 
 export const InfoUser = createContext(null);
 
-const InfoContext = ({children}) => {
+const InfoContext = ({ children }) => {
   const [who, setWho] = useState();
-  const [dummy, setDummy] = useState(false)
   const [data, setData] = useState([]);
 
-  const value = {who, setWho, dummy, setDummy, data, setData};
+  const value = { who, setWho, data, setData };
 
+  return <InfoUser.Provider value={value}>{children}</InfoUser.Provider>;
+};
 
-  
-  return (
-    <InfoUser.Provider value={value}>
-      {children}
-    </InfoUser.Provider>
-  )
-}
-
-export default InfoContext
+export default InfoContext;

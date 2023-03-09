@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 const SearchList = () => {
   const { searchID } = useContext(Statusgroup);
   const { data: session } = useSession();
-  const [listup, setListup] = useState();
+  const [followlist, setFollowlist] = useState();
   const [followModal, setFollowModal] = useState(false);
   const [followCancel, setFollowCancel] = useState();
   const followTarget = useRef();
@@ -15,8 +15,7 @@ const SearchList = () => {
   const favoriteUser = (user) => {
     followTarget.current = user.id;
     setFollowModal(true);
-    console.log(listup, user.id);
-    if (listup.find((fav) => fav == user.id)) {
+    if (followlist.find((fav) => fav == user.id)) {
       setFollowCancel(false);
     } else {
       setFollowCancel(true);
@@ -31,13 +30,13 @@ const SearchList = () => {
         },
       })
       .then((res) => {
-        setListup(res.data.follow_list.split(","));
+        setFollowlist(res.data.follow_list.split(","));
       });
   };
 
   const followBtn = () => {
     let aa = "";
-    listup.map((list, key) => {
+    followlist.map((list, key) => {
       if (key === 0) {
         return;
       } else {
@@ -75,7 +74,7 @@ const SearchList = () => {
                   <p className={Style.user_list_email}>@{user.email}</p>
                 </div>
                 <div className={Style.user_list_follow} onClick={() => favoriteUser(user)}>
-                  {listup && listup.find((fav) => fav == user.id) ? <img src="/img/svg/heart-fill.svg" /> : <img src="/img/svg/heart.svg" />}
+                  {followlist && followlist.find((fav) => fav == user.id) ? <img src="/img/svg/heart-fill.svg" /> : <img src="/img/svg/heart.svg" />}
                 </div>
               </div>
             );
