@@ -3,13 +3,14 @@ import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 import { signOut, useSession } from "next-auth/react";
 import axios from "axios";
+import { InfoUser } from "@/context/infoContext";
 
 const Myprofile = () => {
   const { data: session } = useSession();
   const [profileImgArr, setProfileImgArr] = useState();
   const { profileImgToggle, setProfileImgToggle, profileNameToggle, setProfileNameToggle } = useContext(Statusgroup);
   const whoseId = session.user.id;
-  const [who, setWho] = useState();
+  const { who, setWho } = useContext(InfoUser);
   const [save, setSave] = useState();
   const [deleteModal, setDeleteModal] = useState(false);
 
@@ -21,7 +22,6 @@ const Myprofile = () => {
         },
       })
       .then((res) => {
-        setWho(res.data);
         setSave(res.data);
       });
   };
@@ -46,7 +46,6 @@ const Myprofile = () => {
   };
   const profileImgModSelect = (key) => {
     let t = ("00" + (key + 1)).slice(-3);
-    setWho({ ...who, pro_img: t });
     setSave({ ...save, pro_img: t });
     setProfileImgToggle(false);
   };
@@ -55,7 +54,6 @@ const Myprofile = () => {
     if (e.target.name.value === "") {
       setProfileNameToggle(false);
     } else {
-      setWho({ ...who, name: e.target.name.value });
       setSave({ ...save, name: e.target.name.value });
       e.target.name.value = "";
       setProfileNameToggle(false);
@@ -84,12 +82,12 @@ const Myprofile = () => {
     getWho();
   }, []);
 
-  if (who !== undefined) {
+  if (save !== undefined) {
     return (
       <>
         <div className={Style.myprofile}>
           <div className={Style.profile_img_wrap}>
-            <img src={`/img/poke_profile_img/pokballpixel-${who.pro_img}.png`}></img>
+            <img src={`/img/poke_profile_img/pokballpixel-${save.pro_img}.png`}></img>
             <div className={Style.profile_img_mod} onClick={profileImgMod}>
               <img src="/img/svg/pencil.svg"></img>
             </div>
@@ -112,12 +110,12 @@ const Myprofile = () => {
           </div>
           <div className={Style.profile_info_wrap}>
             <div className={Style.profile_info_name}>
-              {who.name}
+              {save.name}
               <div className={Style.profile_name_mod} onClick={profileNameMod}>
                 <img src="/img/svg/pencil.svg"></img>
               </div>
             </div>
-            <div className={Style.profile_info_email}>{who.email}</div>
+            <div className={Style.profile_info_email}>{save.email}</div>
 
             <div className={profileNameToggle ? `${Style.profile_name_mod_toggle} ${Style.on}` : `${Style.profile_name_mod_toggle}`}>
               <form onSubmit={profileNameModSelect}>
