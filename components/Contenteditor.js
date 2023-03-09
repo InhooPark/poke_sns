@@ -1,3 +1,4 @@
+import { InfoUser } from "@/context/infoContext";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -10,6 +11,7 @@ const Contenteditor = () => {
   const { data: session } = useSession();
   const [user, setUser] = useState();
   const { setPageStatus } = useContext(Statusgroup);
+  const {dummy,setDummy, setData} = useContext(InfoUser);
 
   const create = async (e) => {
     e.preventDefault();
@@ -21,7 +23,9 @@ const Contenteditor = () => {
       credit: user.credit
     });
 
+    setDummy(!dummy);
     setPageStatus("LIST");
+    dataGet()
   };
   const getUser = () => {
     axios
@@ -34,7 +38,11 @@ const Contenteditor = () => {
         setUser(res.data);
       });
   };
-
+  const dataGet = () => {
+    axios.get("/api/").then((res) => {
+      setData(res.data);
+    });
+  }
   useEffect(() => {
     getUser();
   }, []);

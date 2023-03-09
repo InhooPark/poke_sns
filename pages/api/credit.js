@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 
 export default function handler(req, res) {
   const { method, body, query } = req;
-  console.log(body)
 
   const update = async () => {
     await prisma.user_table.update({

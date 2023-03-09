@@ -8,15 +8,15 @@ import InfoContext, { InfoUser } from "@/context/infoContext";
 // import Image from "next/image";
 
 const List = () => {
-  const [data, setData] = useState([]);
   const { data: session } = useSession();
   const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
   const [contentlist, setContentlist] = useState(true);
-  const {who} = useContext(InfoUser)
+  const {who, data, setData} = useContext(InfoUser)
+  const {dummy,setDummy} = useContext(InfoUser);
 
   const [arr, setArr] = useState();
   const [result, setResult] = useState([]);
-
+  console.log(data)
   //데이터 조회 dataGet();
   const getFollowList = async () => {
     if (arr !== undefined) {
@@ -73,9 +73,11 @@ const List = () => {
     } else {
       alert("본인이 아니에요");
     }
+    
+    setDummy(!dummy);
     dataGet();
   }
-
+  
   function dataUpdate(obj) {
     if (session.user.id == obj.user_id) {
       setListUpdate(obj);
@@ -106,7 +108,7 @@ const List = () => {
     }
   }, [result]);
 
-  if (!data.length)
+  if (data == undefined)
     return (
       <div className={styles.load}>
         <img src="/img/loadimg/pika_heart.webp"></img>
