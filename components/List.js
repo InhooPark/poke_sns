@@ -4,18 +4,20 @@ import axios from "axios";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
+import InfoContext, { InfoUser } from "@/context/infoContext";
 // import Image from "next/image";
 
 const List = () => {
-  const [data, setData] = useState([]);
   const { data: session } = useSession();
   const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
   const [contentlist, setContentlist] = useState(true);
+  const {who, data, setData} = useContext(InfoUser)
+  const {dummy,setDummy} = useContext(InfoUser);
   const [infoMod, setInfoMod] = useState(false);
 
   const [arr, setArr] = useState();
   const [result, setResult] = useState([]);
-
+  console.log(data)
   //데이터 조회 dataGet();
   const getFollowList = async () => {
     if (arr !== undefined) {
@@ -59,16 +61,25 @@ const List = () => {
     }
   };
 
-  function dataDelete(obj) {
+  const dataDelete = async(obj) => {
     setInfoMod(!infoMod);
     if (session.user.id == obj.user_id) {
-      axios.delete(`/api/${obj.id}`);
+      await axios.delete(`/api/${obj.id}`, {
+        params: {
+          id : session.user.id,
+          credit: who.credit,
+          user_id: who.id
+        }
+      });
+      await axios.put(`/api/credit` , {id: who.id, credit: who.credit})
     } else {
       alert("본인이 아니에요");
     }
+    
+    setDummy(!dummy);
     dataGet();
   }
-
+  
   function dataUpdate(obj) {
     setInfoMod(!infoMod);
     if (session.user.id == obj.user_id) {
@@ -103,7 +114,7 @@ const List = () => {
     }
   }, [result]);
 
-  if (!data.length)
+  if (data == undefined)
     return (
       <div className={styles.load}>
         <img src="/img/loadimg/pika_heart.webp"></img>
