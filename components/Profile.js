@@ -7,8 +7,8 @@ import { InfoUser } from "@/context/infoContext";
 
 const Profile = () => {
   const { data: session, status } = useSession();
-  const { pageStatus, setPageStatus } = useContext(Statusgroup);
-  const { who, setWho, dummy, data } = useContext(InfoUser);
+  const { pageStatus, setPageStatus, data } = useContext(Statusgroup);
+  const { who, setWho } = useContext(InfoUser);
   const whoseId = session.user.id;
   const getWho = async () => {
     axios

@@ -17,7 +17,6 @@ const executeQuery = async (query, arraParms) => {
     pool.query(query, arraParms, (err, data) => {
       resolve(data);
       reject(err);
-      pool.release();
     });
   });
 };

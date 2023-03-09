@@ -3,11 +3,13 @@ import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
+import { InfoUser } from "@/context/infoContext";
 
 const Item = ({ obj, dataGet }) => {
   const { data: session } = useSession();
   const [infoMod, setInfoMod] = useState(false);
-  const { setPageStatus, setListUpdate, contentlist, data, setData, arr, setArr, result, setResult } = useContext(Statusgroup);
+  const { setPageStatus, setListUpdate } = useContext(Statusgroup);
+  const { who } = useContext(InfoUser);
 
   const dataUpdate = (obj) => {
     setInfoMod(!infoMod);
@@ -22,6 +24,7 @@ const Item = ({ obj, dataGet }) => {
     setInfoMod(!infoMod);
     if (session.user.id == obj.user_id) {
       await axios.delete(`/api/${obj.id}`);
+      await axios.put("/api/credit", { id: session.user.id, credit: who.credit });
     } else {
       alert("본인이 아니에요");
     }

@@ -1,17 +1,12 @@
-import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import axios from "axios";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import Item from "./Item";
-import { InfoUser } from "@/context/infoContext";
 const List = () => {
   const { data: session } = useSession();
   const { data, setData, contentlist, setContentlist, arr, setArr, result, setResult } = useContext(Statusgroup);
-  const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
-  const {who, data, setData} = useContext(InfoUser);
-  const [infoMod, setInfoMod] = useState(false);
   //데이터 조회 dataGet();
   const getFollowList = async () => {
     if (arr !== undefined) {
