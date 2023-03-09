@@ -22,6 +22,12 @@
     * followlist / list_categories <br />
 </details>
 
+<details>
+<summary> ver0.3.1 </summary>
+    * follow fix <br />
+    * css fix <br />
+</details>
+
 <br /><br />
 + 참고사항
   + 설치 후 npm install next
