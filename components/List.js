@@ -1,14 +1,12 @@
-import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import axios from "axios";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
-import InfoContext, { InfoUser } from "@/context/infoContext";
-// import Image from "next/image";
-
+import Item from "./Item";
 const List = () => {
   const { data: session } = useSession();
+<<<<<<< HEAD
   const { pageStatus, setPageStatus, listUpdate, setListUpdate } = useContext(Statusgroup);
   const [contentlist, setContentlist] = useState(true);
   const {who, data, setData} = useContext(InfoUser)
@@ -16,6 +14,9 @@ const List = () => {
   const [arr, setArr] = useState();
   const [result, setResult] = useState([]);
   console.log(data)
+=======
+  const { data, setData, contentlist, setContentlist, arr, setArr, result, setResult } = useContext(Statusgroup);
+>>>>>>> c56dac036ec7bfe614ca1be94593357be93f7e9e
   //데이터 조회 dataGet();
   const getFollowList = async () => {
     if (arr !== undefined) {
@@ -59,6 +60,7 @@ const List = () => {
     }
   };
 
+<<<<<<< HEAD
   const dataDelete = async(obj) => {
     if (session.user.id == obj.user_id) {
       await axios.delete(`/api/${obj.id}`, {
@@ -83,6 +85,8 @@ const List = () => {
       console.log("불일치");
     }
   }
+=======
+>>>>>>> c56dac036ec7bfe614ca1be94593357be93f7e9e
   const setfollowlist = () => {
     setContentlist(false);
   };
@@ -122,45 +126,7 @@ const List = () => {
             팔로우
           </button>
         </div>
-        <ul>
-          {data &&
-            data.map((obj) => (
-              <li className={styles.detail_list} key={obj.id}>
-                {/* 프로필로 이동 */}
-                <div className={styles.profileInfo}>
-                  <div className={styles.profile_img}>
-                    <img src={`/img/poke_profile_img/pokballpixel-${obj.pro_img}.png`}></img>
-                  </div>
-                  <p className={styles.user}>@{obj.name}</p>
-                  <p className={styles.date}>{obj.date}hours</p>
-                </div>
-                <p className={styles.detail}>{obj.content}</p>
-                <section className={styles.btn}>
-                  <button className={styles.like}></button>
-
-                  {session.user.id !== obj.user_id ? (
-                    <></>
-                  ) : (
-                    <button className={styles.btn2}>
-                      <ul>
-                        <li>
-                          <p className={styles.update} onClick={() => dataUpdate(obj)}>
-                            수정
-                          </p>
-                        </li>
-                        <li>
-                          <p className={styles.remove} onClick={() => dataDelete(obj)}>
-                            삭제
-                          </p>
-                        </li>
-                      </ul>
-                    </button>
-                  )}
-                  <button className={styles.share}></button>
-                </section>
-              </li>
-            ))}
-        </ul>
+        <ul>{data && data.map((obj, key) => <Item obj={obj} key={key} dataGet={dataGet}></Item>)}</ul>
       </div>
     );
   }

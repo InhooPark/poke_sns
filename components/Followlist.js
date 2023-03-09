@@ -8,6 +8,8 @@ const Followlist = () => {
   const [users, setUsers] = useState([]);
   const [data, setData] = useState([]);
 
+  // 탈퇴한 회원일때 예외처리 해야함 꼭!
+
   const getUsersData = async () => {
     let arr = [];
     const pro1 = users.map(async (list, k) => {

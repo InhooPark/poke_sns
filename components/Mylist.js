@@ -2,6 +2,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import styles from "@/styles/List.module.scss";
+import Item from "./Item";
 
 const Mylist = () => {
   const { data: session } = useSession();
@@ -32,44 +33,7 @@ const Mylist = () => {
   else {
     return (
       <div className={styles.listBox}>
-        <ul>
-          {mycomment &&
-            mycomment.map((obj) => (
-              <li className={styles.detail_list} key={obj.id}>
-                <div className={styles.profileInfo}>
-                  <div className={styles.profile_img}>
-                    <img src={`/img/poke_profile_img/pokballpixel-${obj.pro_img}.png`}></img>
-                  </div>
-                  <p className={styles.user}>@{obj.name}</p>
-                  <p className={styles.date}>{obj.date}hours</p>
-                </div>
-                <p className={styles.detail}>{obj.content}</p>
-                <section className={styles.btn}>
-                  <button className={styles.like}></button>
-
-                  {session.user.id !== obj.user_id ? (
-                    <></>
-                  ) : (
-                    <button className={styles.btn2}>
-                      <ul>
-                        <li>
-                          <p className={styles.update} onClick={() => dataUpdate(obj)}>
-                            수정
-                          </p>
-                        </li>
-                        <li>
-                          <p className={styles.remove} onClick={() => dataDelete(obj)}>
-                            삭제
-                          </p>
-                        </li>
-                      </ul>
-                    </button>
-                  )}
-                  <button className={styles.share}></button>
-                </section>
-              </li>
-            ))}
-        </ul>
+        <ul>{mycomment && mycomment.map((obj, key) => <Item obj={obj} key={key} dataGet={getMyList}></Item>)}</ul>
       </div>
     );
   }

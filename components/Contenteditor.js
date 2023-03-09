@@ -1,17 +1,16 @@
-import { InfoUser } from "@/context/infoContext";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 
 const Contenteditor = () => {
-  const router = useRouter();
   const { data: session } = useSession();
   const [user, setUser] = useState();
   const { setPageStatus } = useContext(Statusgroup);
+<<<<<<< HEAD
   const {setData} = useContext(InfoUser);
+=======
+>>>>>>> c56dac036ec7bfe614ca1be94593357be93f7e9e
 
   const create = async (e) => {
     e.preventDefault();
@@ -20,11 +19,10 @@ const Contenteditor = () => {
       user_id: session.user.id,
       name: user.name,
       pro_img: user.pro_img,
-      credit: user.credit
+      credit: user.credit,
     });
 
     setPageStatus("LIST");
-    dataGet()
   };
   const getUser = () => {
     axios
@@ -37,21 +35,14 @@ const Contenteditor = () => {
         setUser(res.data);
       });
   };
-  const dataGet = () => {
-    axios.get("/api/").then((res) => {
-      setData(res.data);
-    });
-  }
+
   useEffect(() => {
     getUser();
   }, []);
 
-  //id, img, name, date
-  //content
   return (
     <div>
       <form className="Contenteditor" onSubmit={create}>
-        {/* <Link href={"/"}>home</Link> */}
         <section className="btn">
           <button onClick={() => setPageStatus("LIST")}>취소</button>
           <button type={"submit"}>완료</button>

@@ -8,8 +8,8 @@ const pool = createPool({
   database: process.env.DB_NAME,
 });
 
-pool.getConnection(() => {
-  // console.log("success");
+pool.getConnection((err, conn) => {
+  console.log("success");
 });
 
 const executeQuery = async (query, arraParms) => {
