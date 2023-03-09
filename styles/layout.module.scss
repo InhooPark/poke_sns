@@ -53,6 +53,7 @@ $header-height: 150px;
     filter: blur(50px);
     top: -100px;
     left: -300px;
+    z-index: 1;
   }
   .nav_container {
     width: 300px;
@@ -62,6 +63,7 @@ $header-height: 150px;
     height: 100%;
     border-left: 1px solid rgba(224, 102, 102, 0.4);
     border-right: 1px solid rgba(224, 102, 102, 0.4);
+    z-index: 2;
     .nav_btn_wrap {
       width: 80%;
       height: 400px;

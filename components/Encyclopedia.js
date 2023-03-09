@@ -43,7 +43,6 @@ const Encyclopedia = () => {
   //pokemon.(id,credit, ko_name)
   const pokeBuy = (pokemon) => {
     currentKey.current = pokemon;
-    
 
     if (userHave.includes(pokemon.id.toString())) {
       alert("이미 보유중인 포켓몬 입니다");
@@ -91,8 +90,8 @@ const Encyclopedia = () => {
   };
 
   const pokeDetail = (key) => {
-    let data = key + 1;
-    poke_key.current = key + 1;
+    let data = key;
+    poke_key.current = key;
     //user_table에 rep(대표 몬스터)
     // 디테일 부분은 속성 출력 / 추가로 chart.js - Radar Chart  이용해서 그래프 그려보기
     // 참고 : https://www.chartjs.org/docs/latest/charts/radar.html
@@ -128,7 +127,7 @@ const Encyclopedia = () => {
                       <div className={Style.info_btn_wrap}>
                         {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
                         <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
-                        <button onClick={() => pokeDetail(key)}>상세정보</button>
+                        <button onClick={() => pokeDetail(key + 1)}>상세정보</button>
                       </div>
                     </figcaption>
                   </figure>
@@ -147,7 +146,7 @@ const Encyclopedia = () => {
                       <div className={Style.info_btn_wrap}>
                         {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
                         <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
-                        <button onClick={() => pokeDetail(key)}>상세정보</button>
+                        <button onClick={() => pokeDetail(key + 1)}>상세정보</button>
                       </div>
                     </figcaption>
                   </figure>
@@ -163,18 +162,18 @@ const Encyclopedia = () => {
                 </div>
                 <div className={Style.modal_wrap_second}>
                   <p>
-                    <img src={`${currentKey.current && pokeData[currentKey.current.id - 1].card_url}`} alt="사진"/>
+                    <img src={`${currentKey.current && pokeData[currentKey.current.id - 1].card_url}`} alt="사진" />
                   </p>
                   <div className={Style.modal_detail_wrap}>
                     <div>
-                      <p>보유중 크레딧:</p> 
-                      <p>차감 크레딧:</p> 
-                      <p>TOTAL 크레딧:</p> 
+                      <p>{"보유중 크레딧: "}</p>
+                      <p>{"차감 크레딧: "}</p>
+                      <p>{"TOTAL 크레딧: "}</p>
                     </div>
                     <div>
-                      <p>{who.credit}</p>
+                      <p>{who && who.credit}</p>
                       <p>{currentKey.current && currentKey.current.credit}</p>
-                      <p>{who.credit - currentKey.current.credit}</p>
+                      <p>{who && who.credit - currentKey.current && currentKey.current.credit}</p>
                     </div>
                   </div>
                 </div>

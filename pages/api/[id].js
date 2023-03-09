@@ -12,6 +12,7 @@ export default function handler(req, res) {
         id: Number(query.id),
       },
     });
+    res.send("delete");
   };
   const dataPut = async () => {
     const listUpdate = await prisma.list_table.update({
@@ -22,6 +23,7 @@ export default function handler(req, res) {
         content: body.content,
       },
     });
+    res.send("update");
   };
 
   switch (method) {

@@ -53,6 +53,21 @@ const Nav = () => {
             </svg>
             <span>도감</span>
           </div>
+
+          <div className={Style.nav_write_btn} onClick={writeBtnClick}>
+            <svg width="30px" height="30px" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M34.5787 6.78029L44.4759 16.6772M3.90248 37.0803L2.57373 49.0753L14.5684 47.7465L48.8237 13.4731V9.43248L42.2165 2.82529H38.1759L3.90248 37.0803Z"
+                stroke="#E06666"
+                strokeWidth="3.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path d="M32.4905 19.0494L15.9648 35.575" stroke="#E06666" strokeWidth="3.75" strokeMiterlimit="5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+
+            <span>글쓰기</span>
+          </div>
           <div className={Style.nav_more_btn} onClick={moreBtnClick}>
             <svg width="30px" height="30px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -61,10 +76,6 @@ const Nav = () => {
               />
             </svg>
             <span>더보기</span>
-          </div>
-
-          <div className={Style.nav_write_btn} onClick={writeBtnClick}>
-            <span>글쓰기</span>
           </div>
         </div>
       </nav>
