@@ -16,25 +16,26 @@ const List = () => {
   const [result, setResult] = useState([]);
 
   //데이터 조회 dataGet();
-
   const getFollowList = async () => {
-    let rearr = [];
-    const wait =
-      arr &&
-      arr.map(async (value, key) => {
-        if (key === 0) {
-          return;
-        } else {
-          await axios.put("/api", { id: value }).then((res) => {
-            if (res.data.length) {
+    if (arr !== undefined) {
+      let rearr = [];
+      const wait =
+        arr &&
+        arr.map(async (value, key) => {
+          if (key === 0) {
+            return;
+          } else {
+            await axios.put("/api", { id: value }).then((res) => {
               res.data.map((vv) => {
                 rearr.push(vv);
-                setResult([...result, rearr]);
               });
-            }
-          });
-        }
-      });
+            });
+          }
+        });
+
+      await Promise.all(wait);
+      setResult(rearr);
+    }
   };
 
   const dataGet = () => {
@@ -84,16 +85,18 @@ const List = () => {
   useEffect(() => {
     dataGet();
   }, [contentlist]);
-
   useEffect(() => {
     getFollowList();
   }, [arr]);
-
   useEffect(() => {
     if (result.length) {
-      setData(result[0]);
+      result.sort((a, b) => {
+        return b.id - a.id;
+      });
+      setData(result);
     }
   }, [result]);
+
   if (!data.length)
     return (
       <div className={styles.load}>
