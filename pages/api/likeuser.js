@@ -8,7 +8,7 @@ async function handler(req, res) {
       //aa에 라이크 유저를 집어넣고 내것도 집어 넣음
       let aa = body.data.like_user + "," + body.id;
       let bbb = (aa.split(',').length - 1);
-      console.log(bbb)
+      console.log(body)
       if(body.type == "like") {
         await prisma.list_table.update({
           where: {
@@ -26,7 +26,7 @@ async function handler(req, res) {
         let minus = bb.filter((obj) => obj != body.id)
         // console.log("이게 떠야 정상", minus.toString())
         // console.log(body)
-        console.log(bbb-1);
+        
         
         await prisma.list_table.update({
           where: {
@@ -34,7 +34,7 @@ async function handler(req, res) {
           },
           data: {
             like_user: minus.toString(),
-            like_count: Number(bbb-1)
+            like_count:  bbb-2
           }
         })
       }
