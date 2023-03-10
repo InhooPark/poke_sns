@@ -1,3 +1,4 @@
+import ColorTheme from "@/context/ColorTheme";
 import Context from "@/context/context";
 import InfoContext from "@/context/infoContext";
 import StatusContext from "@/context/StatusContext";
@@ -10,7 +11,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       <InfoContext>
         <Context>
           <StatusContext>
-            <Component {...pageProps} />
+            <ColorTheme>
+              <Component {...pageProps} />
+            </ColorTheme>
           </StatusContext>
         </Context>
       </InfoContext>

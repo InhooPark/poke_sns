@@ -7,17 +7,14 @@ import { InfoUser } from "@/context/infoContext";
 import moment from "moment";
 
 const Item = ({ obj, dataGet }) => {
-
-
   const { data: session } = useSession();
   const [infoMod, setInfoMod] = useState(false);
   const [followlist, setFollowlist] = useState([]);
+  const [favoritelist, setFavoritelist] = useState([]);
   const [owner, setOwner] = useState();
   const { setPageStatus, setListUpdate, data, contentlist } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
-  const [favoritearr, setFavoritearr] = useState();
-  const bbb = useRef();
-  const dateAll = moment(obj.date).add(9,'hours').fromNow();
+  const dateAll = moment(obj.date).add(9, "hours").fromNow();
   const dateFollow = moment(obj.date).fromNow();
 
   const getContentOwner = () => {
@@ -50,12 +47,19 @@ const Item = ({ obj, dataGet }) => {
   };
 
   const getFavoriteList = () => {
-    if (obj.like_user.length) {
-      let aa = obj.like_user.split(",");
-      setFavoritearr(aa);
-    } else {
-      return;
-    }
+    axios
+      .get("/api/like", {
+        params: {
+          id: obj.id,
+        },
+      })
+      .then((res) => {
+        if (res.data.favorite_list !== undefined) {
+          setFavoritelist(res.data.favorite_list.split(","));
+        } else {
+          return;
+        }
+      });
   };
 
   const dataUpdate = (obj) => {
@@ -94,25 +98,24 @@ const Item = ({ obj, dataGet }) => {
     setInfoMod(!infoMod);
   };
 
-  const heart = (e) => {
-    //obj.like_count 
-    e.target.classList.toggle(styles.fillheart);
-    if(!e.target.classList.contains(styles.fillheart)){
-      e.target.classList.add(styles.heart);
-      //좋아요 취소
-      axios.put(`/api/likeuser` , {type: "unlike",data: obj, id: session.user.id})
-      console.log("좋아요취소")
+  const heart = () => {
+    if (favoritelist.includes(session.user.id.toString())) {
+      // 좋아요 취소
+      const result = favoritelist.filter((obj) => obj !== session.user.id.toString());
+      axios.put("api/like", { type: "down", id: obj.id, data: result });
+    } else {
+      // 좋아요
+      favoritelist.push(session.user.id.toString());
+      const result = favoritelist.filter((obj) => obj !== "" && obj !== undefined && obj !== null);
+      axios.put("/api/like", { type: "up", id: obj.id, data: result });
     }
-    else{
-      //좋아요 
-      console.log("조항요")
-      axios.put(`/api/likeuser` , {type: "like", data: obj, id: session.user.id})
-    }
+
+    // re-render 발생시켜야 하는데?
+    getFavoriteList();
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
     getFollowList();
     getFavoriteList();
-
   }, []);
   useLayoutEffect(() => {
     getContentOwner();
@@ -129,7 +132,7 @@ const Item = ({ obj, dataGet }) => {
                 <img src={`/img/poke_profile_img/pokballpixel-${owner.pro_img}.png`}></img>
               </div>
               <p className={styles.user}>{owner.name}</p>
-              <p className={styles.date}> { contentlist ? dateAll : dateFollow }</p>
+              <p className={styles.date}> {contentlist ? dateAll : dateFollow}</p>
             </div>
             <div className={styles.info_mod_wrap} onClick={infoModModal}>
               <svg width="4" height="20.5" viewBox="0 0 8 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,11 +161,11 @@ const Item = ({ obj, dataGet }) => {
           </div>
           <pre className={styles.detail}>{obj.content}</pre>
           <section className={styles.btn}>
-              {
-                favoritearr && favoritearr.includes(session.user.id.toString()) ? 
-                <button className={styles.fillheart}  onClick={(e)=>heart(e)}></button> :
-                <button className={styles.heart}  onClick={(e)=>heart(e)}></button>
-              }
+            {favoritelist && favoritelist.includes(session.user.id.toString()) ? (
+              <button className={styles.fillheart} onClick={(e) => heart(e)}></button>
+            ) : (
+              <button className={styles.heart} onClick={(e) => heart(e)}></button>
+            )}
           </section>
         </li>
       </>
