@@ -13,10 +13,8 @@ export default function handler(req, res) {
   const dataCreate = async () => {
     await prisma.list_table.create({
       data: {
-        pro_img: body.pro_img,
         user_id: body.user_id,
         content: body.content,
-        name: body.name,
       },
     });
     res.send("create");
@@ -42,7 +40,6 @@ export default function handler(req, res) {
         content: true,
         date: true,
         like_count: true,
-        like_user: true,
       },
     });
     res.json(follow);

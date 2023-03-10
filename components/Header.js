@@ -30,6 +30,10 @@ const Header = () => {
         return "검색결과";
       case "ENCYCLOPEDIA":
         return "도감";
+      case "TREND":
+        return "인기글";
+      default:
+        return;
     }
   }
 

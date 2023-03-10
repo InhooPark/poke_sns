@@ -11,6 +11,7 @@ import Contenteditor from "./Contenteditor";
 import Tutorial from "./Tutorial";
 import { InfoUser } from "@/context/infoContext";
 import Mylist from "./Mylist";
+import Trend from "./Trend";
 
 const Maincontents = () => {
   const { pageStatus, setPageStatus } = useContext(Statusgroup);
@@ -48,7 +49,11 @@ const Maincontents = () => {
         </>
       );
     case "TREND":
-      return <>TREND</>;
+      return (
+        <>
+          <Trend></Trend>
+        </>
+      );
     case "WRITE":
       return (
         <>

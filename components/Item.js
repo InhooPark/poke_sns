@@ -12,10 +12,12 @@ const Item = ({ obj, dataGet }) => {
   const [followlist, setFollowlist] = useState([]);
   const [favoritelist, setFavoritelist] = useState([]);
   const [owner, setOwner] = useState();
-  const { setPageStatus, setListUpdate, data, contentlist } = useContext(Statusgroup);
+  const { pagestatus, setPageStatus, setListUpdate, data, contentlist } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
   const dateAll = moment(obj.date).add(9, "hours").fromNow();
   const dateFollow = moment(obj.date).fromNow();
+
+  if (pagestatus == "TREND") console.log(obj);
 
   const getContentOwner = () => {
     axios
