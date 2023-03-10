@@ -37,9 +37,15 @@ body {
   font-family: -apple-system, InkLipquid, sans-serif;
   ::-webkit-scrollbar {
     width: 7px;
+    position: absolute;
+    // overflow: auto;
+    // visibility: hidden;
+    // &:hover,:focus{
+    //   visibility: visible;
+    // }
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #e26262;
+    background-color: #e26262d4;
     border-radius: 20px;
   }
   ::-webkit-scrollbar-track {
