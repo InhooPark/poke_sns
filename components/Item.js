@@ -12,12 +12,10 @@ const Item = ({ obj, dataGet }) => {
   const [followlist, setFollowlist] = useState([]);
   const [favoritelist, setFavoritelist] = useState([]);
   const [owner, setOwner] = useState();
-  const { pagestatus, setPageStatus, setListUpdate, data, contentlist } = useContext(Statusgroup);
+  const { setPageStatus, setListUpdate, data, contentlist, arr } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
   const dateAll = moment(obj.date).add(9, "hours").fromNow();
   const dateFollow = moment(obj.date).fromNow();
-
-  if (pagestatus == "TREND") console.log(obj);
 
   const getContentOwner = () => {
     axios
@@ -29,22 +27,6 @@ const Item = ({ obj, dataGet }) => {
       })
       .then((res) => {
         setOwner(res.data);
-      });
-  };
-
-  const getFollowList = () => {
-    axios
-      .get("/api/follow", {
-        params: {
-          id: session.user.id,
-        },
-      })
-      .then((res) => {
-        if (res.data.follow_list !== undefined) {
-          setFollowlist(res.data.follow_list.split(","));
-        } else {
-          return;
-        }
       });
   };
 
@@ -116,7 +98,6 @@ const Item = ({ obj, dataGet }) => {
     getFavoriteList();
   };
   useLayoutEffect(() => {
-    getFollowList();
     getFavoriteList();
   }, []);
   useLayoutEffect(() => {
