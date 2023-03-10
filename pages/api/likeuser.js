@@ -3,7 +3,7 @@ const prisma = new PrismaClient()
 
 async function handler(req, res) {
   const {method , body , query} = req;
-  
+  console.log(body)
   const update = async() => {
     try{
       //aa에 라이크 유저를 집어넣고 내것도 집어 넣음

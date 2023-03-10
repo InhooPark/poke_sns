@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
@@ -15,6 +15,7 @@ const Item = ({ obj, dataGet }) => {
   const { who } = useContext(InfoUser);
   const Mdate = moment(obj.date).fromNow();
   const [favoritearr, setFavoritearr] = useState();
+  const bbb = useRef();
 
   const getContentOwner = () => {
     axios
@@ -99,14 +100,17 @@ const Item = ({ obj, dataGet }) => {
   };
 
   const heart = (e) => {
-    e.target.classList.toggle(styles.fillheart)
-    if(favoritearr && favoritearr.includes(session.user.id.toString())){
+    //obj.like_count 
+    e.target.classList.toggle(styles.fillheart);
+    if(!e.target.classList.contains(styles.fillheart)){
       //좋아요 취소
-      axios.put(`/api/likeuser` , {type: "unlike",data: obj, id: session.user.id })
+      console.log(Number(likeNum) - 1)
+      axios.put(`/api/likeuser` , {type: "unlike",data: obj, id: session.user.id})
     }
     else{
       //좋아요 
-      axios.put(`/api/likeuser` , {type: "like", data: obj, id: session.user.id })
+      console.log(Number(likeNum) + 1)
+      axios.put(`/api/likeuser` , {type: "like", data: obj, id: session.user.id})
     }
   }
   useEffect(() => {
@@ -159,8 +163,8 @@ const Item = ({ obj, dataGet }) => {
           <section className={styles.btn}>
             <button className={styles.heart}  onClick={(e)=>heart(e)}>
               {
-                favoritearr && favoritearr.includes(session.user.id.toString()) ? 
-                <img src="/img/svg/heart-fill.svg"></img> : <img src="/img/svg/heart.svg"></img>
+              favoritearr && favoritearr.includes(session.user.id.toString()) ? 
+              <img src="/img/svg/heart-fill.svg"></img> : <img src="/img/svg/heart.svg"></img>
               }
             </button>
           </section>
