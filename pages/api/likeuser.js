@@ -3,21 +3,24 @@ const prisma = new PrismaClient()
 
 async function handler(req, res) {
   const {method , body , query} = req;
-  console.log(body)
   const update = async() => {
     try{
       //aa에 라이크 유저를 집어넣고 내것도 집어 넣음
       let aa = body.data.like_user + "," + body.id;
+      let bbb = (aa.split(',').length - 1);
       if(body.type == "like") {
+        console.log(method, body)
         await prisma.list_table.update({
           where: {
             id: body.data.id
           },
           data: {
+            like_count: bbb,
             like_user: aa
           }
         })
       } else if (body.type == "unlike"){
+        console.log(method, body)
         //aa를 콤마로 나눔
         let bb = aa.split(',');
         //bb를 내 아이디랑 비교해서 내 아이디 제외하고 cc에 박음
@@ -28,6 +31,7 @@ async function handler(req, res) {
             id: body.data.id
           },
           data: {
+            like_count: bbb - 1,
             like_user: cc.toString()
           }
         })

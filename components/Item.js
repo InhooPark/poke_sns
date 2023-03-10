@@ -96,12 +96,12 @@ const Item = ({ obj, dataGet }) => {
     e.target.classList.toggle(styles.fillheart);
     if(!e.target.classList.contains(styles.fillheart)){
       //좋아요 취소
-      console.log(Number(likeNum) - 1)
+      // console.log(Number(likeNum) - 1)
       axios.put(`/api/likeuser` , {type: "unlike",data: obj, id: session.user.id})
     }
     else{
       //좋아요 
-      console.log(Number(likeNum) + 1)
+      // console.log(Number(likeNum) + 1)
       axios.put(`/api/likeuser` , {type: "like", data: obj, id: session.user.id})
     }
   }
@@ -153,12 +153,11 @@ const Item = ({ obj, dataGet }) => {
           </div>
           <pre className={styles.detail}>{obj.content}</pre>
           <section className={styles.btn}>
-            <button className={styles.heart}  onClick={(e)=>heart(e)}>
               {
-              favoritearr && favoritearr.includes(session.user.id.toString()) ? 
-              <img src="/img/svg/heart-fill.svg"></img> : <img src="/img/svg/heart.svg"></img>
+                favoritearr && favoritearr.includes(session.user.id.toString()) ? 
+                <button className={styles.fillheart}  onClick={(e)=>heart(e)}></button> :
+                <button className={styles.heart}  onClick={(e)=>heart(e)}></button>
               }
-            </button>
           </section>
         </li>
       </>
