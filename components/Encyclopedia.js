@@ -1,9 +1,8 @@
 import axios from "axios";
-import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 import { useSession } from "next-auth/react";
 import { InfoUser } from "@/context/infoContext";
-import { initScriptLoader } from "next/script";
 
 const Encyclopedia = () => {
   const [pokeData, setPokeData] = useState();
@@ -20,11 +19,6 @@ const Encyclopedia = () => {
   const [status, setStatus] = useState(false);
   //포켓몬 크레딧 - 가지고 있는 크레딧
   const [haveCredit, setHaveCredit] = useState(0)
-
-  useEffect(() => {
-    getEncyclopedia();
-    havePokeGet();
-  }, []);
 
   //보유중인 포켓몬(테이블명 : have_poke)에 id+poke_id  가져오기
   const havePokeGet = () => {
@@ -109,6 +103,12 @@ const Encyclopedia = () => {
     axios.put(`/api/auth/signup/`, { id: session.user.id, key: poke_key.current });
     location.reload();
   };
+
+  useEffect(() => {
+    getEncyclopedia();
+    havePokeGet();
+  }, []);
+
   if (userHave !== undefined) {
     return (
       <>

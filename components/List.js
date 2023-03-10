@@ -15,16 +15,12 @@ const List = () => {
       let rearr = [];
       const wait =
         arr &&
-        arr.map(async (value, key) => {
-          if (key === 0) {
-            return;
-          } else {
-            await axios.put("/api", { id: value }).then((res) => {
-              res.data.map((vv) => {
-                rearr.push(vv);
-              });
+        arr.map(async (value) => {
+          await axios.put("/api", { id: value }).then((res) => {
+            res.data.map((value) => {
+              rearr.push(value);
             });
-          }
+          });
         });
 
       await Promise.all(wait);
@@ -33,7 +29,6 @@ const List = () => {
   };
 
   const dataGet = () => {
-    let arr = [];
     if (contentlist) {
       axios.get("/api/").then((res) => {
         setData(res.data);
@@ -46,8 +41,11 @@ const List = () => {
           },
         })
         .then((res) => {
-          arr = res.data.follow_list.split(",");
-          setArr(arr);
+          if (res.data.follow_list != "") {
+            setArr(res.data.follow_list.split(","));
+          } else {
+            return;
+          }
         });
     }
   };
@@ -62,9 +60,13 @@ const List = () => {
   useEffect(() => {
     dataGet();
   }, [contentlist]);
+
   useEffect(() => {
-    getFollowList();
+    if (!contentlist) {
+      getFollowList();
+    }
   }, [arr]);
+
   useEffect(() => {
     if (result.length) {
       result.sort((a, b) => {
@@ -74,7 +76,7 @@ const List = () => {
     setData(result);
   }, [result]);
 
-  if (data == undefined)
+  if (data === undefined)
     return (
       <div className={styles.load}>
         <img src="/img/loadimg/pika_heart.webp"></img>
