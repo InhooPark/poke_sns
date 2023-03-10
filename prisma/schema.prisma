@@ -41,12 +41,11 @@ model have_poke {
 
 model list_table {
   id         Int      @id @unique @default(autoincrement())
-  name       String
   user_id    Int
   content    String
   date       DateTime @default(now())
-  pro_img    String
   like_count Int      @default(0)
+  like_user Int @default(0)
 }
 
 model favorite_table {

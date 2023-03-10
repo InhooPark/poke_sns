@@ -77,6 +77,21 @@ const Item = ({ obj, dataGet }) => {
     getFollowList();
   }, []);
 
+  const heart = async (obj) => {
+    //obj.e >> e.target활용
+    //obj.obj >> 글에 정보 ex) obj.obj.content, date, id, like_count, name, pro_img, user_id
+    console.log(obj)
+    obj.e.target.classList.toggle(styles.fillheart);
+    if(obj.e.target.classList.contains(styles.fillheart)) {
+      //list_table에 like_user 에 자신 아이디
+      axios.get(`/api/like`, obj.obj)
+      console.log("꽉찬하트")
+    } else {
+      //list_table에 like_user 라이크 추가
+      axios.put(`/api/like`, {data:obj.obj, id:session.user.id})
+      console.log("빈 하트")
+    }
+  }
   return (
     <>
       <li className={styles.detail_list} key={obj.id}>
@@ -121,7 +136,7 @@ const Item = ({ obj, dataGet }) => {
         </div>
         <pre className={styles.detail}>{obj.content}</pre>
         <section className={styles.btn}>
-          <button className={styles.like}></button>
+          <button className={styles.heart} onClick={(e)=>heart({e, obj})}></button>
           <button className={styles.share}></button>
         </section>
       </li>

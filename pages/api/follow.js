@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 async function handler(req, res) {
   const { method, body, query } = req;
-
+  console.log(query)
   const getData = async () => {
     const favorite = await prisma.follow_table.findUnique({
       where: {

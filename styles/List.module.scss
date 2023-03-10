@@ -148,11 +148,21 @@ $mC: #e0666666;
           border: none;
           transform: translateY(2px);
         }
-        .like {
+        .heart {
           width: 36px;
           height: 36px;
           background-color: transparent;
-          background-image: url(".././public/img/like.png");
+          background-image: url(".././public/img/svg/heart.svg");
+          background-size: 33px;
+          background-repeat: no-repeat;
+          border: none;
+          transform: translateY(2px);
+        }
+        .fillheart {
+          width: 36px;
+          height: 36px;
+          background-color: transparent;
+          background-image: url(".././public/img/svg/heart-fill.svg");
           background-size: 33px;
           background-repeat: no-repeat;
           border: none;
