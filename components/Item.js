@@ -7,15 +7,18 @@ import { InfoUser } from "@/context/infoContext";
 import moment from "moment";
 
 const Item = ({ obj, dataGet }) => {
+
+
   const { data: session } = useSession();
   const [infoMod, setInfoMod] = useState(false);
   const [followlist, setFollowlist] = useState([]);
   const [owner, setOwner] = useState();
-  const { setPageStatus, setListUpdate, data } = useContext(Statusgroup);
+  const { setPageStatus, setListUpdate, data, contentlist } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
-  const Mdate = moment(obj.date).fromNow();
   const [favoritearr, setFavoritearr] = useState();
   const bbb = useRef();
+  const dateAll = moment(obj.date).add(9,'hours').fromNow();
+  const dateFollow = moment(obj.date).fromNow();
 
   const getContentOwner = () => {
     axios
@@ -38,7 +41,6 @@ const Item = ({ obj, dataGet }) => {
         },
       })
       .then((res) => {
-        console.log(res.data.follow_list)
         if (res.data.follow_list !== undefined) {
           setFollowlist(res.data.follow_list.split(","));
         } else {
@@ -49,12 +51,12 @@ const Item = ({ obj, dataGet }) => {
 
   const getFavoriteList = () => {
     if (obj.like_user.length) {
-      let aa = (obj.like_user.split(','));
+      let aa = obj.like_user.split(",");
       setFavoritearr(aa);
-    }else {
+    } else {
       return;
     }
-  }
+  };
 
   const dataUpdate = (obj) => {
     setInfoMod(!infoMod);
@@ -106,10 +108,11 @@ const Item = ({ obj, dataGet }) => {
       console.log("조항요")
       axios.put(`/api/likeuser` , {type: "like", data: obj, id: session.user.id})
     }
-  }
+  };
   useEffect(() => {
     getFollowList();
     getFavoriteList();
+
   }, []);
   useLayoutEffect(() => {
     getContentOwner();
@@ -126,7 +129,7 @@ const Item = ({ obj, dataGet }) => {
                 <img src={`/img/poke_profile_img/pokballpixel-${owner.pro_img}.png`}></img>
               </div>
               <p className={styles.user}>{owner.name}</p>
-              <p className={styles.date}> {Mdate}</p>
+              <p className={styles.date}> { contentlist ? dateAll : dateFollow }</p>
             </div>
             <div className={styles.info_mod_wrap} onClick={infoModModal}>
               <svg width="4" height="20.5" viewBox="0 0 8 41" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -6,7 +6,7 @@ import styles from "@/styles/Contenteditor.module.scss";
 
 const Contenteditor = () => {
   const { data: session } = useSession();
-  const [ user, setUser ] = useState();
+  const [user, setUser] = useState();
   const { setPageStatus } = useContext(Statusgroup);
 
   const create = async (e) => {
@@ -14,8 +14,6 @@ const Contenteditor = () => {
     await axios.post("/api/", {
       content: e.target.content.value,
       user_id: session.user.id,
-      name: user.name,
-      pro_img: user.pro_img,
       credit: user.credit,
     });
 
@@ -40,16 +38,20 @@ const Contenteditor = () => {
     <div>
       <form className={styles.Contenteditor} onSubmit={create}>
         <div className={styles.profile}>
-        <div className={styles.pro_img}>
-          <img src={`/img/poke_profile_img/pokballpixel-001.png`}></img>
-        </div>
-        <p></p>
+          <div className={styles.pro_img}>
+            <img src={`/img/poke_profile_img/pokballpixel-001.png`}></img>
+          </div>
+          <p></p>
         </div>
         <div className={styles.textBox}>
           <textarea type="text" name="content" placeholder="무슨 일이 있었나요?" />
           <section>
-            <button  className={styles.Dbtn} onClick={() => router.push("/")}>취소</button>
-            <button  className={styles.Cbtn} type={"submit"}>완료</button>
+            <button className={styles.Dbtn} onClick={() => router.push("/")}>
+              취소
+            </button>
+            <button className={styles.Cbtn} type={"submit"}>
+              완료
+            </button>
           </section>
         </div>
       </form>

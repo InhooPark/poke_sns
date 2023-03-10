@@ -10,7 +10,7 @@ const Myprofile = () => {
   const [profileImgArr, setProfileImgArr] = useState();
   const { profileImgToggle, setProfileImgToggle, profileNameToggle, setProfileNameToggle } = useContext(Statusgroup);
   const whoseId = session.user.id;
-  const { who, setWho } = useContext(InfoUser);
+  const { who } = useContext(InfoUser);
   const [save, setSave] = useState();
   const [deleteModal, setDeleteModal] = useState(false);
 

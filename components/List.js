@@ -9,6 +9,7 @@ const List = () => {
   const { data: session } = useSession();
   const { data, setData, contentlist, setContentlist, arr, setArr, result, setResult } = useContext(Statusgroup);
 
+
   //데이터 조회 dataGet();
   const getFollowList = async () => {
     if (arr !== undefined) {
@@ -52,9 +53,11 @@ const List = () => {
 
   const setfollowlist = () => {
     setContentlist(false);
+
   };
   const setlist = () => {
     setContentlist(true);
+    
   };
 
   useEffect(() => {
@@ -75,6 +78,7 @@ const List = () => {
     }
     setData(result);
   }, [result]);
+
 
   if (data === undefined)
     return (
