@@ -15,16 +15,12 @@ const List = () => {
       let rearr = [];
       const wait =
         arr &&
-        arr.map(async (value, key) => {
-          if (key === 0) {
-            return;
-          } else {
-            await axios.put("/api", { id: value }).then((res) => {
-              res.data.map((vv) => {
-                rearr.push(vv);
-              });
+        arr.map(async (value) => {
+          await axios.put("/api", { id: value }).then((res) => {
+            res.data.map((value) => {
+              rearr.push(value);
             });
-          }
+          });
         });
 
       await Promise.all(wait);
@@ -33,7 +29,6 @@ const List = () => {
   };
 
   const dataGet = () => {
-    let getarr = [];
     if (contentlist) {
       axios.get("/api/").then((res) => {
         setData(res.data);
@@ -46,8 +41,11 @@ const List = () => {
           },
         })
         .then((res) => {
-          getarr = res.data.follow_list.split(",");
-          setArr(getarr);
+          if (res.data.follow_list != "") {
+            setArr(res.data.follow_list.split(","));
+          } else {
+            return;
+          }
         });
     }
   };

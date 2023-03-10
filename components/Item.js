@@ -9,7 +9,7 @@ import moment from "moment";
 const Item = ({ obj, dataGet }) => {
   const { data: session } = useSession();
   const [infoMod, setInfoMod] = useState(false);
-  const [followlist, setFollowlist] = useState();
+  const [followlist, setFollowlist] = useState([]);
   const [owner, setOwner] = useState();
   const { setPageStatus, setListUpdate, data } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
@@ -36,8 +36,11 @@ const Item = ({ obj, dataGet }) => {
         },
       })
       .then((res) => {
-        let arr = res.data.follow_list.split(",");
-        setFollowlist(arr);
+        if (res.data.follow_list != "") {
+          setFollowlist(res.data.follow_list.split(","));
+        } else {
+          return;
+        }
       });
   };
 
@@ -63,24 +66,13 @@ const Item = ({ obj, dataGet }) => {
   };
 
   const userFollow = (id, bool) => {
-    let aa = "";
-    followlist.map((list, k) => {
-      if (k === 0) {
-        return;
-      } else {
-        aa += "," + list;
-      }
-    });
-
-    if (bool) {
-      //언팔로우
-      setInfoMod(!infoMod);
-      axios.post("/api/follow", { type: "unfollow", id: session.user.id, follow_list: aa, user_id: id });
+    if (!bool) {
+      followlist.push(id);
+      axios.post("/api/follow", { id: session.user.id, data: followlist });
       location.reload();
     } else {
-      //팔로우
-      setInfoMod(!infoMod);
-      axios.post("/api/follow", { type: "follow", id: session.user.id, follow_list: aa, user_id: id });
+      let aa = followlist.filter((obj) => obj != id);
+      axios.post("/api/follow", { id: session.user.id, data: aa });
       location.reload();
     }
   };
