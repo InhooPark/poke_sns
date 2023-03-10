@@ -28,6 +28,12 @@
     * css fix <br />
 </details>
 
+<details>
+<summary> ver0.4.0 </summary>
+    * favorite(like) <br />
+    * trend(rank) <br />
+</details>
+
 <br /><br />
 + 참고사항
   + 설치 후 npm install next
