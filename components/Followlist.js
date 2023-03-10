@@ -7,22 +7,8 @@ const Followlist = () => {
   const { data: session } = useSession();
   const [users, setUsers] = useState([]);
   const [data, setData] = useState([]);
-  const [followlist, setFollowlist] = useState();
 
   // 탈퇴한 회원일때 예외처리 해야함 꼭!
-
-  const getFollowList = () => {
-    axios
-      .get("/api/follow", {
-        params: {
-          id: session.user.id,
-        },
-      })
-      .then((res) => {
-        let arr = res.data.follow_list.split(",");
-        setFollowlist(arr);
-      });
-  };
 
   const getUsersData = async () => {
     let arr = [];
@@ -63,7 +49,7 @@ const Followlist = () => {
 
   const favoriteUser = (id) => {
     let aa = "";
-    followlist.map((list, k) => {
+    users.map((list, k) => {
       if (k === 0) {
         return;
       } else {
@@ -78,7 +64,6 @@ const Followlist = () => {
 
   useEffect(() => {
     getUsers();
-    getFollowList();
   }, []);
   useEffect(() => {
     getUsersData();

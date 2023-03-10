@@ -73,8 +73,6 @@ const Maincontents = () => {
           <SearchList></SearchList>
         </>
       );
-    case "MORE":
-      return <>MORE</>;
     case "ENCYCLOPEDIA":
       return (
         <>

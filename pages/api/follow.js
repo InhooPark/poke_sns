@@ -5,56 +5,64 @@ async function handler(req, res) {
   const { method, body, query } = req;
 
   const getData = async () => {
-    const favorite = await prisma.follow_table.findUnique({
-      where: {
-        id: Number(query.id),
-      },
-    });
-
-    if (favorite == null) {
-      const newFavorite = await prisma.follow_table.create({
-        data: {
+    try {
+      const favorite = await prisma.follow_table.findUnique({
+        where: {
           id: Number(query.id),
-          follow_list: "",
         },
       });
-      res.json(newFavorite);
-    } else {
-      res.json(favorite);
+
+      if (favorite == null) {
+        const newFavorite = await prisma.follow_table.create({
+          data: {
+            id: Number(query.id),
+            follow_list: "",
+          },
+        });
+        res.json(newFavorite);
+      } else {
+        res.json(favorite);
+      }
+    } catch (err) {
+      res.send(err);
     }
   };
 
   const postData = async () => {
-    let result = body.follow_list + "," + body.user_id;
-    if (body.type == "follow") {
-      const insert = await prisma.follow_table.update({
-        where: {
-          id: Number(body.id),
-        },
-        data: {
-          follow_list: result,
-        },
-      });
-    } else if (body.type == "unfollow") {
-      let result1 = body.follow_list.split(",");
-      let result2 = result1.filter((list) => list != body.user_id);
-      let result = "";
-      result2.map((list, key) => {
-        if (key === 0) {
-          return;
-        } else {
-          result += "," + list;
-        }
-      });
+    try {
+      let result = body.follow_list + "," + body.user_id;
+      if (body.type == "follow") {
+        const insert = await prisma.follow_table.update({
+          where: {
+            id: Number(body.id),
+          },
+          data: {
+            follow_list: result,
+          },
+        });
+      } else if (body.type == "unfollow") {
+        let result1 = body.follow_list.split(",");
+        let result2 = result1.filter((list) => list != body.user_id);
+        let result = "";
+        result2.map((list, key) => {
+          if (key === 0) {
+            return;
+          } else {
+            result += "," + list;
+          }
+        });
 
-      const update = await prisma.follow_table.update({
-        where: {
-          id: Number(body.id),
-        },
-        data: {
-          follow_list: result,
-        },
-      });
+        const update = await prisma.follow_table.update({
+          where: {
+            id: Number(body.id),
+          },
+          data: {
+            follow_list: result,
+          },
+        });
+      }
+    } catch (err) {
+      res.send(err);
     }
   };
 
