@@ -38,7 +38,8 @@ const Item = ({ obj, dataGet }) => {
         },
       })
       .then((res) => {
-        if (res.data.follow_list != "") {
+        console.log(res.data.follow_list)
+        if (res.data.follow_list !== undefined) {
           setFollowlist(res.data.follow_list.split(","));
         } else {
           return;
@@ -95,13 +96,14 @@ const Item = ({ obj, dataGet }) => {
     //obj.like_count 
     e.target.classList.toggle(styles.fillheart);
     if(!e.target.classList.contains(styles.fillheart)){
+      e.target.classList.add(styles.heart);
       //좋아요 취소
-      // console.log(Number(likeNum) - 1)
       axios.put(`/api/likeuser` , {type: "unlike",data: obj, id: session.user.id})
+      console.log("좋아요취소")
     }
     else{
       //좋아요 
-      // console.log(Number(likeNum) + 1)
+      console.log("조항요")
       axios.put(`/api/likeuser` , {type: "like", data: obj, id: session.user.id})
     }
   }
