@@ -10,10 +10,6 @@ const Nav = () => {
   const trendBtnClick = () => {
     setPageStatus("TREND");
   };
-
-  const moreBtnClick = () => {
-    setPageStatus("MORE");
-  };
   const encyclopediaBtnClick = () => {
     setPageStatus("ENCYCLOPEDIA");
   };
@@ -57,7 +53,7 @@ const Nav = () => {
             <span>도감</span>
           </div>
           <div className={Style.nav_more_btn} onClick={mymsgBtnClick}>
-          <svg width="30px" height="30px" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="30px" height="30px" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M34.5787 6.78029L44.4759 16.6772M3.90248 37.0803L2.57373 49.0753L14.5684 47.7465L48.8237 13.4731V9.43248L42.2165 2.82529H38.1759L3.90248 37.0803Z"
                 stroke="#E06666"
@@ -69,11 +65,10 @@ const Nav = () => {
             </svg>
             <span>작성글</span>
           </div>
-        <div className={Style.nav_write_btn} onClick={writeBtnClick}>
+          <div className={Style.nav_write_btn} onClick={writeBtnClick}>
             <span>새 글쓰기</span>
           </div>
         </div>
-
       </nav>
     </>
   );
