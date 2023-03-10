@@ -1,9 +1,8 @@
 import axios from "axios";
-import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 import { useSession } from "next-auth/react";
 import { InfoUser } from "@/context/infoContext";
-import { initScriptLoader } from "next/script";
 
 const Encyclopedia = () => {
   const [pokeData, setPokeData] = useState();
@@ -18,11 +17,8 @@ const Encyclopedia = () => {
   //포켓몬 id+1값
   const poke_key = useRef(0);
   const [status, setStatus] = useState(false);
-
-  useEffect(() => {
-    getEncyclopedia();
-    havePokeGet();
-  }, []);
+  //포켓몬 크레딧 - 가지고 있는 크레딧
+  const [haveCredit, setHaveCredit] = useState(0)
 
   //보유중인 포켓몬(테이블명 : have_poke)에 id+poke_id  가져오기
   const havePokeGet = () => {
@@ -43,7 +39,7 @@ const Encyclopedia = () => {
   //pokemon.(id,credit, ko_name)
   const pokeBuy = (pokemon) => {
     currentKey.current = pokemon;
-
+    setHaveCredit(who.credit - currentKey.current.credit)
     if (userHave.includes(pokemon.id.toString())) {
       alert("이미 보유중인 포켓몬 입니다");
     } else {
@@ -107,6 +103,12 @@ const Encyclopedia = () => {
     axios.put(`/api/auth/signup/`, { id: session.user.id, key: poke_key.current });
     location.reload();
   };
+
+  useEffect(() => {
+    getEncyclopedia();
+    havePokeGet();
+  }, []);
+
   if (userHave !== undefined) {
     return (
       <>
@@ -173,7 +175,7 @@ const Encyclopedia = () => {
                     <div>
                       <p>{who && who.credit}</p>
                       <p>{currentKey.current && currentKey.current.credit}</p>
-                      <p>{who && who.credit - currentKey.current && currentKey.current.credit}</p>
+                      <p>{haveCredit && haveCredit}</p>
                     </div>
                   </div>
                 </div>

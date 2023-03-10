@@ -5,11 +5,9 @@ import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import Item from "./Item";
 
-
 const List = () => {
   const { data: session } = useSession();
   const { data, setData, contentlist, setContentlist, arr, setArr, result, setResult } = useContext(Statusgroup);
-  
 
   //데이터 조회 dataGet();
   const getFollowList = async () => {
@@ -17,16 +15,12 @@ const List = () => {
       let rearr = [];
       const wait =
         arr &&
-        arr.map(async (value, key) => {
-          if (key === 0) {
-            return;
-          } else {
-            await axios.put("/api", { id: value }).then((res) => {
-              res.data.map((vv) => {
-                rearr.push(vv);
-              });
+        arr.map(async (value) => {
+          await axios.put("/api", { id: value }).then((res) => {
+            res.data.map((value) => {
+              rearr.push(value);
             });
-          }
+          });
         });
 
       await Promise.all(wait);
@@ -35,7 +29,6 @@ const List = () => {
   };
 
   const dataGet = () => {
-    let arr = [];
     if (contentlist) {
       axios.get("/api/").then((res) => {
         setData(res.data);
@@ -48,8 +41,11 @@ const List = () => {
           },
         })
         .then((res) => {
-          arr = res.data.follow_list.split(",");
-          setArr(arr);
+          if (res.data.follow_list != "") {
+            setArr(res.data.follow_list.split(","));
+          } else {
+            return;
+          }
         });
     }
   };
@@ -64,19 +60,23 @@ const List = () => {
   useEffect(() => {
     dataGet();
   }, [contentlist]);
+
   useEffect(() => {
-    getFollowList();
+    if (!contentlist) {
+      getFollowList();
+    }
   }, [arr]);
+
   useEffect(() => {
     if (result.length) {
       result.sort((a, b) => {
         return b.id - a.id;
       });
-      setData(result);
     }
+    setData(result);
   }, [result]);
 
-  if (data == undefined)
+  if (data === undefined)
     return (
       <div className={styles.load}>
         <img src="/img/loadimg/pika_heart.webp"></img>
@@ -93,7 +93,7 @@ const List = () => {
             팔로우
           </button>
         </div>
-        <ul>{data && data.map((obj, key) => <Item obj={obj} key={key} dataGet={dataGet}></Item>)}</ul>
+        <ul>{data.length === 0 ? <>팔로우한 사람이 없습니다.</> : data && data.map((obj, key) => <Item obj={obj} key={key} dataGet={dataGet}></Item>)}</ul>
       </div>
     );
   }

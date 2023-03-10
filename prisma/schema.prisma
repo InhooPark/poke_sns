@@ -45,7 +45,7 @@ model list_table {
   content    String
   date       DateTime @default(now())
   like_count Int      @default(0)
-  like_user  Int      @default(0)
+  like_user  String   @default("")
 }
 
 model favorite_table {

@@ -12,15 +12,57 @@ $header-height: 150px;
   }
   .logo_btn {
     width: 300px;
+    display: flex;
+    align-items: center;
+    .logo_btn_wrap {
+      width: 100px;
+      height: 100px;
+      margin-left: 50px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
   }
   .status {
     width: 700px;
     border: none;
     border-bottom: 1px solid rgba(224, 102, 102, 0.4);
-    font-size: 28px;
-    font-weight: 800;
-    padding: 18px;
-    color: #e26262;
+    display: flex;
+    .margin_dummy {
+      width: 150px;
+      border: none;
+    }
+    .status_arrow_container {
+      width: 150px;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      .status_arrow_btn {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+      }
+    }
+    .status_title {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      font-size: 28px;
+      font-weight: 800;
+      color: #e26262;
+      border: none;
+    }
   }
   .search {
     width: 400px;
@@ -86,13 +128,13 @@ $header-height: 150px;
           font-weight: 800;
         }
       }
-      .nav_trend_btn{
+      .nav_trend_btn {
         transform: translateX(-5px);
-        span{
+        span {
           transform: translateX(-5px);
         }
       }
-      .nav_write_btn{
+      .nav_write_btn {
         svg {
           margin: 10px 20px 10px 0px;
         }
