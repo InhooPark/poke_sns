@@ -121,11 +121,21 @@ $mC: #e0666666;
         justify-content: flex-end;
         margin: 20px;
         width: 90%;
-        .like {
+        .heart {
           width: 36px;
           height: 36px;
           background-color: transparent;
-          background-image: url(".././public/img/like.png");
+          background-image: url(".././public/img/svg/heart.svg");
+          background-size: 33px;
+          background-repeat: no-repeat;
+          border: none;
+          transform: translate(-2px,-8px);
+        }
+        .fillheart {
+          width: 36px;
+          height: 36px;
+          background-color: transparent;
+          background-image: url(".././public/img/svg/heart-fill.svg");
           background-size: 33px;
           background-repeat: no-repeat;
           border: none;

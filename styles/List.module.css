@@ -1,0 +1,177 @@
+.listBox {
+  max-width: 700px;
+  position: relative;
+  transform: rotate(0);
+}
+.listBox .list_btn_box {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  position: -webkit-sticky;
+  position: sticky;
+  border-bottom: 1px solid rgba(227, 110, 110, 0.1333333333);
+  background-color: #fffbef;
+  top: 0;
+  z-index: 100;
+}
+.listBox .list_btn_box button {
+  width: 100px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.listBox .list_btn_box button.on::after {
+  content: "";
+  display: block;
+  width: 100px;
+  bottom: 0px;
+  position: absolute;
+  border-bottom: 4px solid rgba(227, 110, 110, 0.5333333333);
+  border-radius: 2px;
+}
+.listBox ul .detail_list {
+  width: 100%;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid rgba(224, 102, 102, 0.4);
+}
+.listBox ul .detail_list .profileInfo {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.listBox ul .detail_list .profileInfo .profile_info_wrap {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  width: 100%;
+}
+.listBox ul .detail_list .profileInfo .profile_info_wrap .profile_img {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(224, 102, 102, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.listBox ul .detail_list .profileInfo .profile_info_wrap .profile_img img {
+  width: 80%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.listBox ul .detail_list .profileInfo .profile_info_wrap .profile_name_email_wrap {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+.listBox ul .detail_list .profileInfo .profile_info_wrap .profile_name_email_wrap .profile_name_wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.listBox ul .detail_list .profileInfo .profile_info_wrap .profile_name_email_wrap .profile_name_wrap .user {
+  font-size: 26px;
+}
+.listBox ul .detail_list .profileInfo .profile_info_wrap .profile_name_email_wrap .profile_name_wrap .user:nth-child(2) {
+  width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.listBox ul .detail_list .profileInfo .profile_info_wrap .profile_name_email_wrap .date {
+  font-size: 16px;
+  color: rgba(224, 102, 102, 0.4);
+  line-height: 1.5;
+}
+.listBox ul .detail_list .profileInfo .info_mod_wrap {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+}
+.listBox ul .detail_list .profileInfo .info_mod_wrap .info_mod_btn_wrap {
+  position: absolute;
+  width: 100px;
+  top: 100%;
+  transform: translateX(-50%);
+  background-color: rgba(224, 102, 102, 0.2);
+  border-radius: 10px;
+  display: none;
+}
+.listBox ul .detail_list .profileInfo .info_mod_wrap .info_mod_btn_wrap.on {
+  display: block;
+}
+.listBox ul .detail_list .profileInfo .info_mod_wrap .info_mod_btn_wrap > p {
+  text-align: center;
+  padding: 5px 20px;
+  color: #e36e6e;
+}
+.listBox ul .detail_list .profileInfo .info_mod_wrap .info_mod_btn_wrap .update {
+  border-bottom: 1px solid rgba(227, 110, 110, 0.5333333333);
+}
+.listBox ul .detail_list .detail {
+  width: 80%;
+  margin: 10px 0;
+  font-size: 20px;
+}
+.listBox ul .detail_list .btn {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  width: 50%;
+}
+.listBox ul .detail_list .btn .share {
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  background-image: url(".././public/img/share.png");
+  background-size: 33px;
+  background-repeat: no-repeat;
+  border: none;
+  transform: translateY(2px);
+}
+.listBox ul .detail_list .btn .heart {
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  background-image: url(".././public/img/svg/heart.svg");
+  background-size: 33px;
+  background-repeat: no-repeat;
+  border: none;
+  transform: translateY(2px);
+}
+.listBox ul .detail_list .btn .fillheart {
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  background-image: url(".././public/img/svg/heart-fill.svg");
+  background-size: 33px;
+  background-repeat: no-repeat;
+  border: none;
+  transform: translateY(2px);
+}
+
+.load {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blur {
+  filter: blur(3px);
+}/*# sourceMappingURL=List.module.css.map */

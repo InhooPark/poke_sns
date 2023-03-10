@@ -42,6 +42,7 @@ export default function handler(req, res) {
         content: true,
         date: true,
         like_count: true,
+        like_user: true,
       },
     });
     res.json(follow);

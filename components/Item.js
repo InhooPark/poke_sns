@@ -14,6 +14,7 @@ const Item = ({ obj, dataGet }) => {
   const { setPageStatus, setListUpdate, data } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
   const Mdate = moment(obj.date).fromNow();
+  const [favoritearr, setFavoritearr] = useState();
 
   const getContentOwner = () => {
     axios
@@ -43,6 +44,15 @@ const Item = ({ obj, dataGet }) => {
         }
       });
   };
+
+  const getFavoriteList = () => {
+    if (obj.like_user.length) {
+      let aa = (obj.like_user.split(','));
+      setFavoritearr(aa);
+    }else {
+      return;
+    }
+  }
 
   const dataUpdate = (obj) => {
     setInfoMod(!infoMod);
@@ -80,8 +90,20 @@ const Item = ({ obj, dataGet }) => {
     setInfoMod(!infoMod);
   };
 
+  const heart = (e) => {
+    e.target.classList.toggle(styles.fillheart)
+    if(favoritearr && favoritearr.includes(session.user.id.toString())){
+      //좋아요 취소
+      axios.put(`/api/likeuser` , {type: "unlike",data: obj, id: session.user.id })
+    }
+    else{
+      //좋아요 
+      axios.put(`/api/likeuser` , {type: "like", data: obj, id: session.user.id })
+    }
+  }
   useEffect(() => {
     getFollowList();
+    getFavoriteList();
   }, []);
   useLayoutEffect(() => {
     getContentOwner();
@@ -98,7 +120,7 @@ const Item = ({ obj, dataGet }) => {
                 <img src={`/img/poke_profile_img/pokballpixel-${owner.pro_img}.png`}></img>
               </div>
               <p className={styles.user}>{owner.name}</p>
-              <p className={styles.date}>&#129; {Mdate}</p>
+              <p className={styles.date}> {Mdate}</p>
             </div>
             <div className={styles.info_mod_wrap} onClick={infoModModal}>
               <svg width="4" height="20.5" viewBox="0 0 8 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -127,7 +149,12 @@ const Item = ({ obj, dataGet }) => {
           </div>
           <pre className={styles.detail}>{obj.content}</pre>
           <section className={styles.btn}>
-            <button className={styles.like}></button>
+            <button className={styles.heart}  onClick={(e)=>heart(e)}>
+              {
+                favoritearr && favoritearr.includes(session.user.id.toString()) ? 
+                <img src="/img/svg/heart-fill.svg"></img> : <img src="/img/svg/heart.svg"></img>
+              }
+            </button>
           </section>
         </li>
       </>

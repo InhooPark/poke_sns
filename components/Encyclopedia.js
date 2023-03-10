@@ -17,6 +17,8 @@ const Encyclopedia = () => {
   //포켓몬 id+1값
   const poke_key = useRef(0);
   const [status, setStatus] = useState(false);
+  //포켓몬 크레딧 - 가지고 있는 크레딧
+  const [haveCredit, setHaveCredit] = useState(0)
 
   //보유중인 포켓몬(테이블명 : have_poke)에 id+poke_id  가져오기
   const havePokeGet = () => {
@@ -37,7 +39,7 @@ const Encyclopedia = () => {
   //pokemon.(id,credit, ko_name)
   const pokeBuy = (pokemon) => {
     currentKey.current = pokemon;
-
+    setHaveCredit(who.credit - currentKey.current.credit)
     if (userHave.includes(pokemon.id.toString())) {
       alert("이미 보유중인 포켓몬 입니다");
     } else {
@@ -173,7 +175,7 @@ const Encyclopedia = () => {
                     <div>
                       <p>{who && who.credit}</p>
                       <p>{currentKey.current && currentKey.current.credit}</p>
-                      <p>{who && who.credit - currentKey.current && currentKey.current.credit}</p>
+                      <p>{haveCredit && haveCredit}</p>
                     </div>
                   </div>
                 </div>
