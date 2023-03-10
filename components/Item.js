@@ -15,7 +15,6 @@ const Item = ({ obj, dataGet }) => {
   const { who } = useContext(InfoUser);
   const Mdate = moment(obj.date).fromNow();
   const [favoritearr, setFavoritearr] = useState();
-  const [aaa, setAaa] = useState(false);
 
   const getContentOwner = () => {
     axios

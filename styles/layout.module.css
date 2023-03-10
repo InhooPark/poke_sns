@@ -1,0 +1,270 @@
+.header {
+  margin: 0 auto;
+  height: 150px;
+  display: flex;
+  align-items: center;
+}
+.header div {
+  border-left: 1px solid rgba(224, 102, 102, 0.4);
+  border-right: 1px solid rgba(224, 102, 102, 0.4);
+  height: 100%;
+}
+.header .logo {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+.header .logo .logo_btn {
+  width: 100px;
+  height: 100px;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+.header .logo .logo_btn img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.header .status {
+  width: 700px;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-bottom: 1px solid rgba(224, 102, 102, 0.4);
+}
+.header .status .svg_wrap {
+  width: 70px;
+  height: 70px;
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+}
+.header .status .svg_wrap svg {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+.header .status > p {
+  font-size: 2em;
+  font-family: NanumSquareRoundBold;
+}
+.header .search {
+  width: 400px;
+}
+.header .search p {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header .search p .follow_search_bar {
+  width: 320px;
+  height: 50px;
+  border: 1px solid rgba(224, 102, 102, 0.4);
+  border-radius: 25px;
+  padding: 25px;
+  margin: 50px 30px 0 0;
+  background-color: transparent;
+}
+
+.layout_main {
+  width: 1400px;
+  height: calc(100vh - 150px);
+  position: relative;
+  transform: rotate(0);
+}
+.layout_main::before {
+  content: "";
+  width: 600px;
+  height: 600px;
+  background-color: rgba(224, 102, 102, 0.3);
+  border-radius: 50%;
+  position: absolute;
+  filter: blur(50px);
+  top: -100px;
+  left: -300px;
+  z-index: 1;
+}
+.layout_main .nav_container {
+  width: 300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-left: 1px solid rgba(224, 102, 102, 0.4);
+  border-right: 1px solid rgba(224, 102, 102, 0.4);
+  z-index: 2;
+}
+.layout_main .nav_container .nav_btn_wrap {
+  width: 80%;
+  height: 400px;
+  margin: 50px auto 0;
+}
+.layout_main .nav_container .nav_btn_wrap > div {
+  height: 10%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.layout_main .nav_container .nav_btn_wrap > div svg {
+  margin: 10px 20px 10px 10px;
+}
+.layout_main .nav_container .nav_btn_wrap > div span {
+  font-size: 24px;
+}
+.layout_main .main_content_inner {
+  width: 700px;
+  position: relative;
+  overflow-y: scroll;
+  top: 0;
+  left: 300px;
+  height: 100%;
+}
+.layout_main .main_content_inner::-webkit-scrollbar {
+  display: none;
+}
+.layout_main .profile_container {
+  width: 400px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  border-left: 1px solid rgba(224, 102, 102, 0.4);
+  border-right: 1px solid rgba(224, 102, 102, 0.4);
+  flex-direction: column;
+  justify-content: space-between;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap {
+  width: 100%;
+  background-color: rgba(224, 102, 102, 0.1);
+  display: flex;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_img_wrap {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  overflow: hidden;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_img_wrap img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_info_wrap {
+  width: 100%;
+  flex-grow: 1;
+  margin: 10px;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_info_wrap .profile_name {
+  width: 100%;
+  font-size: 1.2em;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_info_wrap .profile_email {
+  width: 100%;
+  color: #888888;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_info_wrap .profile_email > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_info_wrap .profile_email > div:nth-child(2) {
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_info_wrap .profile_email > div:nth-child(2) .coin_img_wrap {
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_info_wrap .profile_email > div:nth-child(2) .coin_img_wrap img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_info_wrap .profile_badge {
+  width: 100%;
+  height: 60px;
+  margin-top: 10px;
+  border: 1px solid #e36e6e;
+  border-radius: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.layout_main .profile_container .profile_wrapper .profile_wrap .profile_info_wrap .profile_badge p {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(224, 102, 102, 0.3);
+  border-radius: 10px;
+}
+.layout_main .profile_container .profile_wrapper .profile_menu_wrap {
+  width: 80%;
+  margin: 20px auto 0;
+}
+.layout_main .profile_container .profile_wrapper .profile_menu_wrap p {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 20px;
+  font-family: NanumSquareRoundBold;
+  cursor: pointer;
+}
+.layout_main .profile_container .rep_wrap {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.layout_main .profile_container .rep_wrap::before {
+  content: "";
+  width: 80%;
+  height: 80%;
+  background-color: #e36e6e;
+  border-radius: 50%;
+  filter: blur(30px);
+}
+.layout_main .profile_container .rep_wrap img {
+  position: absolute;
+  width: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@-webkit-keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+  from {
+    transform: rotate(0);
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+  from {
+    transform: rotate(0);
+  }
+}
+.blur {
+  filter: blur(3px);
+}/*# sourceMappingURL=layout.module.css.map */
