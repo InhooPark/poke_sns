@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
@@ -16,6 +16,7 @@ const Item = ({ obj, dataGet }) => {
   const { setPageStatus, setListUpdate, data, contentlist } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
   const [favoritearr, setFavoritearr] = useState();
+  const bbb = useRef();
   const dateAll = moment(obj.date).add(9,'hours').fromNow();
   const dateFollow = moment(obj.date).fromNow();
 
@@ -94,13 +95,18 @@ const Item = ({ obj, dataGet }) => {
   };
 
   const heart = (e) => {
+    //obj.like_count 
     e.target.classList.toggle(styles.fillheart);
-    if (favoritearr && favoritearr.includes(session.user.id.toString())) {
+    if(!e.target.classList.contains(styles.fillheart)){
+      e.target.classList.add(styles.heart);
       //좋아요 취소
-      axios.put(`/api/likeuser`, { type: "unlike", data: obj, id: session.user.id });
-    } else {
-      //좋아요
-      axios.put(`/api/likeuser`, { type: "like", data: obj, id: session.user.id });
+      axios.put(`/api/likeuser` , {type: "unlike",data: obj, id: session.user.id})
+      console.log("좋아요취소")
+    }
+    else{
+      //좋아요 
+      console.log("조항요")
+      axios.put(`/api/likeuser` , {type: "like", data: obj, id: session.user.id})
     }
   };
   useEffect(() => {
@@ -152,13 +158,11 @@ const Item = ({ obj, dataGet }) => {
           </div>
           <pre className={styles.detail}>{obj.content}</pre>
           <section className={styles.btn}>
-            <button className={styles.heart} onClick={(e) => heart(e)}>
-              {favoritearr && favoritearr.includes(session.user.id.toString()) ? (
-                <img src="/img/svg/heart-fill.svg"></img>
-              ) : (
-                <img src="/img/svg/heart.svg"></img>
-              )}
-            </button>
+              {
+                favoritearr && favoritearr.includes(session.user.id.toString()) ? 
+                <button className={styles.fillheart}  onClick={(e)=>heart(e)}></button> :
+                <button className={styles.heart}  onClick={(e)=>heart(e)}></button>
+              }
           </section>
         </li>
       </>
