@@ -33,7 +33,7 @@ const List = () => {
   };
 
   const dataGet = () => {
-    let arr = [];
+    let getarr = [];
     if (contentlist) {
       axios.get("/api/").then((res) => {
         setData(res.data);
@@ -46,8 +46,8 @@ const List = () => {
           },
         })
         .then((res) => {
-          arr = res.data.follow_list.split(",");
-          setArr(arr);
+          getarr = res.data.follow_list.split(",");
+          setArr(getarr);
         });
     }
   };
