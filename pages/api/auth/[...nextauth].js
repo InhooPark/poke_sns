@@ -20,12 +20,7 @@ export default NextAuth({
             email: credentials.email,
           },
           select: {
-            // id: true,
-            // pro_img: true,
-            // name: true,
             email: true,
-            // credit: true,
-            // rep: true,
             password: true,
           },
         });
@@ -56,11 +51,6 @@ export default NextAuth({
         },
         select: {
           id: true,
-          // pro_img: true,
-          // name: true,
-          // email: true,
-          // credit: true,
-          // rep: true,
         },
       });
 

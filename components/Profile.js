@@ -6,11 +6,11 @@ import axios from "axios";
 import { InfoUser } from "@/context/infoContext";
 
 const Profile = () => {
-  const { data: session, status } = useSession();
-  const { pageStatus, setPageStatus, data } = useContext(Statusgroup);
+  const { data: session } = useSession();
+  const { setPageStatus, data } = useContext(Statusgroup);
   const { who, setWho } = useContext(InfoUser);
   const whoseId = session.user.id;
-  const getWho = async () => {
+  const getWho = () => {
     axios
       .get("/api/auth/who", {
         params: {
@@ -67,7 +67,6 @@ const Profile = () => {
             <div className={Style.profile_menu_wrap}>
               <p onClick={profileBtnClick}>프로필 수정</p>
               <p onClick={followBtnClick}>팔로우</p>
-              {/* <p onClick={mymsgBtnClick}>작성글</p> */}
               <p onClick={() => signOut()}>로그아웃</p>
             </div>
           </div>
