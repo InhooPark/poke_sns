@@ -5,7 +5,7 @@ export default function handler(req, res) {
   const { method, body, query } = req;
 
   const getData = async () => {
-    if (query.type == "owner") {
+    if (query.type === "owner") {
       const contentOwner = await prisma.user_table.findUnique({
         where: {
           id: Number(query.id),
@@ -26,7 +26,7 @@ export default function handler(req, res) {
           pro_img: true,
           email: true,
           name: true,
-          req: true,
+          rep: true,
           credit: true,
         },
       });
