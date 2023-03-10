@@ -341,6 +341,7 @@ $height: 150px;
   }
 }
 .follow_list {
+  width: 100%;
   border-bottom: 1px solid rgba(224, 102, 102, 0.5);
   display: flex;
   align-items: center;
@@ -540,7 +541,6 @@ $height: 150px;
               // outline: none;
               background-color: transparent;
               padding: 8px 20px;
-              
             }
           }
         }

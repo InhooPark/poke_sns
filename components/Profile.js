@@ -21,7 +21,6 @@ const Profile = () => {
         setWho(res.data);
       });
   };
-
   useEffect(() => {
     getWho();
   }, [data]);
