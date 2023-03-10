@@ -20,6 +20,9 @@ const Nav = () => {
   const writeBtnClick = () => {
     setPageStatus("WRITE");
   };
+  const mymsgBtnClick = () => {
+    setPageStatus("MYMSG");
+  };
 
   return (
     <>
@@ -35,7 +38,7 @@ const Nav = () => {
             <span>홈</span>
           </div>
           <div className={Style.nav_trend_btn} onClick={trendBtnClick}>
-            <svg width="30px" height="30px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#E06666">
+            <svg width="40px" height="40px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#E06666">
               <path d="M9.13 15l-.53-.77a1.85 1.85 0 0 0-.28-2.54 3.51 3.51 0 0 1-1.19-2c-1.56 2.23-.75 3.46 0 4.55l-.55.76A4.4 4.4 0 0 1 3 10.46S2.79 8.3 5.28 6.19c0 0 2.82-2.61 1.84-4.54L7.83 1a6.57 6.57 0 0 1 2.61 6.94 2.57 2.57 0 0 0 .56-.81l.87-.07c.07.12 1.84 2.93.89 5.3A4.72 4.72 0 0 1 9.13 15zm-2-6.95l.87.39a3 3 0 0 0 .92 2.48 2.64 2.64 0 0 1 1 2.8A3.241 3.241 0 0 0 11.8 12a4.87 4.87 0 0 0-.41-3.63 1.85 1.85 0 0 1-1.84.86l-.35-.68a5.31 5.31 0 0 0-.89-5.8C8.17 4.87 6 6.83 5.93 6.94 3.86 8.7 4 10.33 4 10.4a3.47 3.47 0 0 0 1.59 3.14C5 12.14 5 10.46 7.16 8.05h-.03z" />
             </svg>
             <span>인기</span>
@@ -53,9 +56,8 @@ const Nav = () => {
             </svg>
             <span>도감</span>
           </div>
-
-          <div className={Style.nav_write_btn} onClick={writeBtnClick}>
-            <svg width="30px" height="30px" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className={Style.nav_more_btn} onClick={mymsgBtnClick}>
+          <svg width="30px" height="30px" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M34.5787 6.78029L44.4759 16.6772M3.90248 37.0803L2.57373 49.0753L14.5684 47.7465L48.8237 13.4731V9.43248L42.2165 2.82529H38.1759L3.90248 37.0803Z"
                 stroke="#E06666"
@@ -65,19 +67,13 @@ const Nav = () => {
               />
               <path d="M32.4905 19.0494L15.9648 35.575" stroke="#E06666" strokeWidth="3.75" strokeMiterlimit="5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-
-            <span>글쓰기</span>
+            <span>작성글</span>
           </div>
-          <div className={Style.nav_more_btn} onClick={moreBtnClick}>
-            <svg width="30px" height="30px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M27.75 15C27.75 7.95837 22.0416 2.25 15 2.25C7.95837 2.25 2.25 7.95837 2.25 15C2.25 22.0416 7.95837 27.75 15 27.75C22.0416 27.75 27.75 22.0416 27.75 15ZM30 15C30 23.2842 23.2842 30 15 30C6.71572 30 0 23.2842 0 15C0 6.71572 6.71572 0 15 0C23.2842 0 30 6.71572 30 15ZM7.5 16.875C8.53554 16.875 9.375 16.0356 9.375 15C9.375 13.9644 8.53554 13.125 7.5 13.125C6.46446 13.125 5.625 13.9644 5.625 15C5.625 16.0356 6.46446 16.875 7.5 16.875ZM15 16.875C16.0356 16.875 16.875 16.0356 16.875 15C16.875 13.9644 16.0356 13.125 15 13.125C13.9644 13.125 13.125 13.9644 13.125 15C13.125 16.0356 13.9644 16.875 15 16.875ZM22.5 16.875C23.5356 16.875 24.375 16.0356 24.375 15C24.375 13.9644 23.5356 13.125 22.5 13.125C21.4644 13.125 20.625 13.9644 20.625 15C20.625 16.0356 21.4644 16.875 22.5 16.875Z"
-                fill="#E06666"
-              />
-            </svg>
-            <span>더보기</span>
+        <div className={Style.nav_write_btn} onClick={writeBtnClick}>
+            <span>새 글쓰기</span>
           </div>
         </div>
+
       </nav>
     </>
   );

@@ -119,8 +119,8 @@ $height: 150px;
         align-items: center;
         position: absolute;
         top: 50%;
-        right: -30px;
-        transform: translate(-0%, -50%);
+        right: -50%;
+        transform: translate(-50%, -50%);
         cursor: pointer;
         img {
           width: 60%;
@@ -529,14 +529,18 @@ $height: 150px;
         }
         .modal_wrap_third {
           > p {
-            margin-bottom: 10px;
+            margin: 10px 0;
           }
           .btn {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             button {
-              border: 1px solid #e36e6e;
-              outline: none;
+              // border: 1px solid #e36e6e;
+              border: none;
+              // outline: none;
+              background-color: transparent;
+              padding: 8px 20px;
+              
             }
           }
         }

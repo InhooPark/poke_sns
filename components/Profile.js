@@ -32,9 +32,6 @@ const Profile = () => {
   const followBtnClick = () => {
     setPageStatus("FOLLOW");
   };
-  const mymsgBtnClick = () => {
-    setPageStatus("MYMSG");
-  };
 
   if (who !== undefined) {
     return (
@@ -47,7 +44,7 @@ const Profile = () => {
                 <div className={Style.profile_name}>{who.name == "" ? "너의 이름은..." : who.name}</div>
                 <div className={Style.profile_email}>
                   <div>
-                    <b>@&nbsp;</b>
+                    <b>&nbsp;</b>
                     <small>{who.email}</small>
                   </div>
                   <div>
@@ -70,7 +67,7 @@ const Profile = () => {
             <div className={Style.profile_menu_wrap}>
               <p onClick={profileBtnClick}>프로필 수정</p>
               <p onClick={followBtnClick}>팔로우</p>
-              <p onClick={mymsgBtnClick}>작성글</p>
+              {/* <p onClick={mymsgBtnClick}>작성글</p> */}
               <p onClick={() => signOut()}>로그아웃</p>
             </div>
           </div>

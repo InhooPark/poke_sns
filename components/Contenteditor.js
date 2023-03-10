@@ -2,10 +2,11 @@ import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useContext, useEffect, useState } from "react";
+import styles from "@/styles/Contenteditor.module.scss";
 
 const Contenteditor = () => {
   const { data: session } = useSession();
-  const [user, setUser] = useState();
+  const [ user, setUser ] = useState();
   const { setPageStatus } = useContext(Statusgroup);
 
   const create = async (e) => {
@@ -31,25 +32,26 @@ const Contenteditor = () => {
         setUser(res.data);
       });
   };
-
   useEffect(() => {
     getUser();
   }, []);
 
-  // 한글 70자 영어,숫자 140자
   return (
     <div>
-      <form className="Contenteditor" onSubmit={create}>
-        <section className="btn">
-          <button onClick={() => setPageStatus("LIST")}>취소</button>
-          <button type={"submit"}>완료</button>
-        </section>
-        {/* 프로필 이미지 */}
-        <p name={"img"}></p>
-        {/* 글 작성란 */}
-        <p>
-          <textarea type="text" name="content" className="contentBox" placeholder="무슨 일이 있었나요?" maxLength={140} />
-        </p>
+      <form className={styles.Contenteditor} onSubmit={create}>
+        <div className={styles.profile}>
+        <div className={styles.pro_img}>
+          <img src={`/img/poke_profile_img/pokballpixel-001.png`}></img>
+        </div>
+        <p></p>
+        </div>
+        <div className={styles.textBox}>
+          <textarea type="text" name="content" placeholder="무슨 일이 있었나요?" />
+          <section>
+            <button  className={styles.Dbtn} onClick={() => router.push("/")}>취소</button>
+            <button  className={styles.Cbtn} type={"submit"}>완료</button>
+          </section>
+        </div>
       </form>
     </div>
   );
