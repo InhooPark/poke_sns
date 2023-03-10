@@ -7,15 +7,15 @@ import { useSession } from "next-auth/react";
 const SearchList = () => {
   const { searchID } = useContext(Statusgroup);
   const { data: session } = useSession();
-  const [followlist, setFollowlist] = useState();
+  const [followlist, setFollowlist] = useState([]);
   const [followModal, setFollowModal] = useState(false);
   const [followCancel, setFollowCancel] = useState();
   const followTarget = useRef();
 
-  const favoriteUser = (user) => {
-    followTarget.current = user.id;
+  const favoriteUser = (id) => {
+    followTarget.current = id;
     setFollowModal(true);
-    if (followlist.find((fav) => fav == user.id)) {
+    if (followlist.find((fav) => fav == id)) {
       setFollowCancel(false);
     } else {
       setFollowCancel(true);
@@ -30,26 +30,23 @@ const SearchList = () => {
         },
       })
       .then((res) => {
-        setFollowlist(res.data.follow_list.split(","));
+        if (res.data.follow_list !== "") {
+          setFollowlist(res.data.follow_list.split(","));
+        } else {
+          return;
+        }
       });
   };
 
   const followBtn = () => {
-    let aa = "";
-    followlist.map((list, key) => {
-      if (key === 0) {
-        return;
-      } else {
-        aa += "," + list;
-      }
-    });
-
     if (followCancel) {
-      axios.post("/api/follow", { type: "follow", id: session.user.id, follow_list: aa, user_id: followTarget.current });
+      followlist.push(followTarget.current);
+      axios.post("/api/follow", { id: session.user.id, data: followlist });
       setFollowModal(false);
       location.reload();
     } else {
-      axios.post("/api/follow", { type: "unfollow", id: session.user.id, follow_list: aa, user_id: followTarget.current });
+      let aa = followlist.filter((id) => id != followTarget.current);
+      axios.post("/api/follow", { id: session.user.id, data: aa });
       setFollowModal(false);
       location.reload();
     }
@@ -73,7 +70,7 @@ const SearchList = () => {
                   <p className={Style.user_list_name}>{user.name === "" ? "설정된 이름이 없습니다." : user.name}</p>
                   <p className={Style.user_list_email}>@{user.email}</p>
                 </div>
-                <div className={Style.user_list_follow} onClick={() => favoriteUser(user)}>
+                <div className={Style.user_list_follow} onClick={() => favoriteUser(user.id)}>
                   {followlist && followlist.find((fav) => fav == user.id) ? <img src="/img/svg/heart-fill.svg" /> : <img src="/img/svg/heart.svg" />}
                 </div>
               </div>

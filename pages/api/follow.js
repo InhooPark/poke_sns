@@ -30,37 +30,16 @@ async function handler(req, res) {
 
   const postData = async () => {
     try {
-      let result = body.follow_list + "," + body.user_id;
-      if (body.type == "follow") {
-        const insert = await prisma.follow_table.update({
-          where: {
-            id: Number(body.id),
-          },
-          data: {
-            follow_list: result,
-          },
-        });
-      } else if (body.type == "unfollow") {
-        let result1 = body.follow_list.split(",");
-        let result2 = result1.filter((list) => list != body.user_id);
-        let result = "";
-        result2.map((list, key) => {
-          if (key === 0) {
-            return;
-          } else {
-            result += "," + list;
-          }
-        });
-
-        const update = await prisma.follow_table.update({
-          where: {
-            id: Number(body.id),
-          },
-          data: {
-            follow_list: result,
-          },
-        });
-      }
+      console.log(body);
+      const updatefollowlist = await prisma.follow_table.update({
+        where: {
+          id: Number(body.id),
+        },
+        data: {
+          follow_list: body.data.toString(),
+        },
+      });
+      res.json(updatefollowlist);
     } catch (err) {
       res.send(err);
     }
