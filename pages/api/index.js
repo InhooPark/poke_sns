@@ -38,8 +38,6 @@ export default function handler(req, res) {
       },
       select: {
         id: true,
-        pro_img: true,
-        name: true,
         user_id: true,
         content: true,
         date: true,
