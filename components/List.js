@@ -1,12 +1,15 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import Item from "./Item";
+
+
 const List = () => {
   const { data: session } = useSession();
   const { data, setData, contentlist, setContentlist, arr, setArr, result, setResult } = useContext(Statusgroup);
+  
 
   //데이터 조회 dataGet();
   const getFollowList = async () => {

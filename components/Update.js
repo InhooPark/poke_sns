@@ -1,6 +1,7 @@
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import { useContext, useState } from "react";
+import styles from "@/styles/Contenteditor.module.scss";
 
 const Edit = () => {
   //데이터 수정 dataUpdate();
@@ -25,29 +26,26 @@ const Edit = () => {
     setPageStatus("LIST");
   };
 
-  // 한글 70자 영어,숫자 140자
   return (
-    <div>
-      <form className="inputBox" onSubmit={create}>
-        <section className="btn">
-          <button onClick={() => setPageStatus("LIST")}>취소</button>
-          <button type={"submit"}>완료</button>
-        </section>
-        <p name={"img"}></p>
-        <p name={"name"}></p>
-        <p>
-          <textarea
-            onChange={valueChange}
-            value={inputValue.content}
-            type="text"
-            name="content"
-            className="contentBox"
-            placeholder="무슨 일이 있었나요?"
-            maxLength={140}
-          />
-        </p>
+    
+        <div>
+      <form className={styles.Contenteditor} onSubmit={create}>
+        <div className={styles.profile}>
+        <div className={styles.pro_img}>
+          <img src={`/img/poke_profile_img/pokballpixel-001.png`}></img>
+        </div>
+        <p></p>
+        </div>
+        <div className={styles.textBox}>
+          <textarea onChange={valueChange} value={inputValue.content} type="text" name="content" className="contentBox" placeholder="무슨 일이 있었나요?" />
+          <section>
+            <button  className={styles.Dbtn} onClick={() => setPageStatus("LIST")}>취소</button>
+            <button  className={styles.Cbtn} type={"submit"}>완료</button>
+          </section>
+        </div>
       </form>
     </div>
+    
   );
 };
 

@@ -50,6 +50,6 @@ model list_table {
 }
 
 model favorite_table {
-  id Int @id @unique
+  id            Int    @id @unique
   favorite_list String @db.VarChar(2000)
 }

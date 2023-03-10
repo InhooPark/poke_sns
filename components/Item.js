@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import { InfoUser } from "@/context/infoContext";
+import moment from 'moment';
 
 const Item = ({ obj, dataGet }) => {
   const { data: session } = useSession();
@@ -11,7 +12,7 @@ const Item = ({ obj, dataGet }) => {
   const { setPageStatus, setListUpdate } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
   const [followlist, setFollowlist] = useState();
-  let today = new Date();
+  const Mdate = moment(obj.date).fromNow()
 
   const getFollowList = () => {
     axios
@@ -86,13 +87,8 @@ const Item = ({ obj, dataGet }) => {
             <div className={styles.profile_img}>
               <img src={`/img/poke_profile_img/pokballpixel-${obj.pro_img}.png`}></img>
             </div>
-            <div className={styles.profile_name_email_wrap}>
-              <div className={styles.profile_name_wrap}>
-                <p className={styles.user}>@&nbsp;</p>
-                <p className={styles.user}>{obj.name}</p>
-              </div>
-              <p className={styles.date}>{obj.date}hours</p>
-            </div>
+            <p className={styles.user}>{obj.name}</p>
+            <p className={styles.date}>&#129; {Mdate}</p>
           </div>
           <div className={styles.info_mod_wrap} onClick={infoModModal}>
             <svg width="4" height="20.5" viewBox="0 0 8 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -122,7 +118,6 @@ const Item = ({ obj, dataGet }) => {
         <pre className={styles.detail}>{obj.content}</pre>
         <section className={styles.btn}>
           <button className={styles.like}></button>
-          <button className={styles.share}></button>
         </section>
       </li>
     </>
