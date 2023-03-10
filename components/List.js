@@ -62,9 +62,13 @@ const List = () => {
   useEffect(() => {
     dataGet();
   }, [contentlist]);
+
   useEffect(() => {
-    getFollowList();
+    if (!contentlist) {
+      getFollowList();
+    }
   }, [arr]);
+
   useEffect(() => {
     if (result.length) {
       result.sort((a, b) => {
@@ -74,7 +78,7 @@ const List = () => {
     setData(result);
   }, [result]);
 
-  if (data == undefined)
+  if (data === undefined)
     return (
       <div className={styles.load}>
         <img src="/img/loadimg/pika_heart.webp"></img>
