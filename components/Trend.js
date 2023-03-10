@@ -1,12 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Item from "./Item";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
+import { Statusgroup } from "@/context/StatusContext";
 
 const Trend = () => {
   const [trendlist, setTrendlist] = useState();
   const { data: session } = useSession();
+  const { arr, setArr } = useContext(Statusgroup);
 
   const getTrendlist = () => {
     let arr = [];
@@ -23,7 +25,7 @@ const Trend = () => {
 
   const dataGet = () => {
     axios
-      .get("/api/followlist", {
+      .get("/api/follow", {
         params: {
           id: session.user.id,
         },
