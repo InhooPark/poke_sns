@@ -1,14 +1,10 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import styles from "@/styles/List.module.scss";
-import { useSession } from "next-auth/react";
-import { Statusgroup } from "@/context/StatusContext";
 
 const Trend = () => {
   const [trendlist, setTrendlist] = useState();
-  const { data: session } = useSession();
-  const { arr, setArr } = useContext(Statusgroup);
 
   const getTrendlist = () => {
     let arr = [];
@@ -23,30 +19,13 @@ const Trend = () => {
     });
   };
 
-  const dataGet = () => {
-    axios
-      .get("/api/follow", {
-        params: {
-          id: session.user.id,
-        },
-      })
-      .then((res) => {
-        if (res.data.follow_list != "") {
-          setArr(res.data.follow_list.split(","));
-        } else {
-          return;
-        }
-      });
-  };
-
   useEffect(() => {
     getTrendlist();
-    dataGet();
   }, []);
 
   return (
     <div className={styles.listBox}>
-      <ul>{trendlist && trendlist.map((obj, key) => <Item obj={obj} key={key} dataGet={dataGet}></Item>)}</ul>
+      <ul>{trendlist && trendlist.map((obj, key) => <Item obj={obj} key={key}></Item>)}</ul>
     </div>
   );
 };
