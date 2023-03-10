@@ -45,17 +45,8 @@ const Followlist = () => {
   };
 
   const favoriteUser = (id) => {
-    let aa = "";
-    users.map((list, k) => {
-      if (k === 0) {
-        return;
-      } else {
-        aa += "," + list;
-      }
-    });
-
-    //언팔로우
-    axios.post("/api/follow", { type: "unfollow", id: session.user.id, follow_list: aa, user_id: id });
+    let result = users.filter((obj) => obj != id);
+    axios.post("/api/follow", { id: session.user.id, data: result });
     location.reload();
   };
 
