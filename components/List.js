@@ -5,11 +5,9 @@ import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import Item from "./Item";
 
-
 const List = () => {
   const { data: session } = useSession();
   const { data, setData, contentlist, setContentlist, arr, setArr, result, setResult } = useContext(Statusgroup);
-  
 
   //데이터 조회 dataGet();
   const getFollowList = async () => {
@@ -72,8 +70,8 @@ const List = () => {
       result.sort((a, b) => {
         return b.id - a.id;
       });
-      setData(result);
     }
+    setData(result);
   }, [result]);
 
   if (data == undefined)
@@ -93,7 +91,7 @@ const List = () => {
             팔로우
           </button>
         </div>
-        <ul>{data && data.map((obj, key) => <Item obj={obj} key={key} dataGet={dataGet}></Item>)}</ul>
+        <ul>{data.length === 0 ? <>팔로우한 사람이 없습니다.</> : data && data.map((obj, key) => <Item obj={obj} key={key} dataGet={dataGet}></Item>)}</ul>
       </div>
     );
   }

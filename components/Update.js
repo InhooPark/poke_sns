@@ -21,31 +21,32 @@ const Edit = () => {
 
   const create = async (e) => {
     e.preventDefault();
-    console.log(11);
     await axios.put(`/api/${inputValue.id}`, inputValue);
     setPageStatus("LIST");
   };
 
   return (
-    
-        <div>
+    <div>
       <form className={styles.Contenteditor} onSubmit={create}>
         <div className={styles.profile}>
-        <div className={styles.pro_img}>
-          <img src={`/img/poke_profile_img/pokballpixel-001.png`}></img>
-        </div>
-        <p></p>
+          <div className={styles.pro_img}>
+            <img src={`/img/poke_profile_img/pokballpixel-001.png`}></img>
+          </div>
+          <p></p>
         </div>
         <div className={styles.textBox}>
           <textarea onChange={valueChange} value={inputValue.content} type="text" name="content" className="contentBox" placeholder="무슨 일이 있었나요?" />
           <section>
-            <button  className={styles.Dbtn} onClick={() => setPageStatus("LIST")}>취소</button>
-            <button  className={styles.Cbtn} type={"submit"}>완료</button>
+            <button className={styles.Dbtn} onClick={() => setPageStatus("LIST")}>
+              취소
+            </button>
+            <button className={styles.Cbtn} type={"submit"}>
+              완료
+            </button>
           </section>
         </div>
       </form>
     </div>
-    
   );
 };
 
