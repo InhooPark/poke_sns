@@ -11,7 +11,7 @@ const Item = ({ obj, dataGet }) => {
   const [infoMod, setInfoMod] = useState(false);
   const [followlist, setFollowlist] = useState();
   const [owner, setOwner] = useState();
-  const { setPageStatus, setListUpdate } = useContext(Statusgroup);
+  const { setPageStatus, setListUpdate, data } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
   const Mdate = moment(obj.date).fromNow();
 
@@ -93,7 +93,7 @@ const Item = ({ obj, dataGet }) => {
   }, []);
   useLayoutEffect(() => {
     getContentOwner();
-  }, []);
+  }, [data]);
 
   if (owner !== undefined) {
     return (
