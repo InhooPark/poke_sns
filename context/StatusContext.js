@@ -12,6 +12,7 @@ const StatusContext = ({ children }) => {
   const [data, setData] = useState([]);
   const [arr, setArr] = useState();
   const [result, setResult] = useState([]);
+  const [pokedata, setPokedata] = useState();
 
   const value = {
     pageStatus,
@@ -34,6 +35,8 @@ const StatusContext = ({ children }) => {
     setArr,
     result,
     setResult,
+    pokedata,
+    setPokedata,
   };
   return <Statusgroup.Provider value={value}>{children}</Statusgroup.Provider>;
 };

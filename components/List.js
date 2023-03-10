@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
@@ -8,7 +8,6 @@ import Item from "./Item";
 const List = () => {
   const { data: session } = useSession();
   const { data, setData, contentlist, setContentlist, arr, setArr, result, setResult } = useContext(Statusgroup);
-
 
   //데이터 조회 dataGet();
   const getFollowList = async () => {
@@ -53,24 +52,22 @@ const List = () => {
 
   const setfollowlist = () => {
     setContentlist(false);
-
   };
   const setlist = () => {
     setContentlist(true);
-    
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dataGet();
   }, [contentlist]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!contentlist) {
       getFollowList();
     }
   }, [arr]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (result.length) {
       result.sort((a, b) => {
         return b.id - a.id;
@@ -78,7 +75,6 @@ const List = () => {
     }
     setData(result);
   }, [result]);
-
 
   if (data === undefined)
     return (

@@ -1,16 +1,27 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Style from "@/styles/layout.module.scss";
 import { useSession, signOut } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import { InfoUser } from "@/context/infoContext";
+import { ColorContext } from "@/context/ColorTheme";
 
 const Profile = () => {
   const { data: session } = useSession();
-  const { setPageStatus, data } = useContext(Statusgroup);
+  const { setPageStatus, data, pokedata, setPokedata } = useContext(Statusgroup);
+  // const { color } = useContext(ColorContext);
   const { who, setWho } = useContext(InfoUser);
   const whoseId = session.user.id;
+  // console.log(color);
 
+  const getPoke = () => {
+    if (who !== undefined) {
+      axios.get("/api/encyclopedia").then((res) => {
+        setPokedata(res.data[who.rep - 1]);
+        // setPokedata(res.data);
+      });
+    }
+  };
   const getWho = () => {
     axios
       .get("/api/auth/who", {
@@ -26,6 +37,9 @@ const Profile = () => {
   useEffect(() => {
     getWho();
   }, [data]);
+  useEffect(() => {
+    getPoke();
+  }, [who]);
 
   const profileBtnClick = () => {
     setPageStatus("PROFILE");
@@ -73,7 +87,7 @@ const Profile = () => {
           </div>
           <div className={Style.rep_wrap}>
             <div className={Style.rep_ring}></div>
-            {who.rep == 0 ? <img src="/img/poke_silueta.png"></img> : <img src={`https://www.shinyhunters.com/images/regular/${who.rep}.gif`}></img>}
+            {who.rep == 0 ? <img src="/img/poke_silueta.png"></img> : <img src={pokedata && pokedata.motion_url}></img>}
           </div>
         </aside>
       </>

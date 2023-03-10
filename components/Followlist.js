@@ -30,7 +30,7 @@ const Followlist = () => {
 
   const getUsers = () => {
     axios
-      .get("/api/followlist/", {
+      .get("/api/follow/", {
         params: {
           id: session.user.id,
         },

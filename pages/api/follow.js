@@ -11,7 +11,7 @@ async function handler(req, res) {
         },
       });
 
-      if (favorite == null) {
+      if (favorite === null) {
         const newFavorite = await prisma.follow_table.create({
           data: {
             id: Number(query.id),
