@@ -14,7 +14,7 @@ const Myprofile = () => {
   const [save, setSave] = useState();
   const [deleteModal, setDeleteModal] = useState(false);
 
-  const getWho = async () => {
+  const getWho = () => {
     setSave(who);
   };
 
