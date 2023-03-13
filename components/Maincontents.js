@@ -9,7 +9,7 @@ import Followlist from "./Followlist";
 import Edit from "./Update";
 import Contenteditor from "./Contenteditor";
 import Tutorial from "./Tutorial";
-import { InfoUser } from "@/context/infoContext";
+import { InfoUser } from "@/context/InfoContext";
 import Mylist from "./Mylist";
 import Trend from "./Trend";
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 import { useSession } from "next-auth/react";
-import { InfoUser } from "@/context/infoContext";
+import { InfoUser } from "@/context/InfoContext";
 
 const Encyclopedia = () => {
   const [pokeData, setPokeData] = useState();

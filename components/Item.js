@@ -3,7 +3,7 @@ import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
-import { InfoUser } from "@/context/infoContext";
+import { InfoUser } from "@/context/InfoContext";
 import moment from "moment";
 
 const Item = ({ obj, dataGet }) => {

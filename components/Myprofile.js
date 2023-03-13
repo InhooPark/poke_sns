@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 import { signOut, useSession } from "next-auth/react";
 import axios from "axios";
-import { InfoUser } from "@/context/infoContext";
+import { InfoUser } from "@/context/InfoContext";
 
 const Myprofile = () => {
   const { data: session } = useSession();
