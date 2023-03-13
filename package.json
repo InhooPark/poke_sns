@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build": "next build && next export",
+    "predeploy": "npm run build",
+    "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles"
   },
   "dependencies": {
     "@next/font": "13.2.3",
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
+    "gh-pages": "^5.0.0",
     "prisma": "^4.11.0"
   }
 }

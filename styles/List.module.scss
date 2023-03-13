@@ -25,7 +25,7 @@ $mC: #e0666666;
     background-color: #fffbef;
     top: 0;
     z-index: 100;
-
+    border-bottom: 1px solid #e36e6e22;
     button {
       width: 100px;
       border: none;
@@ -36,7 +36,7 @@ $mC: #e0666666;
           content: "";
           display: block;
           width: 100px;
-          bottom: 1px;
+          bottom: 0px;
           position: absolute;
           border-bottom: 4px solid #e36e6e88;
           border-radius: 2px;
