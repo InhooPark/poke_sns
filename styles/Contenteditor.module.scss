@@ -1,60 +1,89 @@
-$mainC : #e17777;
+$mainC: #e17777;
 
-.Contenteditor{
+.Contenteditor {
   width: 700px;
   height: 500px;
   margin: 30px 0;
-  .profile{
+  .profile {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    .pro_img{
-      img{width: 80px;}
+    .pro_img {
+      img {
+        width: 80px;
+      }
     }
-    p{font-size: 30px;}
   }
-  .textBox{
+  .textBox {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    textarea{
+    textarea {
       width: 90%;
       margin: 30px 0;
       height: 300px;
       background-color: transparent;
       // box-shadow: 1px 1px 3px inset #cfa3a3;
-      border: 1px solid #ebbaba;
+      border: 1px solid $mainC;
       border-radius: 30px;
       font-size: 24px;
       padding: 40px 70px;
       resize: none;
       text-align-last: left;
     }
-    section{
-      width: 70%;
+    section {
+      width: 90%;
       display: flex;
-      justify-content: space-between;
-      .Dbtn{
-        width: 160px;
+      justify-content: flex-end;
+      button {
+        width: 40%;
+        max-width: 140px;
         height: 40px;
         border-radius: 50px;
         background-color: transparent;
-        border:1px solid $mainC;
+        border: 1px solid $mainC;
         color: $mainC;
         font-size: 20px;
-      }
-      .Cbtn{
-        width: 160px;
-        height: 40px;
-        border-radius: 50px;
-        background-color: transparent;
-        border:1px solid $mainC;
-        color: $mainC;
-        font-size: 20px;
+        margin-left: 5%;
       }
     }
+  }
+}
 
+@media screen and (max-width: 768px) {
+  .Contenteditor {
+    max-width: 700px;
+    width: 100vw;
+    height: 500px;
+    margin: 20px 0;
+    .profile {
+      .pro_img {
+        img {
+          width: 60px;
+        }
+      }
+    }
+    .textBox {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+      textarea {
+        margin: 10px 0;
+        height: 50vh;
+        font-size: 3.5vw;
+        padding: 20px 30px;
+      }
+      section {
+        margin-top: 20px;
+        button {
+          width: 30%;
+          font-size: 3.5vw;
+          margin-left: 5%;
+        }
+      }
+    }
   }
-  }
+}

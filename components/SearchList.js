@@ -76,11 +76,13 @@ const SearchList = () => {
               </div>
             );
           })}
-          <div className={followModal ? `${Style.follow_modal} ${Style.on}` : `${Style.follow_modal}`}>
-            {followCancel ? <p>팔로우 하시겠습니까?</p> : <p>팔로우를 취소 하시겠습니까?</p>}
-            <div className={Style.follow_modal_btn_wrap}>
-              <button onClick={followBtn}>Yes</button>
-              <button onClick={() => setFollowModal(false)}>No</button>
+          <div className={followModal ? `${Style.follow_modal_wrap} ${Style.on}` : Style.follow_modal_wrap}>
+            <div className={Style.follow_modal}>
+              {followCancel ? <p>팔로우 하시겠습니까?</p> : <p>팔로우를 취소 하시겠습니까?</p>}
+              <div className={Style.follow_modal_btn_wrap}>
+                <button onClick={followBtn}>Yes</button>
+                <button onClick={() => setFollowModal(false)}>No</button>
+              </div>
             </div>
           </div>
         </>

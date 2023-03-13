@@ -55,8 +55,19 @@ body {
 
 @media screen and (max-width: 1400px) {
   body {
+    max-width: 1400px;
     ::-webkit-scrollbar {
       border-right: 1px solid rgba(224, 102, 102, 0.4);
     }
+  }
+}
+@media screen and (max-width: 1000px) {
+  body {
+    max-width: 1000px;
+  }
+}
+@media screen and (max-width: 768px) {
+  body {
+    max-width: 768px;
   }
 }
