@@ -1,6 +1,6 @@
 import ColorTheme from "@/context/ColorTheme";
-import Context from "@/context/context";
-import InfoContext from "@/context/infoContext";
+import Context from "@/context/Context";
+import InfoContext from "@/context/InfoContext";
 import StatusContext from "@/context/StatusContext";
 import "@/styles/globals.scss";
 import { SessionProvider } from "next-auth/react";

@@ -1,4 +1,4 @@
-import { MyContext } from "@/context/context";
+import { MyContext } from "@/context/Context";
 import React, { useContext } from "react";
 import Style from "@/styles/sign.module.scss";
 import { useRouter } from "next/router";
