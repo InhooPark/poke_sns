@@ -75,21 +75,21 @@ const Myprofile = () => {
       <>
         <div className={Style.myprofile}>
           <div className={Style.profile_img_wrap}>
-            <img src={`/img/poke_profile_img/pokballpixel-${save && save.pro_img}.png`}></img>
+            <img src={`/img/poke_profile_img/pokballpixel-${save && save.pro_img}.png`} alt=""></img>
             <div className={Style.profile_img_mod} onClick={profileImgMod}>
-              <img src="/img/svg/pencil.svg"></img>
+              <img src="/img/svg/pencil.svg" alt=""></img>
             </div>
 
             <div className={profileImgToggle ? `${Style.img_toggle} ${Style.on}` : `${Style.img_toggle}`}>
               <div className={Style.img_mod_toggle_exit} onClick={() => setProfileImgToggle(false)}>
-                <img src="/img/svg/cancel.svg"></img>
+                <img src="/img/svg/cancel.svg" alt=""></img>
               </div>
               <div className={Style.img_mod_list}>
                 {profileImgArr &&
                   profileImgArr.map((img, k) => {
                     return (
                       <div key={k} className={Style.img_mod_img_wrap} onClick={() => profileImgModSelect(k)}>
-                        <img src={`/img/poke_profile_img/${img}`}></img>
+                        <img src={`/img/poke_profile_img/${img}`} alt=""></img>
                       </div>
                     );
                   })}
@@ -100,7 +100,7 @@ const Myprofile = () => {
             <div className={Style.profile_info_name}>
               {save && save.name}
               <div className={Style.profile_name_mod} onClick={profileNameMod}>
-                <img src="/img/svg/pencil.svg"></img>
+                <img src="/img/svg/pencil.svg" alt=""></img>
               </div>
             </div>
             <div className={Style.profile_info_email}>{save.email}</div>
@@ -135,7 +135,7 @@ const Myprofile = () => {
     );
   } else {
     <div className={Style.myprofile_load}>
-      <img src="/img/loadimg/pika_heart.webp"></img>
+      <img src="/img/loadimg/pika_heart.webp" alt=""></img>
     </div>;
   }
 };

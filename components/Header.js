@@ -71,7 +71,7 @@ const Header = () => {
       <header className={Style.header}>
         <div className={Style.logo_btn}>
           <div className={Style.logo_btn_wrap}>
-            <img src="/img/loadimg/pika_dance.webp"></img>
+            <img src="/img/loadimg/pika_dance.webp" alt=""></img>
           </div>
         </div>
         <div className={Style.status}>

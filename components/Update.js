@@ -30,7 +30,7 @@ const Edit = () => {
       <form className={styles.Contenteditor} onSubmit={create}>
         <div className={styles.profile}>
           <div className={styles.pro_img}>
-            <img src={`/img/poke_profile_img/pokballpixel-001.png`}></img>
+            <img src={`/img/poke_profile_img/pokballpixel-001.png`} alt=""></img>
           </div>
           <p></p>
         </div>

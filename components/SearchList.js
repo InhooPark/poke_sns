@@ -64,14 +64,18 @@ const SearchList = () => {
             return (
               <div key={user.id} className={Style.user_list}>
                 <div className={Style.user_list_pro_img}>
-                  <img src={`/img/poke_profile_img/pokballpixel-${user.pro_img}.png`}></img>
+                  <img src={`/img/poke_profile_img/pokballpixel-${user.pro_img}.png`} alt=""></img>
                 </div>
                 <div className={Style.user_list_info}>
                   <p className={Style.user_list_name}>{user.name === "" ? "설정된 이름이 없습니다." : user.name}</p>
                   <p className={Style.user_list_email}>@{user.email}</p>
                 </div>
                 <div className={Style.user_list_follow} onClick={() => favoriteUser(user.id)}>
-                  {followlist && followlist.find((fav) => fav == user.id) ? <img src="/img/svg/heart-fill.svg" /> : <img src="/img/svg/heart.svg" />}
+                  {followlist && followlist.find((fav) => fav == user.id) ? (
+                    <img src="/img/svg/heart-fill.svg" alt="" />
+                  ) : (
+                    <img src="/img/svg/heart.svg" alt="" />
+                  )}
                 </div>
               </div>
             );

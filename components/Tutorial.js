@@ -26,15 +26,15 @@ const Tutorial = () => {
           <p>스타팅 포켓몬을 선택해주세요</p>
           <div className={Style.tuto_wrap}>
             <figure className={Style.tuto_img_wrap} onClick={() => repsel(1)}>
-              <img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png"></img>
+              <img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></img>
               <figcaption>이상해씨</figcaption>
             </figure>
             <figure className={Style.tuto_img_wrap} onClick={() => repsel(4)}>
-              <img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000401.png"></img>
+              <img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000401.png" alt=""></img>
               <figcaption>파이리</figcaption>
             </figure>
             <figure className={Style.tuto_img_wrap} onClick={() => repsel(7)}>
-              <img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000701.png"></img>
+              <img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000701.png" alt=""></img>
               <figcaption>꼬부기</figcaption>
             </figure>
           </div>

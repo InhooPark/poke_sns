@@ -75,7 +75,7 @@ const List = () => {
   if (data === undefined)
     return (
       <div className={styles.load}>
-        <img src="/img/loadimg/pika_heart.webp"></img>
+        <img src="/img/loadimg/pika_heart.webp" alt=""></img>
       </div>
     );
   else {
