@@ -27,7 +27,7 @@ const Mylist = () => {
   if (!mycomment.length)
     return (
       <div className={styles.load}>
-        <img src="/img/loadimg/pika_heart.webp"></img>
+        <img src="/img/loadimg/pika_heart.webp" alt=""></img>
       </div>
     );
   else {

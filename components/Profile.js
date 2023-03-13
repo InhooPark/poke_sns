@@ -54,7 +54,7 @@ const Profile = () => {
         <aside className={Style.profile_container}>
           <div className={Style.profile_wrapper}>
             <div className={Style.profile_wrap}>
-              <div className={Style.profile_img_wrap}>{<img src={`/img/poke_profile_img/pokballpixel-${who.pro_img}.png`}></img>}</div>
+              <div className={Style.profile_img_wrap}>{<img src={`/img/poke_profile_img/pokballpixel-${who.pro_img}.png`} alt=""></img>}</div>
               <div className={Style.profile_info_wrap}>
                 <div className={Style.profile_name}>{who.name == "" ? "너의 이름은..." : who.name}</div>
                 <div className={Style.profile_email}>
@@ -64,7 +64,7 @@ const Profile = () => {
                   </div>
                   <div>
                     <div className={Style.coin_img_wrap}>
-                      <img src="/img/poke_coin_pixel.png"></img>
+                      <img src="/img/poke_coin_pixel.png" alt=""></img>
                     </div>
                     <span>{who.credit}</span>
                   </div>
@@ -87,7 +87,7 @@ const Profile = () => {
           </div>
           <div className={Style.rep_wrap}>
             <div className={Style.rep_ring}></div>
-            {who.rep == 0 ? <img src="/img/poke_silueta.png"></img> : <img src={pokedata && pokedata.motion_url}></img>}
+            {who.rep == 0 ? <img src="/img/poke_silueta.png" alt=""></img> : <img src={pokedata && pokedata.motion_url} alt=""></img>}
           </div>
         </aside>
       </>

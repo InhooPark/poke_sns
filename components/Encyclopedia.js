@@ -18,7 +18,7 @@ const Encyclopedia = () => {
   const poke_key = useRef(0);
   const [status, setStatus] = useState(false);
   //포켓몬 크레딧 - 가지고 있는 크레딧
-  const [haveCredit, setHaveCredit] = useState(0)
+  const [haveCredit, setHaveCredit] = useState(0);
 
   //보유중인 포켓몬(테이블명 : have_poke)에 id+poke_id  가져오기
   const havePokeGet = () => {
@@ -39,7 +39,7 @@ const Encyclopedia = () => {
   //pokemon.(id,credit, ko_name)
   const pokeBuy = (pokemon) => {
     currentKey.current = pokemon;
-    setHaveCredit(who.credit - currentKey.current.credit)
+    setHaveCredit(who.credit - currentKey.current.credit);
     if (userHave.includes(pokemon.id.toString())) {
       alert("이미 보유중인 포켓몬 입니다");
     } else {
@@ -119,7 +119,7 @@ const Encyclopedia = () => {
                 return (
                   <figure className={`${Style.poke_card}`} key={pokemon.id}>
                     <div className={Style.card_img_wrap}>
-                      <img src={pokemon.card_url}></img>
+                      <img src={pokemon.card_url} alt=""></img>
                     </div>
                     <figcaption className={Style.card_info_wrap}>
                       <p>
@@ -138,7 +138,7 @@ const Encyclopedia = () => {
                 return (
                   <figure className={`${Style.poke_card} ${Style.have}`} key={pokemon.id}>
                     <div className={Style.card_img_wrap}>
-                      <img src={pokemon.card_url}></img>
+                      <img src={pokemon.card_url} alt=""></img>
                     </div>
                     <figcaption className={Style.card_info_wrap}>
                       <p>
@@ -202,7 +202,7 @@ const Encyclopedia = () => {
   } else {
     return (
       <div className={Style.encyclopedia_load}>
-        <img src="/img/loadimg/pika_heart.webp"></img>
+        <img src="/img/loadimg/pika_heart.webp" alt=""></img>
       </div>
     );
   }

@@ -65,9 +65,9 @@ const Followlist = () => {
             <div key={!user ? key : user.id} className={Style.follow_list}>
               <div className={Style.follow_list_pro_img}>
                 {!user ? (
-                  <img src="/img/poke_profile_img/pokballpixel-000.png"></img>
+                  <img src="/img/poke_profile_img/pokballpixel-000.png" alt=""></img>
                 ) : (
-                  <img src={`/img/poke_profile_img/pokballpixel-${user.pro_img}.png`}></img>
+                  <img src={`/img/poke_profile_img/pokballpixel-${user.pro_img}.png`} alt=""></img>
                 )}
               </div>
               <div className={Style.follow_list_info}>
@@ -75,7 +75,7 @@ const Followlist = () => {
                 <p className={Style.follow_list_email}>@{user ? user.email : "탈퇴한 회원입니다."}</p>
               </div>
               <div className={Style.follow_list_heart} onClick={() => favoriteUser(user.id)}>
-                <img src="/img/svg/heart-fill.svg" />
+                <img src="/img/svg/heart-fill.svg" alt="" />
               </div>
             </div>
           );
@@ -86,7 +86,7 @@ const Followlist = () => {
     return (
       <>
         <div className={Style.follow_load}>
-          <img src="/img/loadimg/pika_heart.webp"></img>
+          <img src="/img/loadimg/pika_heart.webp" alt=""></img>
         </div>
       </>
     );

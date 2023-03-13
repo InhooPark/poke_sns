@@ -127,7 +127,7 @@ const Item = ({ obj, dataGet }) => {
           <div className={styles.profileInfo}>
             <div className={styles.profile_info_wrap}>
               <div className={styles.profile_img}>
-                <img src={`/img/poke_profile_img/pokballpixel-${owner.pro_img}.png`}></img>
+                <img src={`/img/poke_profile_img/pokballpixel-${owner.pro_img}.png`} alt=""></img>
               </div>
               <div>
                 <p className={styles.user}>{owner.name}</p>
