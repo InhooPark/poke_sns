@@ -41,7 +41,6 @@ const Contenteditor = () => {
           <div className={styles.pro_img}>
             <img src={`/img/poke_profile_img/pokballpixel-001.png`}></img>
           </div>
-          <p></p>
         </div>
         <div className={styles.textBox}>
           <textarea type="text" name="content" placeholder="무슨 일이 있었나요?" />
