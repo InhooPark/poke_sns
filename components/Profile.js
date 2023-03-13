@@ -4,21 +4,17 @@ import { useSession, signOut } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import { InfoUser } from "@/context/infoContext";
-import { ColorContext } from "@/context/ColorTheme";
 
 const Profile = () => {
   const { data: session } = useSession();
   const { setPageStatus, data, pokedata, setPokedata } = useContext(Statusgroup);
-  // const { color } = useContext(ColorContext);
   const { who, setWho } = useContext(InfoUser);
   const whoseId = session.user.id;
-  // console.log(color);
 
   const getPoke = () => {
     if (who !== undefined) {
       axios.get("/api/encyclopedia").then((res) => {
         setPokedata(res.data[who.rep - 1]);
-        // setPokedata(res.data);
       });
     }
   };
