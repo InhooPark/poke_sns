@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     try {
       const encycloData = await prisma.poke_table.findMany();
       res.json(encycloData);
-      return encycloData;
     } catch (err) {
       res.send(err);
     }
