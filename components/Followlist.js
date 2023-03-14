@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
+import { InfoUser } from "@/context/InfoContext";
 
 const Followlist = () => {
   const { data: session } = useSession();
   const [users, setUsers] = useState([]);
   const [data, setData] = useState([]);
+  const { myfollowlist } = useContext(InfoUser);
 
   // 탈퇴한 회원일때 예외처리 해야함 꼭!
 
@@ -29,19 +31,7 @@ const Followlist = () => {
   };
 
   const getUsers = () => {
-    axios
-      .get("/api/follow/", {
-        params: {
-          id: session.user.id,
-        },
-      })
-      .then((res) => {
-        if (res.data.follow_list !== "") {
-          setUsers(res.data.follow_list.split(","));
-        } else {
-          return;
-        }
-      });
+    setUsers(myfollowlist);
   };
 
   const favoriteUser = (id) => {

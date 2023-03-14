@@ -3,11 +3,12 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { InfoUser } from "@/context/InfoContext";
 
 const SearchList = () => {
   const { searchID } = useContext(Statusgroup);
+  const { myfollowlist } = useContext(InfoUser);
   const { data: session } = useSession();
-  const [followlist, setFollowlist] = useState([]);
   const [followModal, setFollowModal] = useState(false);
   const [followCancel, setFollowCancel] = useState();
   const followTarget = useRef();
@@ -15,46 +16,26 @@ const SearchList = () => {
   const favoriteUser = (id) => {
     followTarget.current = id;
     setFollowModal(true);
-    if (followlist.find((fav) => fav == id)) {
+    if (myfollowlist.find((fav) => fav == id)) {
       setFollowCancel(false);
     } else {
       setFollowCancel(true);
     }
   };
 
-  const favoriteListup = () => {
-    axios
-      .get("/api/follow", {
-        params: {
-          id: session.user.id,
-        },
-      })
-      .then((res) => {
-        if (res.data.follow_list !== "") {
-          setFollowlist(res.data.follow_list.split(","));
-        } else {
-          return;
-        }
-      });
-  };
-
   const followBtn = () => {
     if (followCancel) {
-      followlist.push(followTarget.current);
-      axios.post("/api/follow", { id: session.user.id, data: followlist });
+      myfollowlist.push(followTarget.current);
+      axios.post("/api/follow", { id: session.user.id, data: myfollowlist });
       setFollowModal(false);
       location.reload();
     } else {
-      let aa = followlist.filter((id) => id != followTarget.current);
+      let aa = myfollowlist.filter((id) => id != followTarget.current);
       axios.post("/api/follow", { id: session.user.id, data: aa });
       setFollowModal(false);
       location.reload();
     }
   };
-
-  useEffect(() => {
-    favoriteListup();
-  }, []);
 
   if (searchID !== undefined) {
     if (searchID.length) {
@@ -71,7 +52,7 @@ const SearchList = () => {
                   <p className={Style.user_list_email}>@{user.email}</p>
                 </div>
                 <div className={Style.user_list_follow} onClick={() => favoriteUser(user.id)}>
-                  {followlist && followlist.find((fav) => fav == user.id) ? (
+                  {myfollowlist && myfollowlist.find((fav) => fav == user.id) ? (
                     <img src="/img/svg/heart-fill.svg" alt="" />
                   ) : (
                     <img src="/img/svg/heart.svg" alt="" />

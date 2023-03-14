@@ -18,21 +18,7 @@ const Profile = () => {
       });
     }
   };
-  const getWho = () => {
-    axios
-      .get("/api/auth/who", {
-        params: {
-          id: whoseId,
-        },
-      })
-      .then((res) => {
-        setWho(res.data);
-      });
-  };
 
-  useEffect(() => {
-    getWho();
-  }, [data]);
   useEffect(() => {
     getPoke();
   }, [who]);

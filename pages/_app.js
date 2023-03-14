@@ -8,15 +8,15 @@ import { SessionProvider } from "next-auth/react";
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
-      <InfoContext>
-        <Context>
-          <StatusContext>
+      <StatusContext>
+        <InfoContext>
+          <Context>
             <ColorTheme>
               <Component {...pageProps} />
             </ColorTheme>
-          </StatusContext>
-        </Context>
-      </InfoContext>
+          </Context>
+        </InfoContext>
+      </StatusContext>
     </SessionProvider>
   );
 }

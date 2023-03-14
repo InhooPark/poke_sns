@@ -1,19 +1,18 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "@/styles/List.module.scss";
 import { useSession } from "next-auth/react";
 import { Statusgroup } from "@/context/StatusContext";
-import axios from "axios";
 import { InfoUser } from "@/context/InfoContext";
+import axios from "axios";
 import moment from "moment";
 
 const Item = ({ obj, dataGet }) => {
   const { data: session } = useSession();
   const [infoMod, setInfoMod] = useState(false);
-  const [followlist, setFollowlist] = useState([]);
   const [favoritelist, setFavoritelist] = useState([]);
   const [owner, setOwner] = useState();
   const { setPageStatus, setListUpdate, data, contentlist } = useContext(Statusgroup);
-  const { who } = useContext(InfoUser);
+  const { who, myfollowlist } = useContext(InfoUser);
   const dateAll = moment(obj.date).add(9, "hours").fromNow();
   const dateFollow = moment(obj.date).fromNow();
 
@@ -27,22 +26,6 @@ const Item = ({ obj, dataGet }) => {
       })
       .then((res) => {
         setOwner(res.data);
-      });
-  };
-
-  const getFollowList = () => {
-    axios
-      .get("/api/follow", {
-        params: {
-          id: session.user.id,
-        },
-      })
-      .then((res) => {
-        if (res.data.follow_list !== undefined) {
-          setFollowlist(res.data.follow_list.split(","));
-        } else {
-          return;
-        }
       });
   };
 
@@ -85,11 +68,11 @@ const Item = ({ obj, dataGet }) => {
 
   const userFollow = (id, bool) => {
     if (!bool) {
-      followlist.push(id);
-      axios.post("/api/follow", { id: session.user.id, data: followlist });
+      myfollowlist.push(id);
+      axios.post("/api/follow", { id: session.user.id, data: myfollowlist });
       location.reload();
     } else {
-      let aa = followlist.filter((obj) => obj != id);
+      let aa = myfollowlist.filter((obj) => obj != id);
       axios.post("/api/follow", { id: session.user.id, data: aa });
       location.reload();
     }
@@ -112,7 +95,6 @@ const Item = ({ obj, dataGet }) => {
     getFavoriteList();
   };
   useEffect(() => {
-    getFollowList();
     getFavoriteList();
   }, []);
   useEffect(() => {
@@ -144,8 +126,8 @@ const Item = ({ obj, dataGet }) => {
               </svg>
               {session.user.id !== obj.user_id ? (
                 <div className={infoMod ? `${styles.info_mod_btn_wrap} ${styles.on}` : styles.info_mod_btn_wrap}>
-                  <p className={styles.follow} onClick={() => userFollow(obj.user_id, followlist && followlist.includes(obj.user_id.toString()))}>
-                    {followlist && followlist.includes(obj.user_id.toString()) ? "언팔로우" : "팔로우"}
+                  <p className={styles.follow} onClick={() => userFollow(obj.user_id, myfollowlist && myfollowlist.includes(obj.user_id.toString()))}>
+                    {myfollowlist && myfollowlist.includes(obj.user_id.toString()) ? "언팔로우" : "팔로우"}
                   </p>
                 </div>
               ) : (
