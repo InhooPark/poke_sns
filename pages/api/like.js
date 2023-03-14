@@ -30,6 +30,7 @@ async function handler(req, res) {
 
   const dataPut = async () => {
     try {
+      console.log(body);
       // like
       const favoritelistupdate = await prisma.favorite_table.update({
         where: {
@@ -39,6 +40,7 @@ async function handler(req, res) {
           favorite_list: body.data.toString(),
         },
       });
+      console.log(favoritelistupdate);
 
       const favoritecount = await prisma.list_table.findUnique({
         where: {
