@@ -3,8 +3,25 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 import { useSession } from "next-auth/react";
 import { InfoUser } from "@/context/InfoContext";
+import {Chart as ChartJS,RadialLinearScale,PointElement,LineElement,Filler,Tooltip,Legend,} from 'chart.js';
+import { Radar } from 'react-chartjs-2';
+
+ChartJS.register( RadialLinearScale, PointElement, LineElement, Filler, Tooltip,Legend );
+export const data = {
+  labels: ['공격', '방어', '스피드', '체력', '특수공격', '특수방어'],
+  datasets: [
+    {
+      label: '능력치',
+      data: [2, 9, 3, 5, 2, 3],
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1,
+    },
+  ],
+};
 
 const Encyclopedia = () => {
+  
   const [pokeData, setPokeData] = useState();
   const { data: session } = useSession();
   //보유중인 포켓몬이
@@ -108,7 +125,7 @@ const Encyclopedia = () => {
     getEncyclopedia();
     havePokeGet();
   }, [session]);
-
+  pokeData && console.log(JSON.parse(pokeData[0].stats))
   if (userHave !== undefined) {
     return (
       <>
@@ -192,6 +209,9 @@ const Encyclopedia = () => {
           <div className={status ? `${Style.sticky_tray}  ${Style.on}` : `${Style.sticky_tray}`}>
             <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick2(e)}>
               <div className={Style.pickup}>
+                <div>
+                  <Radar data={data} />
+                </div>
                 <button onClick={() => changeRep()}>대표캐릭터 설정</button>
               </div>
             </div>
