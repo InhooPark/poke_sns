@@ -50,6 +50,7 @@ const Chart = ({ num }) => {
               ticks: {
                 beginAtZero: true,
                 stepSize: 30,
+                z: 1,
               },
             },
           }}
