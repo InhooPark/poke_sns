@@ -5,8 +5,7 @@ import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import Headmeta from "./Headmeta";
 import { IconButton, Menu, MenuItem } from "@mui/material";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 const Header = () => {
   const { pageStatus, setPageStatus, setSearchID } = useContext(Statusgroup);
   let [title, setTitle] = useState();
@@ -115,7 +114,7 @@ const Header = () => {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <MoreVertIcon className={styles.icon_dot}/>
+        <ManageAccountsIcon className={styles.icon_dot}/>
       </IconButton>
       <Menu
         className = {styles.long_menu}

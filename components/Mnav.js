@@ -3,14 +3,15 @@ import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import { Create, Home, MenuBook, Whatshot } from '@mui/icons-material';
+import { Add, Create, Description, Home, MenuBook, Whatshot } from '@mui/icons-material';
 import styles from '@/styles/Mnav.module.scss';
 
 const actions = [
-  { icon: <Home />, name: 'Home' },
-  { icon: <Create />, name: 'Write' },
-  { icon: <MenuBook />, name: 'Collection' },
-  { icon: <Whatshot />, name: 'Best' },
+  { icon: <Home />, name: '홈' },
+  { icon: <Whatshot />, name: '인기' },
+  { icon: <MenuBook />, name: '도감' },
+  { icon: <Description />, name: '작성글' },
+  { icon: <Create />, name: '글쓰기' },
 ];
 
 export default function ControlledOpenSpeedDial() {
@@ -28,7 +29,7 @@ export default function ControlledOpenSpeedDial() {
         ariaLabel="SpeedDial controlled open example"
         sx={{ position: 'absolute', bottom: 16, right: 16,'& .MuiFab-primary': { '&:hover': {backgroundColor: 'rgba(224, 102, 102)'} }}}
         icon={<SpeedDialIcon
-        sx={{ color:'#fffbef',햐background:'rgba(224, 102, 102)' }}/>}
+        sx={{ color:'#fffbef',background:'rgba(224, 102, 102)' }}/>}
         onClose={handleClose}
         onOpen={handleOpen}
         open={open}
@@ -38,6 +39,7 @@ export default function ControlledOpenSpeedDial() {
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
+            // tooltipOpen 
             onClick={handleClose}
             sx={{ color:'rgba(224, 102, 102)',background:'#fffbef' }}
           />

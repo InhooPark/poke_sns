@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1400px) {
     .Mobile_profile{
       position: absolute;
       display: block;
@@ -10,11 +10,27 @@
       top:10px;
       right: 20px;
       .long_button{
-        top: 20px;
+        top: 45px;
+        right: 3rem;
 
         .icon_dot{
           color: rgba(224, 102, 102);
         }
+      }
+      .long_menu{
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .Mobile_profile{
+      display: block;
+      border: none!important;
+      top:10px;
+      right: 20px;
+      .long_button{
+        top: 20px;
+        right: 1rem;
       }
       .long_menu{
       }
