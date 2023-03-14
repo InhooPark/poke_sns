@@ -33,7 +33,7 @@ const Chart = ({ num }) => {
           label: "Status",
           data: Object.values(parseData),
           backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1    )",
+          borderColor: "rgba(255, 99, 132, 1)",
           borderWidth: 1,
         },
       ],
@@ -46,10 +46,10 @@ const Chart = ({ num }) => {
           options={{
             scale: {
               min: 0,
-              max: 150,
+              max: 160,
               ticks: {
                 beginAtZero: true,
-                stepSize: 30,
+                stepSize: 40,
                 z: 1,
               },
             },
