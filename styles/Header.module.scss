@@ -1,0 +1,22 @@
+.Mobile_profile{
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .Mobile_profile{
+      position: absolute;
+      display: block;
+      border: none!important;
+      top:10px;
+      right: 20px;
+      .long_button{
+        top: 20px;
+
+        .icon_dot{
+          color: rgba(224, 102, 102);
+        }
+      }
+      .long_menu{
+      }
+    }
+  }

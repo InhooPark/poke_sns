@@ -18,8 +18,10 @@ export default function ControlledOpenSpeedDial() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+
+
   return (
-    <Box sx={{ height: '100%', transform: 'translateZ(0px)', flexGrow: 1}}
+    <Box sx={{ height: '100%', transform: 'translateZ(0px)', flexGrow: 1,'& .MuiFab-primary': { backgroundColor: 'rgba(224, 102, 102)'}}}
     className = {styles.navBtn}>
       <SpeedDial
         className={styles.dialback}
