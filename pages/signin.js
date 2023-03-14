@@ -2,13 +2,12 @@ import Headmeta from "@/components/Headmeta";
 import Signnav from "@/components/Signnav";
 import React, { useRef, useState } from "react";
 import Style from "@/styles/sign.module.scss";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const Signin = () => {
   const [formStatus, setFormStatus] = useState();
   const { data: session, status } = useSession();
-  const router = useRouter();
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -28,14 +27,14 @@ const Signin = () => {
 
     if (!result.error) {
       setFormStatus(`Log in Success!`);
-      router.push("/main");
+      location.replace("/main");
     } else {
       setFormStatus(`Error Occured : ${result.error}`);
     }
   }
 
   if (status === "authenticated") {
-    router.replace("/");
+    location.replace("/");
   } else if (status === "unauthenticated") {
     return (
       <>

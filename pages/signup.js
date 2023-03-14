@@ -16,7 +16,6 @@ const Signup = () => {
   const passwordInputRef = useRef();
 
   const { status } = useSession();
-  const router = useRouter();
 
   async function createUser(emailref, passwordref) {
     await axios.post("/api/auth/signup", { email: emailref, password: passwordref }).then((res) => {
@@ -32,7 +31,7 @@ const Signup = () => {
 
     try {
       const result = await createUser(enteredEmail, enteredPassword);
-      router.replace("/signin");
+      location.replace("/signin");
       setSignnav(true);
     } catch (error) {
       setFormStatus(`Error Occured: ${error.message}`);
@@ -40,7 +39,7 @@ const Signup = () => {
   }
 
   if (status === "authenticated") {
-    router.replace("/");
+    location.replace("/");
   }
   return (
     <>
