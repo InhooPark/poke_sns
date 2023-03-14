@@ -6,6 +6,7 @@ import axios from "axios";
 import Headmeta from "./Headmeta";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import { useRouter } from "next/router";
 const Header = () => {
   const { pageStatus, setPageStatus, setSearchID } = useContext(Statusgroup);
   let [title, setTitle] = useState();
@@ -24,6 +25,7 @@ const Header = () => {
   ];
   
   const ITEM_HEIGHT = 3;
+
 
   function titleValue() {
     switch (pageStatus) {
@@ -128,7 +130,11 @@ const Header = () => {
           style: {
             // maxHeight: ITEM_HEIGHT * 4.5,
             minHeight: ITEM_HEIGHT * 4.5,
+            minWidth: '120px',
             width: '10ch',
+            backgroundColor : '#fffbef',
+            color : '#111',
+            fontFamily : 'NanumSquareRound',
           },
         }}
       >

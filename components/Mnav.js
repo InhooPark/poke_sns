@@ -1,24 +1,25 @@
-import * as React from 'react';
+
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import { Add, Create, Description, Home, MenuBook, Whatshot } from '@mui/icons-material';
+import { Create, Description, Home, MenuBook, Whatshot } from '@mui/icons-material';
 import styles from '@/styles/Mnav.module.scss';
-
-const actions = [
-  { icon: <Home />, name: '홈' },
-  { icon: <Whatshot />, name: '인기' },
-  { icon: <MenuBook />, name: '도감' },
-  { icon: <Description />, name: '작성글' },
-  { icon: <Create />, name: '글쓰기' },
-];
+import React, { useState } from 'react';
 
 export default function ControlledOpenSpeedDial() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+
+const actions = [
+  { icon: <Home />, name: '홈', onClick: () => setPageStatus("LIST") },
+  { icon: <Whatshot />, name: '인기', onClick: () => setPageStatus("TREND")},
+  { icon: <MenuBook />, name: '도감', onClick: () => setPageStatus("ENCYCLOPEDIA") },
+  { icon: <Description />, name: '작성글', onClick: () => setPageStatus("WRITE") },
+  { icon: <Create />, name: '글쓰기', onClick: () => setPageStatus("MYMSG")},
+];
 
 
   return (
@@ -33,6 +34,7 @@ export default function ControlledOpenSpeedDial() {
         onClose={handleClose}
         onOpen={handleOpen}
         open={open}
+        onClick={actions.onClick}
       >
         {actions.map((action) => (
           <SpeedDialAction
