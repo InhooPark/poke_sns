@@ -350,6 +350,9 @@ $header-height: 150px;
     position: relative;
     transform: rotate(0);
     display: flex;
+    &::before {
+      display: none;
+    }
     .nav_container {
       width: 68px;
       position: relative;
