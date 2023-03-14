@@ -42,7 +42,7 @@ const Followlist = () => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [myfollowlist]);
   useEffect(() => {
     getUsersData();
   }, [users]);

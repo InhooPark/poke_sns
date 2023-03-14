@@ -21,9 +21,6 @@ const Maincontents = () => {
     if (who && who.rep === 0) {
       setPageStatus("NEWBIE");
     }
-    // else {
-    //   setPageStatus("LIST ");
-    // }
   }, [who]);
 
   switch (pageStatus) {

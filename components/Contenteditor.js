@@ -32,7 +32,7 @@ const Contenteditor = () => {
   };
   useEffect(() => {
     getUser();
-  }, []);
+  }, [session]);
 
   return (
     <div>
