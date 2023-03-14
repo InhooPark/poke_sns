@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 import { useSession } from "next-auth/react";
 import { InfoUser } from "@/context/InfoContext";
+import Chart from "./Chart";
 
 const Encyclopedia = () => {
   const [pokeData, setPokeData] = useState();
@@ -26,8 +27,10 @@ const Encyclopedia = () => {
       //보유중인 poke_id
       let aa = res.data.poke_id;
       //배열로 쪼개기
-      let arr = aa.split(",");
-      setUserHave(arr);
+      if (aa != undefined) {
+        let arr = aa.split(",");
+        setUserHave(arr);
+      }
     });
   };
   const getEncyclopedia = async () => {
@@ -192,6 +195,7 @@ const Encyclopedia = () => {
           <div className={status ? `${Style.sticky_tray}  ${Style.on}` : `${Style.sticky_tray}`}>
             <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick2(e)}>
               <div className={Style.pickup}>
+                <Chart num={poke_key.current}></Chart>
                 <button onClick={() => changeRep()}>대표캐릭터 설정</button>
               </div>
             </div>
