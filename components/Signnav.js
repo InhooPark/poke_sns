@@ -12,7 +12,7 @@ const Signnav = () => {
     if (signnav) {
       router.push("/signup");
     } else {
-      router.push("signin");
+      router.push("/signin");
     }
   };
 
