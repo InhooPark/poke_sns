@@ -43,14 +43,15 @@ const List = () => {
   };
 
   useEffect(() => {
-    dataGet();
-  }, [contentlist]);
+    getFollowList();
+  }, [arr]);
 
   useEffect(() => {
+    dataGet();
     if (!contentlist) {
       getFollowList();
     }
-  }, [arr]);
+  }, [contentlist]);
 
   useEffect(() => {
     if (result.length) {
