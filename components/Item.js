@@ -117,6 +117,7 @@ const Item = ({ obj, dataGet }) => {
   }, []);
   useEffect(() => {
     getContentOwner();
+    getFavoriteList();
   }, [data]);
 
   if (owner !== undefined) {
@@ -161,11 +162,7 @@ const Item = ({ obj, dataGet }) => {
           </div>
           <pre className={styles.detail}>{obj.content}</pre>
           <section className={styles.btn}>
-            {favoritelist && favoritelist.includes(session.user.id.toString()) ? (
-              <button className={styles.fillheart} onClick={(e) => heart(e)}></button>
-            ) : (
-              <button className={styles.heart} onClick={(e) => heart(e)}></button>
-            )}
+            <button className={favoritelist.includes(session.user.id.toString()) ? styles.fillheart : styles.heart} onClick={heart}></button>
           </section>
         </li>
       </>
