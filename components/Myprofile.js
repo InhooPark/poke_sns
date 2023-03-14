@@ -68,7 +68,7 @@ const Myprofile = () => {
 
   useEffect(() => {
     getWho();
-  }, []);
+  }, [who]);
 
   if (save !== undefined) {
     return (

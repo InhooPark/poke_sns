@@ -1,10 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Item from "./Item";
 import styles from "@/styles/List.module.scss";
+import { Statusgroup } from "@/context/StatusContext";
 
 const Trend = () => {
   const [trendlist, setTrendlist] = useState();
+  const { data } = useContext(Statusgroup);
 
   const getTrendlist = () => {
     let arr = [];
@@ -21,7 +23,7 @@ const Trend = () => {
 
   useEffect(() => {
     getTrendlist();
-  }, []);
+  }, [data]);
 
   return (
     <div className={styles.listBox}>

@@ -96,8 +96,6 @@ const Item = ({ obj, dataGet }) => {
   };
   useEffect(() => {
     getFavoriteList();
-  }, []);
-  useEffect(() => {
     getContentOwner();
     getFavoriteList();
   }, [data]);

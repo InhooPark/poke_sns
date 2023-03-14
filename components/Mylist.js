@@ -22,7 +22,7 @@ const Mylist = () => {
 
   useEffect(() => {
     getMyList();
-  }, []);
+  }, [session]);
 
   if (!mycomment.length)
     return (

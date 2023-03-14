@@ -22,7 +22,7 @@ const Encyclopedia = () => {
 
   //보유중인 포켓몬(테이블명 : have_poke)에 id+poke_id  가져오기
   const havePokeGet = () => {
-    axios.put(`/api/encyclopedia`, session).then((res) => {
+    axios.put("/api/encyclopedia", session).then((res) => {
       //보유중인 poke_id
       let aa = res.data.poke_id;
       //배열로 쪼개기
@@ -30,8 +30,8 @@ const Encyclopedia = () => {
       setUserHave(arr);
     });
   };
-  const getEncyclopedia = () => {
-    axios.get("/api/encyclopedia").then((res) => {
+  const getEncyclopedia = async () => {
+    await axios.get("/api/encyclopedia").then((res) => {
       setPokeData(res.data);
     });
   };
@@ -66,10 +66,10 @@ const Encyclopedia = () => {
           aa += "," + id;
         }
       });
-      axios.post(`/api/encyclopedia`, { id: session.user.id, data: aa });
+      axios.post("/api/encyclopedia", { id: session.user.id, data: aa });
       //크레딧 관리
       let data = who.credit - currentKey.current.credit;
-      axios.put(`/api/userencyl`, { id: session.user.id, data: data });
+      axios.put("/api/userencyl", { id: session.user.id, data: data });
       location.reload();
     }
   };
@@ -107,7 +107,7 @@ const Encyclopedia = () => {
   useEffect(() => {
     getEncyclopedia();
     havePokeGet();
-  }, []);
+  }, [session]);
 
   if (userHave !== undefined) {
     return (
