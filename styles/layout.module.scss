@@ -140,6 +140,9 @@ $header-height: 150px;
           font-size: 24px;
           font-weight: 800;
         }
+        .btn_text_m {
+          display: none;
+        }
       }
       .nav_trend_btn {
         transform: translateX(-5px);
@@ -160,6 +163,9 @@ $header-height: 150px;
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      .nav_write_btn_m {
+        display: none;
       }
     }
   }
@@ -281,8 +287,6 @@ $header-height: 150px;
         border-radius: 50%;
         filter: blur(30px);
       }
-      .rep_ring {
-      }
       img {
         position: absolute;
         width: 50%;
@@ -315,10 +319,13 @@ $header-height: 150px;
 // 850 까지 로고 살려놨다가 날림
 @media screen and (max-width: 1000px) {
   .header {
-    max-width: 1000vw;
+    width: 768px;
     .logo_btn {
-      flex-grow: 1;
+      width: 68px;
+      border-right: none;
+      border-bottom: 1px solid rgba(224, 102, 102, 0.4);
       .logo_btn_wrap {
+        display: none;
         width: 10vw;
         height: 10vw;
         margin-left: 3vw;
@@ -326,7 +333,6 @@ $header-height: 150px;
     }
     .status {
       max-width: 700px;
-      flex-shrink: 0;
       .margin_dummy {
         width: 100px;
       }
@@ -338,35 +344,60 @@ $header-height: 150px;
   }
 
   .layout_main {
-    width: 1000px;
+    width: 768px;
     margin: 0 auto;
     height: calc(100vh - $header-height);
     position: relative;
     transform: rotate(0);
     display: flex;
-    // 이부분은 모바일 ui 만들고 작업
     .nav_container {
-      flex-grow: 1;
+      width: 68px;
       position: relative;
       .nav_btn_wrap {
-        width: 100px;
-        min-width: 68px;
-        .nav_trend_btn {
-          transform: translateX(-5px);
-          span {
-            transform: translateX(-5px);
+        width: 100%;
+
+        > div {
+          width: 100%;
+          margin: 20px 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          > span {
+            display: none;
+          }
+          .btn_text_m {
+            display: block;
+            position: absolute;
+            font-size: 12px;
+            bottom: 5%;
+            right: 5%;
+            font-family: NanumSquareRoundExtraBold;
+            color: #e36e6e;
           }
         }
+
+        .nav_trend_btn {
+          transform: translateX(0px);
+        }
         .nav_write_btn {
-          width: 8vw;
+          display: none;
+        }
+        .nav_write_btn_m {
+          display: flex;
+          width: 100%;
+          margin: 20px 0;
+          svg {
+            width: 100%;
+          }
         }
       }
     }
     // 모바일 ui 만들고 작업
     .main_content_inner {
-      max-width: 700px;
+      width: 700px;
       left: 0;
-      flex-shrink: 0;
     }
   }
 }

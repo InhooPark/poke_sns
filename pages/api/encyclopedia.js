@@ -2,12 +2,21 @@ import { PrismaClient } from "@prisma/client";
 let prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-  const { method, body } = req;
+  const { method, body, query } = req;
   //포켓몬 데이터 뿌리기
   const getEncyclo = async () => {
     try {
-      const encycloData = await prisma.poke_table.findMany();
-      res.json(encycloData);
+      if (query.type === "detail") {
+        const encycloDetail = await prisma.poke_table.findUnique({
+          where: {
+            id: Number(query.id),
+          },
+        });
+        res.json(encycloDetail);
+      } else {
+        const encycloData = await prisma.poke_table.findMany();
+        res.json(encycloData);
+      }
     } catch (err) {
       res.send(err);
     }
