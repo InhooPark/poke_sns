@@ -1,5 +1,5 @@
 import { Statusgroup } from "@/context/StatusContext";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Style from "@/styles/maincon.module.scss";
 import axios from "axios";
 import { useSession } from "next-auth/react";

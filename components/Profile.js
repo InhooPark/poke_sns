@@ -6,10 +6,8 @@ import axios from "axios";
 import { InfoUser } from "@/context/InfoContext";
 
 const Profile = () => {
-  const { data: session } = useSession();
-  const { setPageStatus, data, pokedata, setPokedata } = useContext(Statusgroup);
-  const { who, setWho } = useContext(InfoUser);
-  const whoseId = session.user.id;
+  const { setPageStatus, pokedata, setPokedata } = useContext(Statusgroup);
+  const { who } = useContext(InfoUser);
 
   const getPoke = () => {
     if (who !== undefined) {

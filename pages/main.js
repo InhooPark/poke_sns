@@ -9,14 +9,13 @@ import { Statusgroup } from "@/context/StatusContext";
 const Main = () => {
   const { data: session, status } = useSession();
   const { setPageStatus } = useContext(Statusgroup);
-  const router = useRouter();
 
   useEffect(() => {
     setPageStatus("LIST");
   }, []);
 
   if (status === "unauthenticated") {
-    router.replace("/");
+    location.replace("/");
   } else if (status === "authenticated") {
     return (
       <Layout>
