@@ -118,45 +118,29 @@ const Encyclopedia = () => {
         <article className={Style.encyclopedia_container}>
           {pokeData &&
             pokeData.map((pokemon, key) => {
-              if (userHave.includes(pokemon.id.toString())) {
-                return (
-                  <figure className={`${Style.poke_card}`} key={pokemon.id}>
-                    <div className={Style.card_img_wrap}>
-                      <img src={pokemon.card_url} alt=""></img>
-                    </div>
-                    <figcaption className={Style.card_info_wrap}>
-                      <p>
-                        No.{pokemon.id} &nbsp;
-                        {pokemon.ko_name}
-                      </p>
-                      <div className={Style.info_btn_wrap}>
-                        {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
+              return (
+                <figure className={userHave.includes(pokemon.id.toString()) ? `${Style.poke_card}` : `${Style.poke_card} ${Style.have}`} key={pokemon.id}>
+                  <div className={Style.card_img_wrap}>
+                    <img src={pokemon.card_url} alt=""></img>
+                  </div>
+                  <figcaption className={Style.card_info_wrap}>
+                    <p>
+                      No.{pokemon.id} &nbsp;
+                      {pokemon.ko_name}
+                    </p>
+                    <div className={Style.info_btn_wrap}>
+                      {userHave.includes(pokemon.id.toString()) ? (
+                        <button onClick={() => pokeBuy(pokemon)} disabled>
+                          구매하기
+                        </button>
+                      ) : (
                         <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
-                        <button onClick={() => pokeDetail(key + 1)}>상세정보</button>
-                      </div>
-                    </figcaption>
-                  </figure>
-                );
-              } else {
-                return (
-                  <figure className={`${Style.poke_card} ${Style.have}`} key={pokemon.id}>
-                    <div className={Style.card_img_wrap}>
-                      <img src={pokemon.card_url} alt=""></img>
+                      )}
+                      <button onClick={() => pokeDetail(key + 1)}>상세정보</button>
                     </div>
-                    <figcaption className={Style.card_info_wrap}>
-                      <p>
-                        No.{pokemon.id} &nbsp;
-                        {pokemon.ko_name}
-                      </p>
-                      <div className={Style.info_btn_wrap}>
-                        {/* 보유한 포켓몬일 경우 구매하기 버튼을 disable 시켜도 좋을듯 */}
-                        <button onClick={() => pokeBuy(pokemon)}>구매하기</button>
-                        <button onClick={() => pokeDetail(key + 1)}>상세정보</button>
-                      </div>
-                    </figcaption>
-                  </figure>
-                );
-              }
+                  </figcaption>
+                </figure>
+              );
             })}
           <div className={modalstate ? `${Style.sticky_tray} ${Style.on}` : Style.sticky_tray}>
             <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick(e)}>
