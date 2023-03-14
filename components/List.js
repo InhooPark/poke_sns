@@ -7,7 +7,6 @@ import Item from "./Item";
 import { InfoUser } from "@/context/InfoContext";
 
 const List = () => {
-  const { data: session } = useSession();
   const { data, setData, contentlist, setContentlist, arr, setArr, result, setResult } = useContext(Statusgroup);
   const { myfollowlist } = useContext(InfoUser);
 
@@ -34,7 +33,6 @@ const List = () => {
     // 이부분은 팔로우리스트를 뽑는게 중요한게 아니라 토글에 따라
     // 전체글을 item으로 보낼지 follow목록에 있는 글만 보낼지 결정
     // 그냥 개인적으로 헷갈려서 적어둠
-    console.log(myfollowlist);
     if (contentlist) {
       axios.get("/api/").then((res) => {
         setData(res.data);
