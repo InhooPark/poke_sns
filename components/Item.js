@@ -148,7 +148,7 @@ const Item = ({ obj, dataGet }) => {
             <button className={favoritelist.includes(session.user.id.toString()) ? styles.fillheart : styles.heart} onClick={heart}>
               <p onClick={likeCtrl}>
                 {
-                  like ? favoritelist.includes(session.user.id.toString()) ? obj.like_count-1 : obj.like_count : obj.like_count+1
+                  like ? favoritelist.includes(session.user.id.toString()) ? obj.like_count+1 : obj.like_count-1 : obj.like_count
                 }
               </p>
             </button>
