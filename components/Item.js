@@ -80,7 +80,6 @@ const Item = ({ obj, dataGet }) => {
   const infoModModal = () => {
     setInfoMod(!infoMod);
   };
-
   const heart = async () => {
     if (favoritelist.includes(session.user.id.toString())) {
       // 좋아요 취소
@@ -88,6 +87,7 @@ const Item = ({ obj, dataGet }) => {
       await axios.put("api/like", { type: "down", id: obj.id, data: result });
     } else {
       // 좋아요
+
       favoritelist.push(session.user.id.toString());
       const result = favoritelist.filter((obj) => obj !== "" && obj !== undefined && obj !== null);
       await axios.put("/api/like", { type: "up", id: obj.id, data: result });
@@ -99,7 +99,6 @@ const Item = ({ obj, dataGet }) => {
     getContentOwner();
     getFavoriteList();
   }, [data]);
-
   if (owner !== undefined) {
     return (
       <>
@@ -142,7 +141,13 @@ const Item = ({ obj, dataGet }) => {
           </div>
           <pre className={styles.detail}>{obj.content}</pre>
           <section className={styles.btn}>
-            <button className={favoritelist.includes(session.user.id.toString()) ? styles.fillheart : styles.heart} onClick={heart}></button>
+            <button className={favoritelist.includes(session.user.id.toString()) ? styles.fillheart : styles.heart} onClick={heart}>
+              <p>
+                {
+                  favoritelist.includes(session.user.id.toString()) ? obj.like_count+1 : obj.like_count
+                }
+              </p>
+            </button>
           </section>
         </li>
       </>

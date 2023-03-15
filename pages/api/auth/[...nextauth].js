@@ -13,7 +13,7 @@ export default NextAuth({
         email: { label: "Email", type: "email", placeholder: "e@mail.com" },
         password: { label: "Password", type: "password", placeholder: "password" },
       },
-
+      //인증
       async authorize(credentials) {
         const user = await prisma.user_table.findUnique({
           where: {
@@ -24,7 +24,7 @@ export default NextAuth({
             password: true,
           },
         });
-
+        //status로 상태 관리가 되고 main에서 로그인 확인
         if (!user) {
           throw new Error("No user found!");
         }

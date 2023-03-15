@@ -76,5 +76,4 @@ const Chart = ({ num }) => {
     );
   }
 };
-
 export default Chart;
