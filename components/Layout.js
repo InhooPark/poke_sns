@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
       <main className={Style.layout_main}>
         <Nav></Nav>
         {children}
-        <Mnav/>
+        <Mnav />
         <Profile></Profile>
       </main>
     </>
