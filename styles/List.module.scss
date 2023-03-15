@@ -53,6 +53,9 @@ $mC: #e0666666;
       flex-direction: column;
       align-items: center;
       border-bottom: 1px solid #e0666666;
+      .btn_m {
+        display: none;
+      }
 
       .profileInfo {
         padding: 10px;
@@ -139,11 +142,16 @@ $mC: #e0666666;
         justify-content: flex-end;
         margin: 20px;
         width: 90%;
+        p {
+          text-align: right;
+          position: absolute;
+          right: 80px;
+        }
         .heart {
           width: 36px;
           height: 36px;
           background-color: transparent;
-          background-image: url(".././public/img/svg/heart.svg");
+          background-image: url("/img/svg/heart.svg");
           background-size: 33px;
           background-repeat: no-repeat;
           background-position: center;
@@ -154,12 +162,45 @@ $mC: #e0666666;
           width: 36px;
           height: 36px;
           background-color: transparent;
-          background-image: url(".././public/img/svg/heart-fill.svg");
+          background-image:  url("/img/svg/heart-fill.svg");
           background-size: 33px;
           background-repeat: no-repeat;
           background-position: center;
           border: none;
           transform: translate(-2px, -8px);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .listBox {
+    ul {
+      .detail_list {
+        .profileInfo {
+          .profile_info_wrap {
+            .profile_img {
+            }
+            > div {
+              .user {
+              }
+              .date {
+              }
+            }
+          }
+        }
+        .detail {
+        }
+        .btn {
+          transform: translateX(1rem);
+          p {
+            right: 50px;
+          }
+          .heart {
+          }
+          .fillheart {
+          }
         }
       }
     }
@@ -172,7 +213,9 @@ $mC: #e0666666;
     ul {
       .detail_list {
         .profileInfo {
+          width: 96%;
           .profile_info_wrap {
+            margin: 0 10px;
             .profile_img {
               width: 8vw;
               min-width: 40px;
@@ -194,6 +237,60 @@ $mC: #e0666666;
         }
         .detail {
           font-size: 4vw;
+        }
+        .btn {
+          transform: translateX(0.4rem);
+          .heart {
+          }
+          .fillheart {
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .listBox {
+    ul {
+      .detail_list {
+        .btn_m {
+          width: 36px;
+          height: 36px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          right: 50px;
+          transform: translateX(-50%);
+          p {
+            text-align: right;
+            position: absolute;
+            right: 35px;
+          }
+          .heart {
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            background-image: url(".././public/img/svg/heart.svg");
+            background-size: 24px;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+          }
+          .fillheart {
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            background-image: url(".././public/img/svg/heart-fill.svg");
+            background-size: 24px;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+          }
+        }
+        .btn {
+          display: none;
         }
       }
     }

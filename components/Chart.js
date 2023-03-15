@@ -62,12 +62,12 @@ const Chart = ({ num }) => {
           options={{
             scale: {
               min: 0,
-              max: 150,
+              max: 160,
               ticks: {
                 fontColor: 'red',
                 beginAtZero: true,
-                stepSize: 30,
-                backdropColor: 'rgba(128, 128, 128, 0)',
+                stepSize: 40,
+                z: 1,
               },
             },
           }}

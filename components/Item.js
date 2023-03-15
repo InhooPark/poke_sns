@@ -15,7 +15,8 @@ const Item = ({ obj, dataGet }) => {
   const { who, myfollowlist } = useContext(InfoUser);
   const dateAll = moment(obj.date).add(9, "hours").fromNow();
   const dateFollow = moment(obj.date).fromNow();
-  const [like, setLike] = useState(false)
+  const [like, setLike] = useState(false);
+  const [a, b] = useState()
 
   const getContentOwner = () => {
     axios
@@ -81,7 +82,8 @@ const Item = ({ obj, dataGet }) => {
   const infoModModal = () => {
     setInfoMod(!infoMod);
   };
-  const heart = async () => {
+  const heart = async (e) => {
+    setLike(!like)
     if (favoritelist.includes(session.user.id.toString())) {
       // 좋아요 취소
       const result = favoritelist.filter((obj) => obj !== session.user.id.toString());
@@ -95,13 +97,9 @@ const Item = ({ obj, dataGet }) => {
     }
     getFavoriteList();
   };
-  const likeCtrl = () => {
-    setLike(!like)
-  }
   useEffect(() => {
     getFavoriteList();
     getContentOwner();
-    getFavoriteList();
   }, [data]);
   if (owner !== undefined) {
     return (
@@ -118,6 +116,15 @@ const Item = ({ obj, dataGet }) => {
                 <p className={styles.date}> {contentlist ? dateAll : dateFollow}</p>
               </div>
             </div>
+            <section className={styles.btn_m}>
+                <p>
+                  {
+                    like ? favoritelist.includes(session.user.id.toString()) ? obj.like_count+1 : obj.like_count-1 : obj.like_count
+                  }
+                </p>
+              <button className={favoritelist.includes(session.user.id.toString())   ? styles.fillheart : styles.heart} onClick={heart}>
+              </button>
+            </section>
             <div className={styles.info_mod_wrap} onClick={infoModModal}>
               <svg width="4" height="20.5" viewBox="0 0 8 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -145,12 +152,12 @@ const Item = ({ obj, dataGet }) => {
           </div>
           <pre className={styles.detail}>{obj.content}</pre>
           <section className={styles.btn}>
-            <button className={favoritelist.includes(session.user.id.toString()) ? styles.fillheart : styles.heart} onClick={heart}>
-              <p onClick={likeCtrl}>
+              <p>
                 {
-                  like ? favoritelist.includes(session.user.id.toString()) ? obj.like_count+1 : obj.like_count-1 : obj.like_count
+                  like ? favoritelist.includes(session.user.id.toString()) ? obj.like_count + 1 : obj.like_count - 1 : obj.like_count
                 }
               </p>
+            <button className={favoritelist.includes(session.user.id.toString()) ? styles.fillheart : styles.heart} onClick={heart}>
             </button>
           </section>
         </li>

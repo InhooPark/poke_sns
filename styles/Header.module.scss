@@ -1,0 +1,45 @@
+.Mobile_profile {
+  display: none;
+}
+
+@media screen and (max-width: 1400px) {
+  .Mobile_profile {
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+    position: absolute;
+    display: block;
+    border: none !important;
+    top: 0px;
+    .long_button {
+      position: absolute;
+      top: 75px;
+      transform: translateY(-50%);
+      right: 3rem;
+
+      .icon_dot {
+        color: rgba(224, 102, 102);
+      }
+    }
+    .long_menu {
+      position: absolute;
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .Mobile_profile {
+    width: 768px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Mobile_profile {
+    max-width: 700px;
+    width: 100%;
+    display: block;
+    border: none !important;
+    .long_button {
+      top: 50px;
+    }
+  }
+}

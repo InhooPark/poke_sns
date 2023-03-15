@@ -1,12 +1,47 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Style from "@/styles/layout.module.scss";
+import styles from "@/styles/Header.module.scss";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import Headmeta from "./Headmeta";
+import { IconButton, Menu, MenuItem } from "@mui/material";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 
 const Header = () => {
   const { pageStatus, setPageStatus, setSearchID } = useContext(Statusgroup);
   let [title, setTitle] = useState();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const router = useRouter();
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const menuClick = (e) => {
+    let target = e.target.textContent;
+
+    switch (target) {
+      case "프로필 수정":
+        setPageStatus("PROFILE");
+        break;
+      case "팔로우":
+        setPageStatus("FOLLOW");
+        break;
+      case "로그아웃":
+        signOut();
+        break;
+      default:
+        return;
+    }
+  };
+  const options = ["프로필 수정", "팔로우", "로그아웃"];
+
+  const ITEM_HEIGHT = 3;
 
   function titleValue() {
     switch (pageStatus) {
@@ -71,7 +106,7 @@ const Header = () => {
       <header className={Style.header}>
         <div className={Style.logo_btn}>
           <div className={Style.logo_btn_wrap}>
-            <img src="/img/loadimg/pika_dance.webp" alt=""></img>
+            <img src="/img/loadimg/pika_dance.webp"></img>
           </div>
         </div>
         <div className={Style.status}>
@@ -87,6 +122,45 @@ const Header = () => {
             </div>
           )}
           <div className={Style.status_title}>{title}</div>
+        </div>
+        <div className={styles.Mobile_profile}>
+          <IconButton
+            aria-label="more"
+            className={styles.long_button}
+            aria-controls={open ? "long_menu" : undefined}
+            aria-expanded={open ? "true" : undefined}
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            <ManageAccountsIcon className={styles.icon_dot} />
+          </IconButton>
+          <Menu
+            className={styles.long_menu}
+            MenuListProps={{
+              "aria-labelledby": "long_button",
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+              style: {
+                // maxHeight: ITEM_HEIGHT * 4.5,
+                minHeight: ITEM_HEIGHT * 4.5,
+                minWidth: "120px",
+                width: "10ch",
+                backgroundColor: "#fffbef",
+                color: "#111",
+                fontFamily: "NanumSquareRound",
+              },
+            }}
+            onClick={(e) => menuClick(e)}
+          >
+            {options.map((option) => (
+              <MenuItem className={styles.menuitem} key={option} selected={option === "Pyxis"} onClick={handleClose}>
+                {option}
+              </MenuItem>
+            ))}
+          </Menu>
         </div>
         <div className={Style.search}>
           <p>
