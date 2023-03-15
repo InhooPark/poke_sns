@@ -115,6 +115,9 @@ const Item = ({ obj, dataGet }) => {
                 <p className={styles.date}> {contentlist ? dateAll : dateFollow}</p>
               </div>
             </div>
+            <section className={styles.btn_m}>
+              <button className={favoritelist.includes(session.user.id.toString()) ? styles.fillheart : styles.heart} onClick={heart}></button>
+            </section>
             <div className={styles.info_mod_wrap} onClick={infoModModal}>
               <svg width="4" height="20.5" viewBox="0 0 8 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
