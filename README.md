@@ -33,6 +33,12 @@
     * favorite(like) <br />
     * trend(rank) <br />
 </details>
+<details>
+<summary> ver0.5.0 </summary>
+    * test publish <br />
+    * chart.js <br />
+    * responsive styles <br />
+</details>
 
 <br /><br />
 + 참고사항
