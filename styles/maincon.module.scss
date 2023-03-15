@@ -480,6 +480,19 @@ $height: 150px;
       display: flex;
       justify-content: center;
       align-items: center;
+      > div {
+        text-align: center;
+        > div {
+          margin-bottom: 20px;
+        }
+        > button {
+          border: 1px solid #e36e6e;
+          border-radius: 20px;
+          background-color: #fffbef;
+          padding: 10px 20px;
+          cursor: pointer;
+        }
+      }
       .modal_wrap {
         width: 400px;
         padding: 30px 0;

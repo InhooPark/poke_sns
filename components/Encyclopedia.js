@@ -180,7 +180,7 @@ const Encyclopedia = () => {
                 <div>
                   <Chart num={poke_key.current}></Chart>
                 </div>
-                <button onClick={() => changeRep()}>대표캐릭터 설정</button>
+                <button onClick={() => changeRep()}><p>대표캐릭터 설정</p></button>
               </div>
             </div>
           </div>
