@@ -4,25 +4,36 @@ import styles from "@/styles/Header.module.scss";
 import { Statusgroup } from "@/context/StatusContext";
 import axios from "axios";
 import Headmeta from "./Headmeta";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { IconButton, Link, Menu, MenuItem } from "@mui/material";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { useRouter } from "next/router";
+
+
 const Header = () => {
   const { pageStatus, setPageStatus, setSearchID } = useContext(Statusgroup);
   let [title, setTitle] = useState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const router = useRouter();
+
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const options = [
+  // const options = [
+  //   { name : '프로필 수정', onClick: ()=>setPageStatus("MYPROFILE")},
+  //   {name : '팔로우', onClick : () => setPageStatus("FOLLOWLIST")},
+  //   {name : '로그아웃', onClick : () => router.push("/signin") }
+  // ];
+    const options = [
     '프로필 수정',
     '팔로우',
-    '로그아웃',
-  ];
+    '로그아웃'
+    ];  
+  
   
   const ITEM_HEIGHT = 3;
 
@@ -139,7 +150,12 @@ const Header = () => {
         }}
       >
         {options.map((option) => (
-          <MenuItem className={styles.menuitem} key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+          <MenuItem 
+            className={styles.menuitem} 
+            key={option.name} 
+            selected={option === 'Pyxis'} 
+            onClick={option.onClick}
+          >
             {option}
           </MenuItem>
         ))}
