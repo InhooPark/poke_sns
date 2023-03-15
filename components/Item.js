@@ -15,6 +15,7 @@ const Item = ({ obj, dataGet }) => {
   const { who, myfollowlist } = useContext(InfoUser);
   const dateAll = moment(obj.date).add(9, "hours").fromNow();
   const dateFollow = moment(obj.date).fromNow();
+  const [like, setLike] = useState(false)
 
   const getContentOwner = () => {
     axios
@@ -94,6 +95,9 @@ const Item = ({ obj, dataGet }) => {
     }
     getFavoriteList();
   };
+  const likeCtrl = () => {
+    setLike(!like)
+  }
   useEffect(() => {
     getFavoriteList();
     getContentOwner();
@@ -142,9 +146,9 @@ const Item = ({ obj, dataGet }) => {
           <pre className={styles.detail}>{obj.content}</pre>
           <section className={styles.btn}>
             <button className={favoritelist.includes(session.user.id.toString()) ? styles.fillheart : styles.heart} onClick={heart}>
-              <p>
+              <p onClick={likeCtrl}>
                 {
-                  favoritelist.includes(session.user.id.toString()) ? obj.like_count+1 : obj.like_count
+                  like ? favoritelist.includes(session.user.id.toString()) ? obj.like_count-1 : obj.like_count : obj.like_count+1
                 }
               </p>
             </button>
