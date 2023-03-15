@@ -164,13 +164,53 @@ $mC: #e0666666;
   }
 }
 
+@media screen and (max-width: 1400px) {
+  .listBox {
+    ul {
+      .detail_list {
+        .profileInfo {
+          
+          .profile_info_wrap {
+            
+            .profile_img {
+              
+            }
+            > div {
+              
+              .user {
+              }
+              .date {
+
+              }
+            }
+          }
+        }
+        .detail {
+
+        }
+        .btn {
+          transform: translateX(1rem);
+          .heart {
+          }
+          .fillheart {
+
+          }
+
+          }
+        }
+      }
+    }
+}
+
 @media screen and (max-width: 768px) {
   .listBox {
     width: 100vw;
     ul {
       .detail_list {
         .profileInfo {
+          width: 96%;
           .profile_info_wrap {
+            margin: 0 10px;
             .profile_img {
               width: 8vw;
               min-width: 40px;
@@ -193,7 +233,55 @@ $mC: #e0666666;
         .detail {
           font-size: 4vw;
         }
+        .btn {
+          transform: translateX(0.4rem);
+          .heart {
+          }
+          .fillheart {
+
+          }
+
+          }
+        }
       }
     }
   }
-}
+
+  @media screen and (max-width: 480px) {
+    .listBox {
+      ul {
+        .detail_list {
+          .profileInfo {
+            
+            .profile_info_wrap {
+              
+              .profile_img {
+                
+              }
+              > div {
+                
+                .user {
+                }
+                .date {
+
+                }
+              }
+            }
+          }
+          .detail {
+
+          }
+          .btn {
+            transform: translate(-3.6rem , -6rem);
+            .heart {
+              transform: translateY(-11px);
+            }
+            .fillheart {
+              transform: translateY(-11px);
+            }
+  
+            }
+          }
+        }
+      }
+  }

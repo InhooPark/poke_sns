@@ -76,6 +76,12 @@ $mainC: #e17777;
         font-size: 3.5vw;
         padding: 20px 30px;
       }
+      section{
+
+        display: flex;
+        justify-content: space-between;
+        margin-right: 30px;
+      }
       section {
         margin-top: 20px;
         button {
