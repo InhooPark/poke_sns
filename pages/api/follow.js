@@ -27,7 +27,7 @@ async function handler(req, res) {
     }
   };
 
-  const postData = async () => {
+  const putData = async () => {
     try {
       const updatefollowlist = await prisma.follow_table.update({
         where: {
@@ -49,6 +49,9 @@ async function handler(req, res) {
       break;
     case "POST":
       await postData();
+      break;
+    case "PUT":
+      await putData();
       break;
     default:
       return;

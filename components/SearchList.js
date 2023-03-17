@@ -26,12 +26,12 @@ const SearchList = () => {
   const followBtn = () => {
     if (followCancel) {
       myfollowlist.push(followTarget.current);
-      axios.post("/api/follow", { id: session.user.id, data: myfollowlist });
+      axios.put("/api/follow", { id: session.user.id, data: myfollowlist });
       setFollowModal(false);
       location.reload();
     } else {
       let aa = myfollowlist.filter((id) => id != followTarget.current);
-      axios.post("/api/follow", { id: session.user.id, data: aa });
+      axios.put("/api/follow", { id: session.user.id, data: aa });
       setFollowModal(false);
       location.reload();
     }

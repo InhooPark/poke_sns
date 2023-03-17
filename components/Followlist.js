@@ -36,7 +36,7 @@ const Followlist = () => {
 
   const favoriteUser = (id) => {
     let result = users.filter((obj) => obj != id);
-    axios.post("/api/follow", { id: session.user.id, data: result });
+    axios.put("/api/follow", { id: session.user.id, data: result });
     location.reload();
   };
 
