@@ -140,32 +140,6 @@ $header-height: 150px;
           font-size: 24px;
           font-weight: 800;
         }
-        .btn_text_m {
-          display: none;
-        }
-      }
-      .nav_trend_btn {
-        transform: translateX(-5px);
-        span {
-          transform: translateX(-5px);
-        }
-      }
-      .nav_write_btn {
-        margin: 80px 0 0 8px;
-        background-color: #e26262;
-        width: 220px;
-        height: 60px;
-        text-align: center;
-        border-radius: 30px;
-        color: #fff;
-        font-size: 24px;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .nav_write_btn_m {
-        display: none;
       }
     }
   }
@@ -194,67 +168,119 @@ $header-height: 150px;
         width: 100%;
         background-color: rgba(224, 102, 102, 0.1);
         display: flex;
-        .profile_img_wrap {
-          width: 50px;
-          height: 50px;
-          margin: 10px;
-          overflow: hidden;
-          img {
-            width: 100%;
-            object-fit: cover;
+        flex-direction: column;
+        .profile_user_wrap {
+          display: flex;
+          .profile_img_wrap {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            overflow: hidden;
+            display: inline-block;
+            img {
+              width: 100%;
+              object-fit: cover;
+            }
           }
-        }
-        .profile_info_wrap {
-          width: 100%;
-          flex-grow: 1;
-          margin: 10px;
-          .profile_name {
-            width: 100%;
-            font-size: 1.2em;
-          }
-          .profile_email {
-            width: 100%;
-            color: #888888;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            > div {
-              &:nth-child(1) {
-                display: flex;
-                align-items: center;
-              }
-              &:nth-child(2) {
-                font-size: 0.8em;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                .coin_img_wrap {
-                  width: 25px;
-                  height: 25px;
-                  overflow: hidden;
-                  img {
-                    width: 100%;
-                    object-fit: cover;
+          .profile_info_wrap {
+            margin: 10px;
+            flex-grow: 1;
+            display: inline-block;
+            .profile_name {
+              width: 100%;
+              font-size: 1.2em;
+            }
+            .profile_email {
+              width: 100%;
+              color: #888888;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              > div {
+                &:nth-child(1) {
+                  display: flex;
+                  align-items: center;
+                }
+                &:nth-child(2) {
+                  font-size: 0.8em;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  .coin_img_wrap {
+                    width: 25px;
+                    height: 25px;
+                    overflow: hidden;
+                    img {
+                      width: 100%;
+                      object-fit: cover;
+                    }
                   }
                 }
               }
             }
           }
-          .profile_badge {
-            width: 100%;
-            height: 60px;
-            margin-top: 10px;
+        }
+        .profile_badge_wrap {
+          height: 60px;
+          margin: 10px auto;
+          border: 1px solid #e36e6e;
+          border-radius: 15px;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          position: relative;
+
+          .profile_badge_mod_btn {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: -12px;
+            right: -12px;
             border: 1px solid #e36e6e;
-            border-radius: 15px;
+            border-radius: 50%;
+            background-color: #fffbef;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
-            p {
+            cursor: pointer;
+          }
+          .profile_badge_img_wrap {
+            width: 40px;
+            height: 40px;
+            margin: 10px;
+            background-color: rgba(224, 102, 102, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            > img {
+              // margin: 5%;
+              width: 1200%;
+              object-fit: cover;
+              &.profile_badge_img_empty {
+                width: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+          .profile_badge_modal {
+            width: 100%;
+            max-height: 300px;
+            background-color: #00000088;
+            position: absolute;
+            top: 100%;
+            display: none;
+            &.on {
+              display: block;
+            }
+            .modal_img_wrap {
               width: 40px;
               height: 40px;
-              background-color: rgba(224, 102, 102, 0.3);
-              border-radius: 10px;
+              margin: 10px;
+              display: inline-block;
+              overflow: hidden;
+              > img {
+                width: 1200%;
+                object-fit: cover;
+              }
             }
           }
         }
@@ -315,15 +341,11 @@ $header-height: 150px;
     }
   }
 }
-
-// 850 까지 로고 살려놨다가 날림
 @media screen and (max-width: 1000px) {
   .header {
     width: 768px;
     .logo_btn {
       width: 68px;
-      border-right: none;
-      border-bottom: 1px solid rgba(224, 102, 102, 0.4);
       .logo_btn_wrap {
         display: none;
         width: 10vw;
@@ -358,7 +380,6 @@ $header-height: 150px;
       position: relative;
       .nav_btn_wrap {
         width: 100%;
-
         > div {
           width: 100%;
           margin: 20px 0;
@@ -367,44 +388,21 @@ $header-height: 150px;
           justify-content: center;
           align-items: center;
           position: relative;
+          > svg {
+            margin: 10px;
+          }
           > span {
             display: none;
-          }
-          .btn_text_m {
-            display: block;
-            position: absolute;
-            font-size: 12px;
-            bottom: 5%;
-            right: 5%;
-            font-family: NanumSquareRoundExtraBold;
-            color: #e36e6e;
-          }
-        }
-
-        .nav_trend_btn {
-          transform: translateX(0px);
-        }
-        .nav_write_btn {
-          display: none;
-        }
-        .nav_write_btn_m {
-          display: flex;
-          width: 100%;
-          margin: 20px 0;
-          svg {
-            width: 100%;
           }
         }
       }
     }
-    // 모바일 ui 만들고 작업
     .main_content_inner {
       width: 700px;
       left: 0;
     }
   }
 }
-
 @media screen and (max-width: 768px) {
   .header {
     max-width: 700px;

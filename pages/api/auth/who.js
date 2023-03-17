@@ -29,10 +29,27 @@ export default async function handler(req, res) {
             name: true,
             rep: true,
             credit: true,
+            badge_list: true,
           },
         });
         res.json(owner);
       }
+    } catch (err) {
+      res.send(err);
+    }
+  };
+  const putData = async () => {
+    console.log(body);
+    try {
+      const updateBadge = await prisma.user_table.update({
+        where: {
+          id: Number(body.id),
+        },
+        data: {
+          badge_list: body.data.toString(),
+        },
+      });
+      res.send("success");
     } catch (err) {
       res.send(err);
     }
@@ -42,6 +59,8 @@ export default async function handler(req, res) {
     case "GET":
       await getData();
       break;
+    case "PUT":
+      await putData();
     default:
       return;
   }
