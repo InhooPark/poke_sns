@@ -15,6 +15,7 @@ model user_table {
   password String
   credit   Int    @default(0)
   rep      Int    @default(0)
+  badge_list String @default(",,,,,")
 }
 
 model poke_table {
@@ -51,3 +52,4 @@ model favorite_table {
   id            Int    @id @unique
   favorite_list String @db.VarChar(2000)
 }
+

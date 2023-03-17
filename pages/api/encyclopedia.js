@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     try {
       const data = await prisma.have_poke.findUnique({
         where: {
-          id: body.user.id,
+          id: body.id,
         },
         select: {
           id: true,

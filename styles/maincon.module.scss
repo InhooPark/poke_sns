@@ -2,7 +2,6 @@ $height: 150px;
 
 .myprofile {
   width: 100%;
-  // border가 없으면 왜 밀릴까?
   border: 1px solid transparent;
   transform: rotate(0);
   .profile_img_wrap {
@@ -73,7 +72,6 @@ $height: 150px;
       .img_mod_list {
         width: 350px;
         height: 200px;
-        // border: 1px solid blue;
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;

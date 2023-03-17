@@ -23,13 +23,14 @@ const Encyclopedia = () => {
 
   //보유중인 포켓몬(테이블명 : have_poke)에 id+poke_id  가져오기
   const havePokeGet = () => {
-    axios.put("/api/encyclopedia", session).then((res) => {
+    axios.put("/api/encyclopedia", { id: who.id }).then((res) => {
       //보유중인 poke_id
-      console.log(res)
-      let aa = res.data.poke_id;
-      //배열로 쪼개기
-      let arr = aa.split(",");
-      setUserHave(arr);
+      if (res.data.poke_id !== undefined) {
+        let aa = res.data.poke_id;
+        //배열로 쪼개기
+        let arr = aa.split(",");
+        setUserHave(arr);
+      }
     });
   };
   const getEncyclopedia = async () => {
@@ -109,7 +110,7 @@ const Encyclopedia = () => {
   useEffect(() => {
     getEncyclopedia();
     havePokeGet();
-  }, [session]);
+  }, [who]);
   if (userHave !== undefined) {
     return (
       <>
@@ -180,7 +181,9 @@ const Encyclopedia = () => {
                 <div>
                   <Chart num={poke_key.current}></Chart>
                 </div>
-                <button onClick={() => changeRep()}><p>대표캐릭터 설정</p></button>
+                <button onClick={() => changeRep()}>
+                  <p>대표캐릭터 설정</p>
+                </button>
               </div>
             </div>
           </div>
