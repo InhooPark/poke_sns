@@ -5,6 +5,7 @@ import { Statusgroup } from "@/context/StatusContext";
 import { InfoUser } from "@/context/InfoContext";
 import axios from "axios";
 import moment from "moment";
+import Followlist from "./Followlist";
 
 const Item = ({ obj, dataGet }) => {
   const { data: session } = useSession();
@@ -69,11 +70,12 @@ const Item = ({ obj, dataGet }) => {
   const userFollow = (id, bool) => {
     if (!bool) {
       myfollowlist.push(id);
-      axios.post("/api/follow", { id: session.user.id, data: myfollowlist });
+      axios.put("/api/follow", { id: session.user.id, data: myfollowlist });
       location.reload();
     } else {
       let aa = myfollowlist.filter((obj) => obj != id);
-      axios.post("/api/follow", { id: session.user.id, data: aa });
+      console.log(aa);
+      axios.put("/api/follow", { id: session.user.id, data: aa });
       location.reload();
     }
   };

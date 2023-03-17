@@ -24,7 +24,7 @@ const InfoContext = ({ children }) => {
         if (res.data.follow_list !== "") {
           setMyfollowlist(res.data.follow_list.split(","));
         } else {
-          return;
+          setMyfollowlist([]);
         }
       });
   };
