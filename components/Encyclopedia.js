@@ -25,12 +25,11 @@ const Encyclopedia = () => {
   const havePokeGet = () => {
     axios.put("/api/encyclopedia", session).then((res) => {
       //보유중인 poke_id
+      console.log(res)
       let aa = res.data.poke_id;
       //배열로 쪼개기
-      if (aa != undefined) {
-        let arr = aa.split(",");
-        setUserHave(arr);
-      }
+      let arr = aa.split(",");
+      setUserHave(arr);
     });
   };
   const getEncyclopedia = async () => {
@@ -111,7 +110,6 @@ const Encyclopedia = () => {
     getEncyclopedia();
     havePokeGet();
   }, [session]);
-
   if (userHave !== undefined) {
     return (
       <>
@@ -179,8 +177,10 @@ const Encyclopedia = () => {
           <div className={status ? `${Style.sticky_tray}  ${Style.on}` : `${Style.sticky_tray}`}>
             <div id="aa" className={Style.encyclopedia_modal} onClick={(e) => modalClick2(e)}>
               <div className={Style.pickup}>
-                <Chart num={poke_key.current}></Chart>
-                <button onClick={() => changeRep()}>대표캐릭터 설정</button>
+                <div>
+                  <Chart num={poke_key.current}></Chart>
+                </div>
+                <button onClick={() => changeRep()}><p>대표캐릭터 설정</p></button>
               </div>
             </div>
           </div>

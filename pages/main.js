@@ -13,7 +13,6 @@ const Main = () => {
   useEffect(() => {
     setPageStatus("LIST");
   }, []);
-
   if (status === "unauthenticated") {
     location.replace("/");
   } else if (status === "authenticated") {

@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+  registerables,
+} from "chart.js";
 import { Radar } from "react-chartjs-2";
 import axios from "axios";
 
-ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
+ChartJS.register(
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend
+);
 
 const Chart = ({ num }) => {
   const [poke, setPoke] = useState();
@@ -15,7 +31,7 @@ const Chart = ({ num }) => {
           id: num,
         },
       })
-      .then((res) => {
+      .then(res => {
         setPoke(res.data);
       });
   };
@@ -30,7 +46,7 @@ const Chart = ({ num }) => {
       labels: Object.keys(parseData),
       datasets: [
         {
-          label: "Status",
+          label: "능력치",
           data: Object.values(parseData),
           backgroundColor: "rgba(255, 99, 132, 0.2)",
           borderColor: "rgba(255, 99, 132, 1)",
@@ -48,6 +64,7 @@ const Chart = ({ num }) => {
               min: 0,
               max: 160,
               ticks: {
+                fontColor: 'red',
                 beginAtZero: true,
                 stepSize: 40,
                 z: 1,
@@ -59,5 +76,4 @@ const Chart = ({ num }) => {
     );
   }
 };
-
 export default Chart;
