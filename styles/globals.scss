@@ -21,7 +21,9 @@
   outline: none;
   font-family: "NanumSquareRound";
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 // body {
 //   #__next {
 //     width: 1400px;
