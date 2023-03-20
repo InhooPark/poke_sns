@@ -6,17 +6,19 @@ import { Statusgroup } from "@/context/StatusContext";
 
 const Tutorial = () => {
   const { data: session } = useSession();
-  const { tutostate, setTutostate } = useContext(Statusgroup);
+  const { tutostate, setTutostate, setPageStatus } = useContext(Statusgroup);
   const nameRef = useRef();
 
   const repsel = (key) => {
     axios.put("/api/auth/signup", { type: "newbie", id: session.user.id, key: key });
     setTutostate(2);
   };
-  const nickSubmit = () => {
-    let name = nameRef.current.value;
-    axios.put("/api/auth/signup", { id: session.user.id, name: name });
-    location.replace("/");
+  const nickSubmit = async (event) => {
+    event.preventDefault();
+    let result = await axios.put("/api/auth/signup", { id: session.user.id, name: nameRef.current.value });
+    if (result.data.message === "success") {
+      setPageStatus("LIST");
+    }
   };
 
   if (tutostate == 1) {
@@ -45,14 +47,12 @@ const Tutorial = () => {
     return (
       <div className={Style.tuto_second}>
         <p>당신의 닉네임을 입력해주세요</p>
-        <form className={Style.tuto_second_form}>
+        <form className={Style.tuto_second_form} onSubmit={nickSubmit}>
           <p>
             <input ref={nameRef} type="text" name="name" placeholder="name" autoComplete="off" />
           </p>
           <p>
-            <button type="button" onClick={nickSubmit}>
-              확인
-            </button>
+            <input type="submit" value={"확인"}></input>
           </p>
         </form>
       </div>

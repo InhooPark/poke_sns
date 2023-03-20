@@ -7,19 +7,19 @@ const Nav = () => {
   const { pageStatus, setPageStatus, newbie } = useContext(Statusgroup);
 
   const mainBtnClick = () => {
-    setPageStatus("LIST");
+    if (pageStatus !== "NEWBIE") setPageStatus("LIST");
   };
   const trendBtnClick = () => {
-    setPageStatus("TREND");
+    if (pageStatus !== "NEWBIE") setPageStatus("TREND");
   };
   const encyclopediaBtnClick = () => {
-    setPageStatus("ENCYCLOPEDIA");
+    if (pageStatus !== "NEWBIE") setPageStatus("ENCYCLOPEDIA");
   };
   const writeBtnClick = () => {
-    setPageStatus("WRITE");
+    if (pageStatus !== "NEWBIE") setPageStatus("WRITE");
   };
   const mymsgBtnClick = () => {
-    setPageStatus("MYMSG");
+    if (pageStatus !== "NEWBIE") setPageStatus("MYMSG");
   };
 
   return (

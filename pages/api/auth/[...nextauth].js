@@ -28,8 +28,8 @@ export default NextAuth({
         if (!user) {
           throw new Error("No user found!");
         }
-        const bb = JSON.parse(CryptoJS.AES.decrypt(user.password, process.env.NEXT_PUBLIC_SECRET_KEY).toString(CryptoJS.enc.Utf8));
-
+        // const bb = JSON.parse(CryptoJS.AES.decrypt(user.password, process.env.NEXT_PUBLIC_SECRET_KEY).toString(CryptoJS.enc.Utf8));
+        const bb = CryptoJS.AES.decrypt(user.password, process.env.NEXT_PUBLIC_SECRET_KEY).toString(CryptoJS.enc.Utf8);
         if (bb.toString() === credentials.password) {
           return user;
         } else {

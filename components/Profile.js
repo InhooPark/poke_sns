@@ -6,7 +6,7 @@ import axios from "axios";
 import { InfoUser } from "@/context/InfoContext";
 
 const Profile = () => {
-  const { setPageStatus, pokedata, setPokedata } = useContext(Statusgroup);
+  const { pageStatus, setPageStatus, pokedata, setPokedata } = useContext(Statusgroup);
   const { who } = useContext(InfoUser);
   const [badges, setBadges] = useState([]);
   const [mylist, setMylist] = useState([]);
@@ -21,14 +21,16 @@ const Profile = () => {
     }
   };
   const getMypoke = () => {
-    if (who !== undefined) {
+    if (who !== undefined && pageStatus !== "NEWBIE") {
       axios.put("/api/encyclopedia", { id: who.id }).then((res) => {
-        if (res.data.poke_id !== undefined) {
-          let arr = res.data.poke_id.split(",");
-          arr.sort((a, b) => {
-            return a - b;
-          });
-          setMylist(arr);
+        if (res.data !== null) {
+          if (res.data.poke_id !== null) {
+            let arr = res.data.poke_id.split(",");
+            arr.sort((a, b) => {
+              return a - b;
+            });
+            setMylist(arr);
+          }
         } else {
           return;
         }
@@ -37,10 +39,10 @@ const Profile = () => {
   };
 
   const profileBtnClick = () => {
-    setPageStatus("PROFILE");
+    if (pageStatus !== "NEWBIE") setPageStatus("PROFILE");
   };
   const followBtnClick = () => {
-    setPageStatus("FOLLOW");
+    if (pageStatus !== "NEWBIE") setPageStatus("FOLLOW");
   };
   const BadgeFunc = (key) => {
     if (prekey !== key) {
@@ -62,10 +64,12 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    getMypoke();
-    getPoke();
-    if (who !== undefined) {
-      setBadges(who.badge_list.split(","));
+    if (pageStatus !== "NEWBIE") {
+      getMypoke();
+      getPoke();
+      if (who !== undefined) {
+        setBadges(who.badge_list.split(","));
+      }
     }
   }, [who]);
   if (who !== undefined) {
