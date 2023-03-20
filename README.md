@@ -78,15 +78,18 @@
 |Layout|레이아웃 프레임|
 |Header|헤더|
 |Nav|좌측 네비게이션 (메뉴)|
+|Mnav|모바일 nav|
 |Profile|우측 프로필 (aside)|
 |Sign|로그인 여부 판단 후 로그인/ 회원가입 페이지 이동|
 |Signnav|로그인/ 회원가입 토글 버튼|
 |Maincontents|로그인 후 컨텐츠 출력 위치|
 |List|코멘트 리스트|
-|Encyclopedia|도감|
-|Myprofile|개인정보 수정/ 삭제|
 |Searchlist|검색 결과 출력|
-|Contenteditor|글 작성|
+|Trend|인기글|
 |Followlist|팔로우 리스트|
-|Repselect|스타팅 포켓몬 선택|
+|Encyclopedia|도감|
+|Contenteditor|글 작성|
 |Update|글 수정|
+|Myprofile|개인정보 수정/ 삭제|
+|Tutorial|스타팅 포켓몬 선택|
+|Chartjs|스테이터스 표기|
