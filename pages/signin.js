@@ -3,7 +3,6 @@ import Signnav from "@/components/Signnav";
 import React, { useRef, useState } from "react";
 import Style from "@/styles/sign.module.scss";
 import { useSession, signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 
 const Signin = () => {
   const [formStatus, setFormStatus] = useState();
