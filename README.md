@@ -40,6 +40,11 @@
     * responsive styles <br />
 </details>
 
+<details>
+<summary> ver1.0.0 </summary>
+    * publish <br />
+</details>
+
 <br /><br />
 + 참고사항
   + 설치 후 npm install next
