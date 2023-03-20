@@ -7,10 +7,10 @@ const Sign = () => {
   const router = useRouter();
 
   const toSignin = async () => {
-    await router.push("/signin");
+    router.push("/signin");
   };
   const toMain = async () => {
-    await router.push("/main");
+    router.push("/main");
   };
 
   if (status === "authenticated") {
